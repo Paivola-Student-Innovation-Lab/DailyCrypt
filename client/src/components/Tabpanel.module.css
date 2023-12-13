@@ -1,0 +1,17 @@
+.tabs {
+    padding-left: 1vw;
+    width: 90%;
+}
+
+.pic {
+    width: 100%;
+}
+
+.picturebox {
+    padding: 3%;
+}
+
+.instructiontext {
+    display: block;
+    padding-top: 1vh;
+}

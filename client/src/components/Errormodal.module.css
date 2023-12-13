@@ -1,0 +1,22 @@
+.modal {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    background-color: white;
+    color: black;
+    border: 2px solid var(--encryptgreen);
+    padding: 20px;
+    text-align: center;
+}
+
+.modaltext {
+    margin-top: 2rem;
+}
+.modalbuttons {
+    height: 10%;
+    width: 35%;
+    font-size: 18px;
+    border: 1px solid var(--encryptgreen);
+}

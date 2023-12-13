@@ -1,0 +1,12 @@
+body {
+  background-color: var(--background-color);
+  margin: 0;
+}
+
+:root {
+  --container-color: #ffffff;
+  --background-color: #1e1e1e;
+  --encryptgreen: #29c08d;
+  --decryptgreen: #0d6b4c;
+  --buttonfont: calc(4rem - 32px);
+}

@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10vh 5vw;
+  padding: 5vh 0;
+  border-radius: 2.5vw;
+  background-color: var(--container-color);
+}
+
+.dropbox {
+  padding: 2vh 0;
+}
+
+.dropzoneborder {
+  padding: 2;
+  border: 2px;
+}
+
+.dropzonecoloredborder {
+  padding: 2;
+  border: 2px dashed var(--encryptgreen);
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: max(min(10vw, 10vh), 100px);
+}
+
+div > .button, div > .downloadbutton {
+  height: fit-content;
+  width: 22%;
+  margin-right: 15%; margin-left: 15%;
+  font-size: var(--buttonfont);
+  text-transform: none;
+  background-color: var(--encryptgreen);
+  color: white;
+  border: 5px solid var(--encryptgreen);
+}
+
+div > .downloadbutton {
+  height: fit-content;
+  width: fit-content;
+  font-size: calc(var(--buttonfont)/2)
+}
+
+div > .button:hover, div > .downloadbutton:hover {
+  background-color: var(--decryptgreen);
+}
+
+.textfields {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 2vh 0;
+} 
+
+.input-error > *, .input-error > * > * {
+  color: red !important;
+  border-color: red !important;
+}
+
+.errorlink, .alerttitle {
+  color: inherit;
+  font-weight: bold;
+}
+
+.linkbutton {
+  font-weight: bold;
+}
+
+.progressbuttons {
+  align-items: center;
+}

@@ -1,0 +1,81 @@
+h3 {
+  margin: 0;
+}
+
+.info, .text, .infolink, .homelink {
+  color: var(--encryptgreen);
+  margin: auto;
+}
+
+.dailycrypt {
+  width: 100%;
+  text-decoration: underline;
+  text-underline-offset: 1.4vh;
+}
+
+.info {
+  color: var(--encryptgreen);
+  margin-right: 0%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vh 5vw;
+}
+
+.header > .homebutton, .header > .infobutton  {
+  display: flex;
+  align-items: center;
+}
+
+.muihomelink { 
+  display: flex;
+  padding: 10vh, 0;
+  justify-content: center;
+}
+
+.infotext {
+  text-decoration: underline;
+}
+
+.infolink {
+  color: var(--encryptgreen);
+  margin: auto;
+  justify-self: right;
+}
+
+.infolink, .homelink {
+  text-decoration: none;
+}
+
+.infolink:hover, .homelink:hover {
+    color: var(--decryptgreen);
+    transition-duration: 0.4s;
+}
+
+.divider {
+  width: 90vw;
+  margin: 0 5vw;
+  height: 0.5vh;
+  background-color: var(--encryptgreen);
+}
+
+.pic {
+  display: block;
+  height: 6vw;
+  margin-right: 1vw;
+}
+
+
+.text {
+  text-underline-offset: 1.4vh;
+  margin-left: 0%;
+}
+
+.infomui {
+  display: flex;
+  padding: 10vh, 0;
+  justify-content: center;
+}

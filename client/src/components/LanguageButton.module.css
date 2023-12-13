@@ -1,0 +1,15 @@
+
+.languagebutton {
+    margin-left: 30px;
+    background-color: var(--background-color);
+}
+
+.languageoption {
+    background-color: var(--background-color);
+    color: var(--encrypt-green);
+}
+
+.languagemenu {
+    max-height: 30%;
+    overflow: 'auto';
+}

@@ -1,0 +1,72 @@
+{
+    "languagekey" : "fi",
+    "languagename" : "Suomi",
+    "languagedirection" : "ltr",
+
+    "encrypt_button" : "Salaa",
+    "decrypt_button" : "Pura salaus",
+    "download_encrypted" : "Lataa salattu tiedosto",
+    "download_decrypted" : "Lataa purettu tiedosto",
+    "restart_button" : "Aloita alusta",
+
+    "encrypting" : "Salataan",
+    "decrypting" : "Puretaan",
+    "success_encrypt" : "salattiin onnistuneesti!",
+    "success_decrypt" : "purettiin onnistuneesti!",
+
+    "dropbox_text1" : "Klikkaa valitaksesi tiedosto, tai vedä tiedosto tähän",
+    "dropbox_text2" : "Klikkaa valitaksesi eri tiedosto, tai vedä tiedosto tähän",
+    "dropbox_text3" : "Valittu tiedosto:",
+
+    "password_field" : "Salasana",
+    "confirmpassword_field" : "Vahvista salasana",
+
+    "infopage_title1" : "Mikä on DailyCrypt?",
+    "infopage_title2" : "Miten tiedostoja pakataan?",
+    "infopage_title3" : "Tuetut selainversiot",
+
+    "info_1" : "Kehittänyt",
+    "info_2" : "DailyCrypt on yksinkertainen salausnettisivu. Tavoitteemme on tehdä salauksesta kaikille saavutettavaa.",
+    "info_3" : "DailyCrypt on tehty ilman palvelinta turvallisuuden varmistamiseksi. Koodi on avointa lähdekoodia, jolloin se on kaikkien saatavilla.",
+
+    "browser_info1" : "työn alla",
+
+    "zip_info_1" : "Pakkaa tiedostosi ennen salausta. Valitse käyttöjärjestelmäsi nähdäksesi ohjeet tiedostojen pakkaamiseen.",
+
+    "ubuntu_title" : "OHJE UBUNTULLE",
+    "ubuntu_instruction_1" : "Valitse tiedostot jotka tahdot salata.",
+    "ubuntu_instruction_2" : "Paina hiiren oikeaa näppäintä ja valitse 'Compress'",
+    "ubuntu_instruction_3" : "Nimeä tiedosto (vaihtoehtoinen) ja paina 'Create'",
+    "ubuntu_instruction_4" : "Tiedosto ilmestyy samaan kansioon",
+
+    "windows_title" : "OHJE WINDOWSILLE",
+    "windows_instruction_1" : "Valitse tiedostot jotka tahdot salata.",
+    "windows_instruction_2" : "Paina hiiren oikeaa näppäintä ja valitse 'Send to/Lähetä' ja paina 'Compressed (zipped) folder/Pakattu kansio'",
+    "windows_instruction_3" : "Tiedosto ilmestyy samaan kansioon",
+
+    "mac_title" : "OHJE MACILLE",
+    "mac_instruction_1" : "Valitse tiedostot jotka tahdot salata.",
+    "mac_instruction_2" : "Paina hiiren oikeaa näppäintä ja valitse 'Compress/Pakkaa'",
+    "mac_instruction_3" : "Tiedosto ilmestyy samaan kansioon",
+
+    "empty_file" : "Ei tiedostoa!",
+    "empty_password" : "Syötä salasana!",
+    "mismatch" : "Salasanat eivät täsmää!",
+    "wrong_password" : "Väärä purkusalasana!",
+
+    "empty_file_encrypt" : "Sinun täytyy valita tiedosto salataksesi sen.",
+    "empty_file_decrypt" : "Sinun täytyy valita tiedosto purkaaksesi sen.",
+    "empty_password_encrypt" : "Sinun täytyy syöttää salasana salausta varten.",
+    "empty_password_decrypt" : "Sinun täytyy syöttää salasana (jota käytettiin salauksessa) purkamista varten.",
+    "mismatch_text" : "Syöttämäsi salasanat eivät ole keskenään samat.",
+    "wrong_password_text" : "Salasana, jonka syötit, ei ollut sama salasana, jota käytettiin salauksessa.",
+
+    "hours" : "tuntia",
+    "hour" : "tunti",
+    "minutes" : "minuuttia",
+    "minute" : "minuutti",
+    "seconds" : "sekuntia",
+    "second" : "sekunti",
+    "remaining" : "jäljellä"
+}
+

@@ -1,0 +1,14 @@
+.outerbox {
+    display: flex;
+    align-items: center;
+    width: 70%;
+}
+
+.innerbox {
+    width: 100%;
+    margin-right: 1%;
+}
+
+.valuebox {
+    min-width: 35;
+}

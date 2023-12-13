@@ -1,0 +1,73 @@
+{
+    "languagekey" : "se",
+    "languagename" : "Svenska",
+    "languagedirection" : "ltr",
+
+    "encrypt_button" : "Kryptera",
+    "decrypt_button" : "Dekryptera",
+    "download_encrypted" : "Ladda ner krypterad fil",
+    "download_decrypted" : "Ladda ner dekrypterad fil",
+    "restart_button" : "Starta om",
+
+    "encrypting" : "Krypterar",
+    "decrypting" : "Dekrypterar",
+    "success_encrypt" : "krypterades framgångsrikt!",
+    "success_decrypt" : "dekrypterades framgångsrikt!",
+
+    "dropbox_text1" : "Klicka här för att välja en fil, eller dra en fil hit",
+    "dropbox_text2" : "Klicka här för att välja en annan fil, eller dra en annan fil hit",
+    "dropbox_text3" : "Vald fil:",
+
+    "password_field" : "Lösenord",
+    "confirmpassword_field" : "Bekräfta lösenord",
+
+    "infopage_title1" : "Vad är DailyCrypt?",
+    "infopage_title2" : "Hur komprimeras filer?",
+    "infopage_title3" : "Webbläsarversioner som stöds",
+
+    "info_1" : "Utvecklad av",
+    "info_2" : "DailyCrypt är en enkel krypteringswebbsida. Vårt mål är att göra kryptering tillgänglig för alla.",
+    "info_3" : "DailyCrypt är tillverkad utan en server för att säkerställa säkerheten. Koden är öppen källkod, så den är tillgänglig för alla.",
+
+    "browser_info1" : "Jobbar på det...",
+
+    "zip_info_1" : "Komprimera dina filer innan du krypterar. Välj ditt operativsystem för att se instruktioner hur du komprimerar filerna.",
+
+    "ubuntu_title" : "GUIDE FÖR UBUNTU",
+    "ubuntu_instruction_1" : "Välj filer som du vill kryptera.",
+    "ubuntu_instruction_2" : "Högerklicka och välj 'Compress'.",
+    "ubuntu_instruction_3" : "Namnge filen (valfritt) och klicka på 'Create'.",
+    "ubuntu_instruction_4" : "Filen kommer att visas i samma mapp.",
+
+    "windows_title" : "GUIDE FÖR WINDOWS",
+    "windows_instruction_1" : "Välj filer som du vill kryptera.",
+    "windows_instruction_2" : "Högerklicka och välj 'Send to/Skicka till' och klicka på 'Compressed (zipped) folder/Komprimerad mapp'.",
+    "windows_instruction_3" : "Filen kommer att visas i samma mapp.",
+
+    "mac_title" : "GUIDE FÖR MAC",
+    "mac_instruction_1" : "Välj filer som du vill kryptera.",
+    "mac_instruction_2" : "Högerklicka och välj 'Compress/Komprimera'.",
+    "mac_instruction_3" : "Filen kommer att visas i samma mapp.",
+
+
+    "empty_file" : "Ingen fil!",
+    "empty_password" : "Skriv in ett lösenord!",
+    "mismatch" : "Lösenorden stämmer inte överens!",
+    "wrong_password" : "Fel krypteringslösenord!",
+
+    "empty_file_encrypt" : "Du måste välja en fil för att kryptera den.",
+    "empty_file_decrypt" : "Du måste välja en fil för att dekryptera den.",
+    "empty_password_encrypt" : "Du måste skriva in ett lösenord för kryptering.",
+    "empty_password_decrypt" : "Du måste skriva in lösenordet (det samma lösenord som var använt för kryptering) för att dekryptera.",
+    "mismatch_text" : "Lösenorden du skrev stämmer inte överens.",
+    "wrong_password_text" : "Lösenordet du skrev in var inte samma lösenord som användes för kryptering.",
+
+    "hours" : "timmar",
+    "hour" : "timme",
+    "minutes" : "minuter",
+    "minute" : "minut",
+    "seconds" : "sekunder",
+    "second" : "sekund",
+    "remaining" : "kvar"
+}
+

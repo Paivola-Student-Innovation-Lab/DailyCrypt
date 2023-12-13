@@ -1,0 +1,51 @@
+
+.grid .card {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 10vh 8vw;
+    padding: 2.5vh 1vh 2.5vh 1vh;
+    background-color: #ffffff;
+}
+
+.card, .guide {
+    width: 75%
+}
+
+.guide {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: 10vh 5vw;
+    padding: 2.5vh 1vh 0 1vh;
+    background-color: #ffffff;
+}
+
+.bodytext {
+    color: #1e1e1e;
+    margin-top: 1%;
+    padding-top: 2%;
+}
+
+.infotext {
+    color: var(--encryptgreen);
+    margin-bottom: 1%;
+    padding-bottom: 2%;
+}
+
+.divider {
+    width: 35vw;
+    margin: 0 0vw;
+    height: 0.5vh;
+    background-color: var(--encryptgreen);
+}
+
+.psil {
+    font-weight: bolder;
+    color: var(--encryptgreen);
+
+    &:hover {
+        color: var(--decryptgreen);
+        transition-duration: 0.4s;
+    }
+}
