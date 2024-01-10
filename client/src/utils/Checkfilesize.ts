@@ -18,9 +18,11 @@ const enoughSpace = async(size: number, fileStore:string, encrypting: boolean) =
         const writeWorker = new Worker(new URL("../utils/writeworker.js", import.meta.url))
         writeWorker.onmessage = (message) => {
             if (message.data==="written") {
+                writeWorker.terminate()
                 resolve(true)
             }
             else{
+                writeWorker.terminate()
                 resolve(false)
             }
         }
