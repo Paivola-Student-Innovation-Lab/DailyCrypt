@@ -1,7 +1,7 @@
 import useWasm from "./useWasm";
 import eventBus from "../utils/EventBus";
 import { useEffect, useRef } from "react";
-import useTranslation from "./useTranslation";
+// import useTranslation from "./useTranslation";
 
 export function useChunking(
   setProgress: (arg0: number) => void,
@@ -14,7 +14,7 @@ export function useChunking(
     const handleMessageRef = useRef((_message: MessageEvent) => {})
 
     const rust = useWasm()
-    const translate = useTranslation()
+    // const translate = useTranslation()
 
     const writeWorker = new Worker(new URL("../utils/writeworker.js", import.meta.url)) //creates webworker for compiling file
     writeWorker.onmessage = (message) => {handleMessageRef.current(message)}

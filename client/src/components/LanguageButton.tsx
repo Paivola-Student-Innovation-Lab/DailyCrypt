@@ -1,4 +1,4 @@
-import { Button, Menu, MenuItem, MenuProps, alpha, styled } from "@mui/material";
+import { Button, Menu, MenuItem } from "@mui/material";
 import styles from "./LanguageButton.module.css"
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import TranslateIcon from '@mui/icons-material/Translate';
@@ -18,7 +18,7 @@ export const LanguageButton = () => {
     setAnchorEl(null);
   };
   
-  const { userLanguage, userLanguageChange } = useContext(LanguageContext);
+  const { userLanguageChange } = useContext(LanguageContext);
 
   const handleLanguageChange = (e: any) => {
     const newLanguageKey = e.currentTarget.getAttribute("data-language-key");

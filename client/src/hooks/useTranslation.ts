@@ -17,7 +17,7 @@ export default function useTranslation() {
         return Object.keys(interpolations).reduce(
           (interpolated, key) =>
             interpolated.replace(
-              new RegExp(`{\s*${key}\s*}`, "g"),
+              new RegExp(`{*${key}*}`, "g"),
               interpolations[key],
             ),
           message,
