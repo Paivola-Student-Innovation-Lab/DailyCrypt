@@ -44,7 +44,7 @@ const App = () => {
   const [passwordMismatch, setPasswordMismatch] = useState(false);
 
   // Hook declaration
-  const {modalOpen, modalTitle, modalText, makeModal, closeModal, dropHidden, setDropHidden, modalButtons} = useModal();
+  const {modalOpen, modalTitle, modalText, makeModal, closeModal, dropHidden, setDropHidden, modalButtons, modalOnClose} = useModal();
   const { chunk } = useChunking(setProgress, makeModal, setDropHidden, setTimeLeft, fileStore);
   const { handleCrypting } = useCrypting(chunk, setProgress, setEncrypting, setDropHidden, makeModal, password, passwordMismatch, files, fileStore);
   const {handleLoad} = useOnPageLoad(setHasOpfs, setFileStore, makeModal, closeModal);
@@ -115,7 +115,7 @@ const App = () => {
       eventBus.dispatch("pause", false)
       closeModal()
     }
-    makeModal("Are you sure you want to cancel?", "This will stop the encryption/decryption process and delete the file.", [["Yes", confirmedStop], ["No", declinedStop]])
+    makeModal("Are you sure you want to cancel?", "This will stop the encryption/decryption process and delete the file.", [["Yes", confirmedStop], ["No", declinedStop]], declinedStop)
   }
 
   //make something happen when component loads for first time
@@ -138,11 +138,12 @@ const App = () => {
       <div className={styles.container}>
         <Modal
           open={modalOpen}
-          onClose={closeModal}
+          onClose={modalOnClose? modalOnClose : closeModal}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
           <Box className={modalStyles.modal}>
+            <button className={modalStyles.modalclosebutton} onClick={modalOnClose? modalOnClose : closeModal}>close</button>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               {modalTitle}
             </Typography>

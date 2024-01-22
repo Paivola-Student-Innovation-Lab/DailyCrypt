@@ -1,4 +1,4 @@
-export  function useOnPageLoad(setHasOpfs: (arg0: boolean) => void, setFileStore:(arg0: string) => void, makeModal: (arg0:string ,arg1:string ,arg2?: [buttontext: string, buttonfunc:() => void][])=> void, closeModal:()=>void){
+export  function useOnPageLoad(setHasOpfs: (arg0: boolean) => void, setFileStore:(arg0: string) => void, makeModal: (arg0:string ,arg1:string ,arg2?: [buttontext: string, buttonfunc:() => void][], arg3?:()=>{})=> void, closeModal:()=>void){
   const remove = async()=>{
     //removes all files from opfs
     for await (const key of (await navigator.storage.getDirectory()).keys()){
@@ -49,7 +49,7 @@ export  function useOnPageLoad(setHasOpfs: (arg0: boolean) => void, setFileStore
     let filesinstore=false
     for await (const key of (await navigator.storage.getDirectory()).keys()){
       //if there are files in opfs asks user how to proceed. user can call one of the functions above through this modal
-      makeModal("Another tab open", "Seems like you have Dailycrypt open in another tab. choose wether to delete all files being processed by other tabs or to create a new file for this tab. Removing files may cause errors in other pages", [["Remove", remove], ["Create", createNew]])
+      makeModal("Another tab open", "Seems like you have Dailycrypt open in another tab. choose wether to delete all files being processed by other tabs or to create a new file for this tab. Removing files may cause errors in other pages", [["Remove", remove], ["Create", createNew]], remove)
       filesinstore=true
       break
     }
