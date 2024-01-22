@@ -53,7 +53,6 @@ export function useChunking(
       const opfs = await navigator.storage.getDirectory()
       await opfs.removeEntry(fileStoreRef.current)
       await opfs.getFileHandle(fileStoreRef.current, {create:true})
-      //doesn't work always
       setDropHidden(false) // Show dropzone
     }
 
