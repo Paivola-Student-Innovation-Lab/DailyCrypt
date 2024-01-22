@@ -11,25 +11,20 @@ export function useChunking(
   fileStore: string,) {
     const isPausedRef = useRef(false)
     const isStoppedRef = useRef(false)
-    const handleMessageRef = useRef((_message: MessageEvent) => {})
-
+    const workerRef: React.MutableRefObject<Worker|undefined> = useRef()
+    const fileStoreRef = useRef(fileStore)
     const rust = useWasm()
     const translate = useTranslation()
 
-    const writeWorker = new Worker(new URL("../utils/writeworker.js", import.meta.url)) //creates webworker for compiling file
-    writeWorker.onmessage = (message) => {handleMessageRef.current(message)}
+   
     const handleStop = async()=>{
-      try{
-        await resetOpfs()
-      }
-      catch(error){}
-      isStoppedRef.current=true
+      await resetOpfs() 
     }
     useEffect(() => {
       eventBus.on("pause", (paused) =>{
         isPausedRef.current = paused
-        if (!paused) {
-          writeWorker.postMessage("start")
+        if (!paused && workerRef.current !== undefined) {
+          workerRef.current.postMessage("start")
         }
       eventBus.on("stop", ()=>{
         handleStop()
@@ -50,12 +45,15 @@ export function useChunking(
     }
 
     const resetOpfs = async () => {
-      setDropHidden(false) // Show dropzone
       //delete file from opfs and create a new one
+      if (workerRef.current !== undefined) {
+        workerRef.current.terminate()
+        workerRef.current = undefined
+      }
       const opfs = await navigator.storage.getDirectory()
-      await opfs.removeEntry(fileStore)
-      await opfs.getFileHandle(fileStore, {create:true})
-      writeWorker.terminate()
+      await opfs.removeEntry(fileStoreRef.current)
+      await opfs.getFileHandle(fileStoreRef.current, {create:true})
+      setDropHidden(false) // Show dropzone
     }
 
    
@@ -71,6 +69,7 @@ export function useChunking(
       let sendMessage=false
       isPausedRef.current=false
       isStoppedRef.current=false
+      fileStoreRef.current=fileStore
       const createchunk = async(key:number)=>{
         // create chunk
         const start = key * chunkSize; // Choose where to start reading file (i = the number of the current chunk)
@@ -88,7 +87,8 @@ export function useChunking(
       }
       let i = 1
       //create a chunk when worker sends a message
-      handleMessageRef.current = async(message) => {
+      workerRef.current = new Worker(new URL("../utils/writeworker.js", import.meta.url)) //creates webworker for compiling file
+      workerRef.current.onmessage = async(message) => {
         //if worker sends number get error message assosiated with number and make a modal of it. also reset website.
         if (isStoppedRef.current){
           i=-1
@@ -118,9 +118,9 @@ export function useChunking(
           sendMessage=false
           if ( i < totalChunks) {
             //send message to worker to add previous chunk in the end of the compilation file
-           
-            writeWorker.postMessage([writableChunk, (i-1)*(chunkSize + (encrypting? 16 : -16)), fileStore])
-            
+            if (workerRef.current !== undefined){
+              workerRef.current.postMessage([writableChunk, (i-1)*(chunkSize + (encrypting? 16 : -16)), fileStore])
+            }
             if (i-1 >= renderAmount) { // Check if it's time to update the progress bar
               renderAmount += totalChunks/100 // Set the next time to update the progress bar
               setProgress((i-1)/totalChunks * 100) // Update progress bar
@@ -151,7 +151,9 @@ export function useChunking(
           }
           //sends message to worker to write the last chunk
           else if(i===totalChunks){
-            writeWorker.postMessage([writableChunk, (i-1)*(chunkSize + (encrypting? 16 : -16)), fileStore])
+            if (workerRef.current !== undefined){
+              workerRef.current.postMessage([writableChunk, (i-1)*(chunkSize + (encrypting? 16 : -16)), fileStore])
+            }
             i+=1
           }
             else{
@@ -162,23 +164,17 @@ export function useChunking(
                 makeModal("something went wrong and file is wrong size", "")
               } else {
                 setProgress(100)
-                writeWorker.terminate()
+                if (workerRef.current !== undefined)
+                workerRef.current.terminate()
               }
             }
           const currentI=i
           ready=true
           //if worker sent a message during the time spent processing the chunk send a empty message to worker to re trigger the loop
           if(sendMessage){
-            writeWorker.postMessage("cycle")
-          }
-          //if worker hasn't sent message in 5 seconds, send previous message again.
-          await new Promise( res => setTimeout(res, 5000));
-         
-          if(currentI===i && currentI<=totalChunks+1 && !isPausedRef.current && ready){
-            try{
-              writeWorker.postMessage([await createchunk(currentI-2), (currentI-2)*(chunkSize + (encrypting? 16 : -16)), fileStore])
+            if (workerRef.current !== undefined) {
+              workerRef.current.postMessage("cycle")
             }
-            catch(error){}
           }
         }
         //if worker sends message, but we aren't ready to generate another chunk set sendmessage to true
@@ -195,7 +191,7 @@ export function useChunking(
         return
       }
       //sends message to worker to start working.
-      writeWorker.postMessage("start")
+      workerRef.current.postMessage("start")
   }
   return { chunk }
   
