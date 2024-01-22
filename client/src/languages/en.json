@@ -49,6 +49,8 @@
     "mac_instruction_2" : "Right-click and click 'Compress'",
     "mac_instruction_3" : "The zipped file will appear in the same folder",
 
+    "close" : "close",
+
     "empty_file" : "No file selected!",
     "empty_password" : "Enter password!",
     "mismatch" : "Passwords don't match!",

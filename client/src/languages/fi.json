@@ -49,6 +49,8 @@
     "mac_instruction_2" : "Paina hiiren oikeaa näppäintä ja valitse 'Compress/Pakkaa'",
     "mac_instruction_3" : "Tiedosto ilmestyy samaan kansioon",
 
+    "close" : "sulje", 
+
     "empty_file" : "Ei tiedostoa!",
     "empty_password" : "Syötä salasana!",
     "mismatch" : "Salasanat eivät täsmää!",

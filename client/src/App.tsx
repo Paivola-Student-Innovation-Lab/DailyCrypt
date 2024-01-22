@@ -143,7 +143,7 @@ const App = () => {
           aria-describedby="modal-modal-description"
         >
           <Box className={modalStyles.modal}>
-            <button className={modalStyles.modalclosebutton} onClick={modalOnClose? modalOnClose : closeModal}>close</button>
+            <button className={modalStyles.modalclosebutton} onClick={modalOnClose? modalOnClose : closeModal}>{translate('close')}</button>
             <Typography id="modal-modal-title" variant="h6" component="h2">
               {modalTitle}
             </Typography>
