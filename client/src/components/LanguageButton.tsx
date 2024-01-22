@@ -1,4 +1,4 @@
-import { Button, Menu, MenuItem, MenuProps, alpha, styled } from "@mui/material";
+import { Button, Menu, MenuItem, MenuProps, Tooltip, alpha, styled } from "@mui/material";
 import styles from "./LanguageButton.module.css"
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import TranslateIcon from '@mui/icons-material/Translate';
@@ -30,9 +30,11 @@ export const LanguageButton = () => {
 
   return (
     <div className={styles.languagebutton}>
-      <Button onClick={handleClick} endIcon={<KeyboardArrowDownIcon />}>
-        <TranslateIcon />
-      </Button>
+      <Tooltip title="Language">
+        <Button onClick={handleClick} endIcon={<KeyboardArrowDownIcon fontSize="large"/>}>
+          <TranslateIcon fontSize="large"/>
+        </Button>
+      </Tooltip>
       <Menu className={styles.languagemenu} anchorEl={anchorEl} open={open} onClose={handleClose}>
         {Object.values(dictionaryList).map(languageData => (
           <MenuItem key={languageData.languagekey} data-language-key={languageData.languagekey} onClick={handleLanguageChange} disableRipple>

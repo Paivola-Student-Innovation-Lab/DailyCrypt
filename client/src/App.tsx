@@ -161,10 +161,7 @@ const App = () => {
         </Modal>
         {hasOpfs &&
         <>
-        <div className={styles.buttons}>
-          <Button disabled={dropHidden} className={styles.button} onClick={handleEncrypt} value="encrypt">{translate('encrypt_button')}</Button>
-          <Button disabled={dropHidden} className={styles.button} onClick={handleDecrypt} value="decrypt">{translate('decrypt_button')}</Button>
-        </div>
+        
         <div className={styles.dropbox}>
 
           <Box className={dropHidden ? styles.dropzoneborder : styles.dropzonecoloredborder}>
@@ -197,9 +194,15 @@ const App = () => {
 
 
         </div>
+        <div className={styles.bottomcontainer}>
         <div className={styles.textfields}>
           <TextField type="password" label={translate('password_field')} value={password} onChange={handlePasswordInput} required />
           <TextField type="password" className={passwordMismatch ? styles["input-error"] : ""} label={translate('confirmpassword_field')} value={confirmPassword} onChange={handleConfirmPasswordInput} required />
+        </div>
+        <div className={styles.buttons}>
+          <Button disabled={dropHidden} className={styles.button} onClick={handleEncrypt} value="encrypt">{translate('encrypt_button')}</Button>
+          <Button disabled={dropHidden} className={styles.button} onClick={handleDecrypt} value="decrypt">{translate('decrypt_button')}</Button>
+        </div>
         </div>
         </>}
         {!hasOpfs &&

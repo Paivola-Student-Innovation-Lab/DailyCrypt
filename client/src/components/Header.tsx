@@ -13,20 +13,29 @@ const Header = () => {
   return (
     <div>
       <div className={styles.header}>
-        <div className={styles.homebutton}>
-          <img src='./images/BetterLogo.png' className={styles.pic} alt='' />
-          <Typography className={styles.text} variant="h3">
-            <span className={styles.dailycrypt}>DailyCrypt</span> <HomeIcon /> 
-          </Typography>
+        <div className={styles.navigationbuttons}>
+          <div className={styles.dailycrypt}>
+            <img src="images/BetterLogo.png" alt="" className={styles.pic}/>
+            <Typography className={styles.text} variant="h3">
+              <span>DailyCrypt</span> 
+            </Typography>
+          </div>
+          <div className={styles.homebutton}>
+            <Typography className={styles.text} variant="h3">
+            <HomeIcon/> <span className={styles.mainpage}>crypting</span> 
+            </Typography>
+          </div>
+          <div className={styles.infobutton}>
+            <Typography variant="h3" className={styles.infomui}>
+              <Link className={styles.infolink} to="info"><InfoIcon/> info</Link>
+            </Typography>
+          </div> 
+          </div>
+          <div className={styles.languagebutton}>
+            <LanguageButton />
+          </div>
         </div>
-        <div className={styles.infobutton}>
-          <Typography variant="h3" className={styles.infomui}>
-            <Link className={styles.infolink} to="info"><InfoIcon/> info</Link>
-          </Typography>
-          <LanguageButton />
-        </div> 
-      </div>
-      <div className={styles.divider} />
+        <div className={styles.divider} />
     </div>
   );
 };
@@ -35,18 +44,29 @@ const InfoHeader = () => {
   return (
     <div>
       <div className={styles.header}>
-        <div className={styles.homebutton}>
-          <img src='./images/BetterLogo.png' className={styles.pic} alt='' />
-          <Typography variant="h3" className={styles.muihomelink} >
-            <Link className={styles.homelink} to="/">DailyCrypt <HomeIcon/> </Link>
-          </Typography>
+        <div className={styles.navigationbuttons}>
+        <div className={styles.dailycrypt}>
+            <img src="images/BetterLogo.png" alt="" className={styles.pic}/>
+            <Typography className={styles.text} variant="h3">
+              <span>DailyCrypt</span> 
+            </Typography>
+          </div>
+          <div className={styles.homebutton}>
+            <Typography variant="h3" className={styles.muihomelink} >
+              <Link className={styles.homelink} to="/"><HomeIcon/> crypting</Link>
+            </Typography>
+          </div>
+          <div className={styles.infobutton}>
+            <Typography className={styles.info} variant="h3">
+              <InfoIcon/> <span className={styles.infotext}>info</span>
+            </Typography>
+          </div>
         </div>
-        <div className={styles.infobutton}>
-          <Typography className={styles.info} variant="h3">
-            <InfoIcon/> <span className={styles.infotext}>info</span>
-          </Typography>
-          <LanguageButton />
+        <div className={styles.languagebutton}>
+        <LanguageButton />
         </div>
+         
+        
       </div>
       <div className={styles.divider} />
     </div>
