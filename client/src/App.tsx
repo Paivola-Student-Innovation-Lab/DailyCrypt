@@ -109,6 +109,7 @@ const App = () => {
     eventBus.dispatch("pause", true)
     const confirmedStop = () => {
       eventBus.dispatch("stop", true)
+      setPaused(false)
       closeModal()
     } 
     const declinedStop = () => {

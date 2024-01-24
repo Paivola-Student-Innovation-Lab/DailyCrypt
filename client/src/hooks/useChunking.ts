@@ -13,6 +13,7 @@ export function useChunking(
     const isStoppedRef = useRef(false)
     const workerRef: React.MutableRefObject<Worker|undefined> = useRef()
     const fileStoreRef = useRef(fileStore)
+    const startTimeRef=useRef<undefined|number>()
     const rust = useWasm()
     const translate = useTranslation()
 
@@ -24,6 +25,7 @@ export function useChunking(
       eventBus.on("pause", (paused) =>{
         isPausedRef.current = paused
         if (!paused && workerRef.current !== undefined) {
+          startTimeRef.current=undefined
           workerRef.current.postMessage("start")
         }
       eventBus.on("stop", ()=>{
@@ -37,13 +39,27 @@ export function useChunking(
     }, []);
 
     function secondsToHms(d: number) {
-      var h = Math.floor(d / 3600);
-      var m = Math.floor(d % 3600 / 60);
-      var s = Math.floor(d % 3600);
+      const h = Math.floor(d / 3600);
+      const m = Math.floor(d % 3600 / 60);
+      const s = Math.floor(d % 60);
 
       return [h, m, s]; 
     }
-
+    const handleProgress = (totalChunks: number, completedChunks: number) => {
+      const compleatedMultiplier = completedChunks/totalChunks
+      setProgress(Math.floor(compleatedMultiplier*100))
+      // Handle time data
+      const currentTime = performance.now()
+      if(startTimeRef.current===undefined){
+        startTimeRef.current=currentTime
+      }
+      const totalTime = currentTime - startTimeRef.current //calculate how much time has passed since starting the program
+      const remainingTime = (1/compleatedMultiplier-1)*totalTime 
+      setTimeLeft(secondsToHms(remainingTime/1000 + 1))
+    }
+     
+    
+    
     const resetOpfs = async () => {
       //delete file from opfs and create a new one
       if (workerRef.current !== undefined) {
@@ -61,18 +77,16 @@ export function useChunking(
       let chunkSize = 4000000; // 4MB chunks
       chunkSize = encrypting ? chunkSize : chunkSize + 16; // Encrypted chunks are 16 bytes larger than non-encrypted ones
       const totalChunks = Math.ceil(file.size / chunkSize); // Calculate how many chunks to make
-      let renderAmount = totalChunks/100 // Divide total chunks by 100 for a percentage to render
-      let chunkTimes: number[] = []
-      let previousTime: number
       let writableChunk: Uint8Array
       let ready = true
       let sendMessage=false
       isPausedRef.current=false
       isStoppedRef.current=false
       fileStoreRef.current=fileStore
+      startTimeRef.current=undefined
       const createchunk = async(key:number)=>{
         // create chunk
-        const start = key * chunkSize; // Choose where to start reading file (i = the number of the current chunk)
+        const start = key * chunkSize; // Choose where to start reading file (key = the number of the current chunk)
         const end = Math.min(start + chunkSize, file.size); // Choose where to stop reading file, if file ends before start+chunkSize, it chooses that point
         const chunk = file.slice(start, end) // Make chunk by slicing the file from the starting point to the end point
         const byteArray = new Uint8Array(await chunk.arrayBuffer()); // Read chunk as bytes
@@ -97,20 +111,18 @@ export function useChunking(
           return
         }
         if(typeof message.data !== "string"){
-          const errormsg = [["error trying to write data to file", "error trying to write data to file"], ["could not find storage file", "can't find file for storage. this may be caused by all opfs data being deleted by another tab. to fix this reload the page."]]
+          const errormsg = [["could not find storage file", "can't find file for storage. this may be caused by all opfs data being deleted by another tab. to fix this reload the page."]]
           const errors =["NotFoundError"]
           //assosiate errors with numbers. and use them to make error modals
           const error = message.data
           if(errors.includes(error.name)){
-            const errorMessage = errormsg[errors.indexOf(error.name)+1]
+            const errorMessage = errormsg[errors.indexOf(error.name)]
             await resetOpfs()
             makeModal(errorMessage[0], errorMessage[1])
-            
           }
-          else if(error.name!=="NoModificationAllowedError"){
+          else {
             await resetOpfs()
-            const errorMessage = errormsg[0]
-            makeModal(errorMessage[0], errorMessage[1])
+            makeModal("error trying to write data to file" , error.name +": " + error.text)
           }
         }
         if (ready && !isPausedRef.current){
@@ -121,25 +133,11 @@ export function useChunking(
             if (workerRef.current !== undefined){
               workerRef.current.postMessage([writableChunk, (i-1)*(chunkSize + (encrypting? 16 : -16)), fileStore])
             }
-            if (i-1 >= renderAmount) { // Check if it's time to update the progress bar
-              renderAmount += totalChunks/100 // Set the next time to update the progress bar
-              setProgress((i-1)/totalChunks * 100) // Update progress bar
-            }
-            const currentTime = performance.now()
-            // Handle time data
-            
-            if (message.data !== "start") {
-              chunkTimes.push(currentTime - previousTime)
-              const sum = chunkTimes.reduce((a, b) => a + b, 0);
-              const mean = sum / chunkTimes.length 
-              const remainingTime = mean * totalChunks - mean * i
-              setTimeLeft(secondsToHms(remainingTime/1000 + 1))
-            }
-            else{
-              chunkTimes=[]
-            }
-            previousTime = currentTime
             //creates chunk and stores it as the value of cryptedChunk. also checks if password is correct
+
+            //handle progress update
+            handleProgress(totalChunks, i-1)
+
             writableChunk = await createchunk(i)
             //handles incorrect password
             if (writableChunk.length === 0) { // Check for aead::Error on rustend
