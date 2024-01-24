@@ -65,6 +65,13 @@ export default function Tabpanel() {
         <img src='./images/linux/linux3.png' className={styles.pic} alt='' />
         <span className={styles.instructiontext} >{translate('ubuntu_instruction_4')}</span>
         <img src='./images/linux/linux4.png' className={styles.pic} alt='' />
+        {translate('ubuntu_title2')}
+        <span className={styles.instructiontext} >{translate('ubuntu_instruction_5')}</span>
+        <img src='./images/linux/linux5.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('ubuntu_instruction_6')}</span>
+        <img src='./images/linux/linux6.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('ubuntu_instruction_7')}</span>
+        <img src='./images/linux/linux7.png' className={styles.pic} alt='' />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         {translate('windows_title')}
@@ -74,6 +81,15 @@ export default function Tabpanel() {
         <img src='./images/windows/windows2.png' className={styles.pic} alt='' />
         <span className={styles.instructiontext} >{translate('windows_instruction_3')}</span>
         <img src='./images/windows/windows3.png' className={styles.pic} alt='' />
+        {translate('windows_title2')}
+        <span className={styles.instructiontext} >{translate('windows_instruction_4')}</span>
+        <img src='./images/windows/windows4.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('windows_instruction_5')}</span>
+        <img src='./images/windows/windows5.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('windows_instruction_6')}</span>
+        <img src='./images/windows/windows6.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('windows_instruction_7')}</span>
+        <img src='./images/windows/windows7.png' className={styles.pic} alt='' />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         {translate('mac_title')}
@@ -83,6 +99,11 @@ export default function Tabpanel() {
         <img src='./images/mac/mac2.png' className={styles.pic} alt='' />
         <span className={styles.instructiontext} >{translate('mac_instruction_3')}</span>
         <img src='./images/mac/mac3.png' className={styles.pic} alt='' />
+        {translate('mac_title2')}
+        <span className={styles.instructiontext} >{translate('mac_instruction_4')}</span>
+        <img src='./images/mac/mac4.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('mac_instruction_5')}</span>
+        <img src='./images/mac/mac5.png' className={styles.pic} alt='' />
       </CustomTabPanel>
     </Box>
   );

@@ -22,7 +22,7 @@
     "confirmpassword_field" : "Vahvista salasana",
 
     "infopage_title1" : "Mikä on DailyCrypt?",
-    "infopage_title2" : "Miten tiedostoja pakataan?",
+    "infopage_title2" : "Miten tiedostoja pakataan ja puretaan?",
     "infopage_title3" : "Tuetut selainversiot",
 
     "info_1" : "Kehittänyt",
@@ -33,21 +33,33 @@
 
     "zip_info_1" : "Pakkaa tiedostosi ennen salausta. Valitse käyttöjärjestelmäsi nähdäksesi ohjeet tiedostojen pakkaamiseen.",
 
-    "ubuntu_title" : "OHJE UBUNTULLE",
+    "ubuntu_title" : "PAKKAAMINEN",
     "ubuntu_instruction_1" : "Valitse tiedostot jotka tahdot salata.",
     "ubuntu_instruction_2" : "Paina hiiren oikeaa näppäintä ja valitse 'Compress'",
     "ubuntu_instruction_3" : "Nimeä tiedosto (vaihtoehtoinen) ja paina 'Create'",
     "ubuntu_instruction_4" : "Tiedosto ilmestyy samaan kansioon",
+    "ubuntu_title2" : "PURKAMINEN",
+    "ubuntu_instruction_5" : "Valitse tiedosto, jonka haluat purkaa (tiedoston pitää olla zip-tiedosto)",
+    "ubuntu_instruction_6" : "Paina hiiren oikeaa näppäintä ja valitse 'Extract here'",
+    "ubuntu_instruction_7" : "Purettu tiedosto ilmestyy samaan kansioon",
 
-    "windows_title" : "OHJE WINDOWSILLE",
+    "windows_title" : "PAKKAAMINEN",
     "windows_instruction_1" : "Valitse tiedostot jotka tahdot salata.",
     "windows_instruction_2" : "Paina hiiren oikeaa näppäintä ja valitse 'Send to/Lähetä' ja paina 'Compressed (zipped) folder/Pakattu kansio'",
     "windows_instruction_3" : "Tiedosto ilmestyy samaan kansioon",
+    "windows_title2" : "PURKAMINEN",
+    "windows_instruction_4" : "Valitse pakattu tiedosto, jonka haluat purkaa",
+    "windows_instruction_5" : "Paina hiiren oikeaa näppäintä ja valitse 'Extract all...'",
+    "windows_instruction_6" : "Valitse kohde, johon haluat tiedoston ilmestyvän",
+    "windows_instruction_7" : "Purettu tiedosto ilmestyy valitsemaasi kohteeseen",
 
-    "mac_title" : "OHJE MACILLE",
+    "mac_title" : "PAKKAAMINEN",
     "mac_instruction_1" : "Valitse tiedostot jotka tahdot salata.",
     "mac_instruction_2" : "Paina hiiren oikeaa näppäintä ja valitse 'Compress/Pakkaa'",
     "mac_instruction_3" : "Tiedosto ilmestyy samaan kansioon",
+    "mac_title2" : "PURKAMINEN",
+    "mac_instruction_4" : "Kaksoisklikkaa zip-tiedostoa, jonka haluat purkaa",
+    "mac_instruction_5" : "Purettu tiedosto ilmestyy samaan kansioon",
 
     "empty_file" : "Ei tiedostoa!",
     "empty_password" : "Syötä salasana!",
