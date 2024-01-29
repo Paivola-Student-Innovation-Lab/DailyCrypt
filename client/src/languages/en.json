@@ -15,14 +15,14 @@
     "success_decrypt" : "{file_name} has successfully been decrypted!",
 
     "dropbox_text1" : "Click to select file or drag here",
-    "dropbox_text2" : "Click to select a diffrent file or drag here",
+    "dropbox_text2" : "Click to select a different file or drag here",
     "dropbox_text3" : "Selected file: {file_name} ({file_size})",
 
     "password_field" : "Password",
     "confirmpassword_field" : "Confirm password",
 
     "infopage_title1" : "What is DailyCrypt?",
-    "infopage_title2" : "How to archive files?",
+    "infopage_title2" : "How to archive and extract files?",
     "infopage_title3" : "Supported browser versions",
 
     "info_1" : "Developed by {PSIL}" ,
@@ -31,23 +31,31 @@
 
     "browser_info1" : "in progress",
 
-    "zip_info_1" : "You need to archive your files before encryption. Choose your operating system to see how to archive your files.",
+    "zip_info_1" : "You need to archive your files before encryption. Choose your operating system to see how to archive or extract your files.",
 
-    "ubuntu_title" : "GUIDE FOR UBUNTU",
+    "archiving" : "ARCHIVING",
     "ubuntu_instruction_1" : "Select the files you want to encrypt",
     "ubuntu_instruction_2" : "Right-click and click 'Compress'",
     "ubuntu_instruction_3" : "Name it (optional) and click 'Create'",
     "ubuntu_instruction_4" : "The file will appear in the same folder",
+    "extracting" : "EXTRACTING",
+    "ubuntu_instruction_5" : "Select a file you want to extract (needs to be a zip file)",
+    "ubuntu_instruction_6" : "Right-click and click 'Extract here'",
+    "ubuntu_instruction_7" : "Extracted file will appear in the same folder",
 
-    "windows_title" : "GUIDE FOR WINDOWS",
     "windows_instruction_1" : "Select the files you want to encrypt",
     "windows_instruction_2" : "Right-click and click 'Send to' then click 'Compressed (zipped) folder'",
     "windows_instruction_3" : "The zipped file will appear in the same folder",
+    "windows_instruction_4" : "Select the compressed file you want to extract",
+    "windows_instruction_5" : "Rightclick and click 'Extract all...'",
+    "windows_instruction_6" : "Select a destination for the file",
+    "windows_instruction_7" : "Extracted file will appear in the chosen destination",
 
-    "mac_title" : "GUIDE FOR MAC",
     "mac_instruction_1" : "Select the files you want to encrypt",
     "mac_instruction_2" : "Right-click and click 'Compress'",
     "mac_instruction_3" : "The zipped file will appear in the same folder",
+    "mac_instruction_4" : "Double-click the file you want to extract",
+    "mac_instruction_5" : "Extracted file will appear in the same folder",
 
     "empty_file" : "No file selected!",
     "empty_password" : "Enter password!",
