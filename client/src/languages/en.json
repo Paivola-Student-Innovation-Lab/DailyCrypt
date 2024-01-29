@@ -33,31 +33,27 @@
 
     "zip_info_1" : "You need to archive your files before encryption. Choose your operating system to see how to archive or extract your files.",
 
-    "ubuntu_title" : "ARCHIVING",
+    "archiving" : "ARCHIVING",
     "ubuntu_instruction_1" : "Select the files you want to encrypt",
     "ubuntu_instruction_2" : "Right-click and click 'Compress'",
     "ubuntu_instruction_3" : "Name it (optional) and click 'Create'",
     "ubuntu_instruction_4" : "The file will appear in the same folder",
-    "ubuntu_title2" : "EXTRACTING",
+    "extracting" : "EXTRACTING",
     "ubuntu_instruction_5" : "Select a file you want to extract (needs to be a zip file)",
     "ubuntu_instruction_6" : "Right-click and click 'Extract here'",
     "ubuntu_instruction_7" : "Extracted file will appear in the same folder",
 
-    "windows_title" : "ARCHIVING",
     "windows_instruction_1" : "Select the files you want to encrypt",
     "windows_instruction_2" : "Right-click and click 'Send to' then click 'Compressed (zipped) folder'",
     "windows_instruction_3" : "The zipped file will appear in the same folder",
-    "windows_title2" : "EXTRACTING",
     "windows_instruction_4" : "Select the compressed file you want to extract",
     "windows_instruction_5" : "Rightclick and click 'Extract all...'",
     "windows_instruction_6" : "Select a destination for the file",
     "windows_instruction_7" : "Extracted file will appear in the chosen destination",
 
-    "mac_title" : "ARCHIVING",
     "mac_instruction_1" : "Select the files you want to encrypt",
     "mac_instruction_2" : "Right-click and click 'Compress'",
     "mac_instruction_3" : "The zipped file will appear in the same folder",
-    "mac_title2" : "EXTRACTING",
     "mac_instruction_4" : "Double-click the file you want to extract",
     "mac_instruction_5" : "Extracted file will appear in the same folder",
 
