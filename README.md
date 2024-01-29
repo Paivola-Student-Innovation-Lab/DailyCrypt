@@ -13,39 +13,47 @@ Install rustup from https://rustup.rs/ or with snap install rustup
 
 Restart console after installing rust
 
-console
+```console
 rustup update stable
 rustup target add wasm32-unknown-unknown
 cargo install -f wasm-bindgen-cli
 cargo install wasm-pack
+```
 
 ### Running app
 
 #### Install packages
 ###### Run the following in the project directory
 
-console
+```console
 cd client/
 npm install
+```
 
 #### Add wasm-pack to path
 ###### Run the following in your home directory (you can get there by running cd)
-console
+```console
 nano .bashrc
+```
+
 ###### Enter the following at the bottom of the .bashrc file, save and restart terminal
-json
+```json
 export PATH="$PATH:$HOME/.cargo/bin"
+```
 
 #### Build
 ###### Run the following in the project directory
-console
+```console
 cd client/
 npm run build
+```
 
 #### Run
 
-console
+```console
 npm start
+```
+
 ###### You can also optionally build and run at the same time by running npm run dev
 
 ## Contributing
