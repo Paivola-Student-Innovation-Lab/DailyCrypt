@@ -47,7 +47,7 @@ export function useChunking(
     }
     const handleProgress = (totalChunks: number, completedChunks: number) => {
       const compleatedMultiplier = completedChunks/totalChunks
-      setProgress(Math.floor(compleatedMultiplier*100))
+      setProgress(Math.round(compleatedMultiplier*100))
       // Handle time data
       const currentTime = performance.now()
       if(startTimeRef.current===undefined){
