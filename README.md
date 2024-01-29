@@ -9,7 +9,7 @@ Dailycrypt is safe and easy to use encryption webapp. Dailycrypt doesn't have a 
 
 ### First time setup
 
-Install rustup from https://rustup.rs/ or with snap install rustup
+Install rustup from https://rustup.rs/ or with `snap install rustup`
 
 Restart console after installing rust
 
@@ -54,7 +54,7 @@ npm run build
 npm start
 ```
 
-###### You can also optionally build and run at the same time by running npm run dev
+###### You can also optionally build and run at the same time by running `npm run dev`
 
 ## Contributing
 
