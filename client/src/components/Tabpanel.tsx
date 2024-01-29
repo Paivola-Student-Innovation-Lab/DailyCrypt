@@ -39,7 +39,7 @@ function a11yProps(index: number) {
   };
 }
 
-export default function Tabpanel() {
+function ArchivingTabpanel() {
   const translate = useTranslation();
 
   const [value, setValue] = React.useState(0);
@@ -56,7 +56,6 @@ export default function Tabpanel() {
           <Tab label={translate('mac')} {...a11yProps(2)} />
         </Tabs>
       <CustomTabPanel value={value} index={0}>
-        {translate('archiving')}
         <span className={styles.instructiontext} >{translate('ubuntu_instruction_1')}</span>
         <img src='./images/linux/linux1.png' className={styles.pic} alt='' />
         <span className={styles.instructiontext} >{translate('ubuntu_instruction_2')}</span>
@@ -65,7 +64,44 @@ export default function Tabpanel() {
         <img src='./images/linux/linux3.png' className={styles.pic} alt='' />
         <span className={styles.instructiontext} >{translate('ubuntu_instruction_4')}</span>
         <img src='./images/linux/linux4.png' className={styles.pic} alt='' />
-        {translate('extracting')}
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        <span className={styles.instructiontext} >{translate('windows_instruction_1')}</span>
+        <img src='./images/windows/windows1.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('windows_instruction_2')}</span>
+        <img src='./images/windows/windows2.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('windows_instruction_3')}</span>
+        <img src='./images/windows/windows3.png' className={styles.pic} alt='' />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+        <span className={styles.instructiontext} >{translate('mac_instruction_1')}</span>
+        <img src='./images/mac/mac1.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('mac_instruction_2')}</span>
+        <img src='./images/mac/mac2.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('mac_instruction_3')}</span>
+        <img src='./images/mac/mac3.png' className={styles.pic} alt='' />
+      </CustomTabPanel>
+    </Box>
+  );
+}
+
+function ExtractingTabpanel() {
+  const translate = useTranslation();
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box className={styles.tabs} >
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab label={translate('ubuntu')} {...a11yProps(0)} />
+          <Tab label={translate('windows')} {...a11yProps(1)} />
+          <Tab label={translate('mac')} {...a11yProps(2)} />
+        </Tabs>
+      <CustomTabPanel value={value} index={0}>
         <span className={styles.instructiontext} >{translate('ubuntu_instruction_5')}</span>
         <img src='./images/linux/linux5.png' className={styles.pic} alt='' />
         <span className={styles.instructiontext} >{translate('ubuntu_instruction_6')}</span>
@@ -74,14 +110,6 @@ export default function Tabpanel() {
         <img src='./images/linux/linux7.png' className={styles.pic} alt='' />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        {translate('archiving')}
-        <span className={styles.instructiontext} >{translate('windows_instruction_1')}</span>
-        <img src='./images/windows/windows1.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('windows_instruction_2')}</span>
-        <img src='./images/windows/windows2.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('windows_instruction_3')}</span>
-        <img src='./images/windows/windows3.png' className={styles.pic} alt='' />
-        {translate('extracting')}
         <span className={styles.instructiontext} >{translate('windows_instruction_4')}</span>
         <img src='./images/windows/windows4.png' className={styles.pic} alt='' />
         <span className={styles.instructiontext} >{translate('windows_instruction_5')}</span>
@@ -92,14 +120,6 @@ export default function Tabpanel() {
         <img src='./images/windows/windows7.png' className={styles.pic} alt='' />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        {translate('archiving')}
-        <span className={styles.instructiontext} >{translate('mac_instruction_1')}</span>
-        <img src='./images/mac/mac1.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('mac_instruction_2')}</span>
-        <img src='./images/mac/mac2.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('mac_instruction_3')}</span>
-        <img src='./images/mac/mac3.png' className={styles.pic} alt='' />
-        {translate('extracting')}
         <span className={styles.instructiontext} >{translate('mac_instruction_4')}</span>
         <img src='./images/mac/mac4.png' className={styles.pic} alt='' />
         <span className={styles.instructiontext} >{translate('mac_instruction_5')}</span>
@@ -107,4 +127,8 @@ export default function Tabpanel() {
       </CustomTabPanel>
     </Box>
   );
+}
+
+export {
+  ArchivingTabpanel, ExtractingTabpanel
 }

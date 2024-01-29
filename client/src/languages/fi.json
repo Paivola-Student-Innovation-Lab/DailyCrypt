@@ -31,14 +31,14 @@
 
     "browser_info1" : "työn alla",
 
-    "zip_info_1" : "Pakkaa tiedostosi ennen salausta. Valitse käyttöjärjestelmäsi nähdäksesi ohjeet tiedostojen pakkaamiseen.",
+    "zip_info_1" : "Pakkaa tiedostosi ennen salausta. Valitse ohje, jonka haluat lukea ja valitse sitten laitteesi käyttöjärjestelmä.",
 
-    "archiving" : "PAKKAAMINEN",
+    "archiving" : "Miten tiedosto pakataan?",
     "ubuntu_instruction_1" : "Valitse tiedostot jotka tahdot salata.",
     "ubuntu_instruction_2" : "Paina hiiren oikeaa näppäintä ja valitse 'Compress'",
     "ubuntu_instruction_3" : "Nimeä tiedosto (vaihtoehtoinen) ja paina 'Create'",
     "ubuntu_instruction_4" : "Tiedosto ilmestyy samaan kansioon",
-    "extracting" : "PURKAMINEN",
+    "extracting" : "Miten tiedosto puretaan?",
     "ubuntu_instruction_5" : "Valitse tiedosto, jonka haluat purkaa (tiedoston pitää olla zip-tiedosto)",
     "ubuntu_instruction_6" : "Paina hiiren oikeaa näppäintä ja valitse 'Extract here'",
     "ubuntu_instruction_7" : "Purettu tiedosto ilmestyy samaan kansioon",

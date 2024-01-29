@@ -1,5 +1,4 @@
 import { InfoHeader } from "./Header";
-import Tabpanel from "./Tabpanel";
 import styles from "./Infopage.module.css";
 import { Typography } from "@mui/material";
 import Card from "@mui/material/Card";
@@ -11,6 +10,7 @@ import FolderZipIcon from '@mui/icons-material/FolderZip';
 import TabIcon from '@mui/icons-material/Tab';
 import { Link } from 'react-router-dom';
 import useTranslation from "../hooks/useTranslation";
+import AccordionUsage from "./Accordion";
 
 export default function Info() {
     const translate = useTranslation();
@@ -65,7 +65,7 @@ export default function Info() {
                             </Typography>
                         </CardContent>
                         <CardActions className={styles.tabs}>
-                            <Tabpanel />
+                            <AccordionUsage />
                         </CardActions>
                     </Card>
                 </Grid>

@@ -1,0 +1,7 @@
+.accordion {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin: -2.5vh 1vh 2.75vh 1vh;
+    padding: 2.5vh 1vh 0 1vh;
+}

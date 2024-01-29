@@ -31,14 +31,14 @@
 
     "browser_info1" : "in progress",
 
-    "zip_info_1" : "You need to archive your files before encryption. Choose your operating system to see how to archive or extract your files.",
+    "zip_info_1" : "You need to archive your files before encryption. Choose the guide that you want to see and then choose your operating system.",
 
-    "archiving" : "ARCHIVING",
+    "archiving" : "How to archive?",
     "ubuntu_instruction_1" : "Select the files you want to encrypt",
     "ubuntu_instruction_2" : "Right-click and click 'Compress'",
     "ubuntu_instruction_3" : "Name it (optional) and click 'Create'",
     "ubuntu_instruction_4" : "The file will appear in the same folder",
-    "extracting" : "EXTRACTING",
+    "extracting" : "How to extract?",
     "ubuntu_instruction_5" : "Select a file you want to extract (needs to be a zip file)",
     "ubuntu_instruction_6" : "Right-click and click 'Extract here'",
     "ubuntu_instruction_7" : "Extracted file will appear in the same folder",
