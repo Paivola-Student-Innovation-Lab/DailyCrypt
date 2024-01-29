@@ -1,23 +1,24 @@
-
+.page{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 30px;
+}
+.grid{
+    width: 40%;
+    gap: 20px;
+}
 .grid .card {
     display: flex;
     flex-direction: column;
     align-items: left;
-    margin: 10vh 8vw;
-    padding: 2.5vh 1vh 2.5vh 1vh;
     background-color: #ffffff;
-}
-
-.card, .guide {
-    width: 75%
+    margin-bottom: 25px;
 }
 
 .guide {
     display: flex;
     flex-direction: column;
     align-items: left;
-    margin: 10vh 5vw;
-    padding: 2.5vh 1vh 0 1vh;
     background-color: #ffffff;
 }
 
@@ -34,7 +35,7 @@
 }
 
 .divider {
-    width: 35vw;
+    width: 90%;
     margin: 0 0vw;
     height: 0.5vh;
     background-color: var(--encryptgreen);
@@ -47,5 +48,15 @@
     &:hover {
         color: var(--decryptgreen);
         transition-duration: 0.4s;
+    }
+}
+@media only screen and (max-width:1080px){
+    .page{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .grid{
+        width: 90%;
     }
 }

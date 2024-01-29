@@ -22,12 +22,12 @@ const Header = () => {
           </div>
           <div className={styles.homebutton}>
             <Typography className={styles.text} variant="h3">
-            <HomeIcon/> <span className={styles.mainpage}>crypting</span> 
+            <HomeIcon/> <span className={styles.mainpage}>Crypting</span> 
             </Typography>
           </div>
           <div className={styles.infobutton}>
             <Typography variant="h3" className={styles.infomui}>
-              <Link className={styles.infolink} to="info"><InfoIcon/> info</Link>
+              <Link className={styles.infolink} to="info"><InfoIcon/> Info</Link>
             </Typography>
           </div> 
           </div>
@@ -53,12 +53,12 @@ const InfoHeader = () => {
           </div>
           <div className={styles.homebutton}>
             <Typography variant="h3" className={styles.muihomelink} >
-              <Link className={styles.homelink} to="/"><HomeIcon/> crypting</Link>
+              <Link className={styles.homelink} to="/"><HomeIcon/> Crypting</Link>
             </Typography>
           </div>
           <div className={styles.infobutton}>
             <Typography className={styles.info} variant="h3">
-              <InfoIcon/> <span className={styles.infotext}>info</span>
+              <InfoIcon/> <span className={styles.infotext}>Info</span>
             </Typography>
           </div>
         </div>

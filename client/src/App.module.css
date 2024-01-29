@@ -83,6 +83,9 @@ div > .button:hover, div > .downloadbutton:hover {
   align-items: center;
 }
 @media only screen and (max-width: 1080px){
+  .container{
+    margin: 5vh 5vw;
+  }
   .bottomcontainer{
     flex-direction: column;
     gap:10px;

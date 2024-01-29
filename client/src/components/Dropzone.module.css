@@ -6,3 +6,8 @@
   width: 60vw;
   height: 15vh;
 }
+@media only screen and (max-width:1080px){
+  .dropzone{
+    height: 23vh;
+  }
+}

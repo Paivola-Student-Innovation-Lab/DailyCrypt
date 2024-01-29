@@ -19,4 +19,11 @@
     width: 35%;
     font-size: 18px;
     border: 1px solid var(--encryptgreen);
+    margin: 2px;
+}
+@media only screen and (max-width:1080px){
+    .modal {
+        top:40%;
+        width: 80%;
+    }
 }

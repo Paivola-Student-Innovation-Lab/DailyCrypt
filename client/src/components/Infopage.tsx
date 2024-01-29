@@ -22,7 +22,7 @@ export default function Info() {
     return (
         <div>
             <InfoHeader />
-            <Grid container spacing={2}>
+            <div className={styles.page}>
                 <Grid md={6} xs={6} item className={styles.grid}>
                     <Card className={styles.card} >
                         <CardContent>
@@ -53,7 +53,7 @@ export default function Info() {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid xs={6} md={6} item>
+                <Grid xs={6} md={6} item className={styles.grid}>
                     <Card className={styles.guide} >
                         <CardContent>
                             <Typography className={styles.infotext} variant="h4">
@@ -69,7 +69,7 @@ export default function Info() {
                         </CardActions>
                     </Card>
                 </Grid>
-            </Grid>
+            </div>
         </div>
     );
 };

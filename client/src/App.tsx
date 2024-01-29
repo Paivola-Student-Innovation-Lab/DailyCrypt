@@ -194,6 +194,7 @@ const App = () => {
 
 
         </div>
+        {!dropHidden &&
         <div className={styles.bottomcontainer}>
         <div className={styles.textfields}>
           <TextField type="password" label={translate('password_field')} value={password} onChange={handlePasswordInput} required />
@@ -204,6 +205,7 @@ const App = () => {
           <Button disabled={dropHidden} className={styles.button} onClick={handleDecrypt} value="decrypt">{translate('decrypt_button')}</Button>
         </div>
         </div>
+        }
         </>}
         {!hasOpfs &&
         <>
