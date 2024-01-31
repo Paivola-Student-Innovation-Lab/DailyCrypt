@@ -15,15 +15,10 @@ export  function useOnPageLoad(setHasOpfs: (arg0: boolean) => void, setFileStore
   
 
   const createNew = async()=>{
-    //records keys of all files in opfs into an array
-    let filekeys = []
-    for await (const key of (await navigator.storage.getDirectory()).keys()){
-      filekeys.push(key)
-    }
     //adds an increasing number to the end of the default key until key is no longer in array of stored files
     let number=0
     let key = "stored file"
-    while(filekeys.includes(key)){
+    while(Object.keys(await navigator.storage.getDirectory()).includes(key)){
       number+=1
       key="stored file"+number
     }
@@ -36,23 +31,16 @@ export  function useOnPageLoad(setHasOpfs: (arg0: boolean) => void, setFileStore
 
   const handleLoad = async() => {
     //tries to use opfs to see if it is supported
-    try{
-        await navigator.storage.getDirectory()
-      }
-    catch(error){
-      //handles case where opfs isn't supported
-      console.log(error)
+    if (!navigator.storage.getDirectory) {
       setHasOpfs(false)
-      return
+      return   
     }
     //checks if there are any files in opfs
     let filesinstore=false
-    // eslint-disable-next-line
-    for await (const _key of (await navigator.storage.getDirectory()).keys()){
+    if (Object.keys(await navigator.storage.getDirectory()).length>0){
       //if there are files in opfs asks user how to proceed. user can call one of the functions above through this modal
       makeModal("Another tab open", "Seems like you have Dailycrypt open in another tab. choose wether to delete all files being processed by other tabs or to create a new file for this tab. Removing files may cause errors in other pages", [["Remove", remove], ["Create", createNew]])
       filesinstore=true
-      break
     }
     //if no files were found creates default file
     if(!filesinstore){

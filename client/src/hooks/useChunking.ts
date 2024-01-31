@@ -1,7 +1,6 @@
 import useWasm from "./useWasm";
 import eventBus from "../utils/EventBus";
 import { useEffect, useRef } from "react";
-// import useTranslation from "./useTranslation";
 
 export function useChunking(
   setProgress: (arg0: number) => void,
@@ -14,7 +13,6 @@ export function useChunking(
     const handleMessageRef = useRef((_message: MessageEvent) => {})
 
     const rust = useWasm()
-    // const translate = useTranslation()
 
     const writeWorker = new Worker(new URL("../utils/writeworker.js", import.meta.url)) //creates webworker for compiling file
     writeWorker.onmessage = (message) => {handleMessageRef.current(message)}
@@ -44,7 +42,7 @@ export function useChunking(
     function secondsToHms(d: number) {
       var h = Math.floor(d / 3600);
       var m = Math.floor(d % 3600 / 60);
-      var s = Math.floor(d % 3600);
+      var s = Math.floor(d % 60);
 
       return [h, m, s]; 
     }
