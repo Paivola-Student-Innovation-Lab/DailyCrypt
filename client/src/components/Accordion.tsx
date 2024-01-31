@@ -17,7 +17,6 @@ export default function AccordionUsage() {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
-          className={styles.accordiontitle}
           sx={{
             color: "var(--encryptgreen)",
             backgroundColor: "var(--accordiongreen)",
@@ -36,7 +35,6 @@ export default function AccordionUsage() {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
-          className={styles.accordiontitle}
           sx={{
             color: "var(--encryptgreen)",
             backgroundColor: "var(--accordiongreen)",
