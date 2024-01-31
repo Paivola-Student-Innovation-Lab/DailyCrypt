@@ -62,12 +62,20 @@
     "mismatch_text" : "Lösenorden du skrev stämmer inte överens.",
     "wrong_password_text" : "Lösenordet du skrev in var inte samma lösenord som användes för kryptering.",
 
-    "hours" : "timmar",
-    "hour" : "timme",
-    "minutes" : "minuter",
-    "minute" : "minut",
-    "seconds" : "sekunder",
-    "second" : "sekund",
-    "remaining" : "kvar"
+    "loading_file": "Väntar att filen ska laddas upp...",
+
+    "hour_plural": {
+        "one": "{count} timme",
+        "other": "{count} timmar"
+    },
+    "minute_plural": {
+        "one": "{count} minut",
+        "other": "{count} minuter"
+    },
+    "second_plural": {
+        "one": "{count} sekund",
+        "other": "{count} sekunder"
+    },
+    "time_remaining": "{hours}, {minutes} och {seconds} kvar | {minutes} och {seconds} kvar | {seconds} kvar"
 }
 

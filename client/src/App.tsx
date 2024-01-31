@@ -182,7 +182,7 @@ const App = () => {
                 <Button className={styles.cancelbutton} id="cancelButton" onClick={handleStop} ><CancelIcon />Cancel</Button>
               </Box>
               <Typography>
-                 { !paused ? (!(timeLeft[0] === 0 && timeLeft[1] === 0 && timeLeft[2] === 0) ? (translate("time_remaining")) : "Waiting for file to be loaded...") : "Paused"}
+                {!paused ? (!(timeLeft[0] === 0 && timeLeft[1] === 0 && timeLeft[2] === 0) ? (translate("time_remaining", `{"hours": ${timeLeft[0]}, "minutes": ${timeLeft[1]}, "seconds": ${timeLeft[2]}}`)) : translate("loading_file")) : "Paused"}
               </Typography>
             </div>
             }

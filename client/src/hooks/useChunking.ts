@@ -39,7 +39,7 @@ export function useChunking(
     function secondsToHms(d: number) {
       var h = Math.floor(d / 3600);
       var m = Math.floor(d % 3600 / 60);
-      var s = Math.floor(d % 3600);
+      var s = Math.floor(d % 60);
 
       return [h, m, s]; 
     }

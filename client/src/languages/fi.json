@@ -69,12 +69,20 @@
     "mismatch_text" : "Syöttämäsi salasanat eivät ole keskenään samat.",
     "wrong_password_text" : "Salasana, jonka syötit, ei ollut sama salasana, jota käytettiin salauksessa.",
 
-    "hours" : "tuntia",
-    "hour" : "tunti",
-    "minutes" : "minuuttia",
-    "minute" : "minuutti",
-    "seconds" : "sekuntia",
-    "second" : "sekunti",
-    "remaining" : "jäljellä"
+    "loading_file": "Ladataan tiedostoa...",
+
+    "hour_plural": {
+        "one": "{count} tunti",
+        "other": "{count} tuntia"
+    },
+    "minute_plural": {
+        "one": "{count} minuutti",
+        "other": "{count} minuuttia"
+    },
+    "second_plural": {
+        "one": "{count} sekunti",
+        "other": "{count} sekuntia"
+    },
+    "time_remaining": "{hours}, {minutes} ja {seconds} jäljellä|{minutes} ja {seconds} jäljellä|{seconds} jäljellä"
 }
 
