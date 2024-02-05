@@ -1,6 +1,6 @@
 {
     "languagekey" : "fi",
-    "languagename" : "Suomi",
+    "languagename" : "Suomi (Finnish)",
     "languagedirection" : "ltr",
 
     "encrypt_button" : "Salaa",
@@ -9,14 +9,14 @@
     "download_decrypted" : "Lataa purettu tiedosto",
     "restart_button" : "Aloita alusta",
 
-    "encrypting" : "Salataan",
-    "decrypting" : "Puretaan",
-    "success_encrypt" : "salattiin onnistuneesti!",
-    "success_decrypt" : "purettiin onnistuneesti!",
+    "encrypting" : "Salataan tiedostoa {file_name}...",
+    "decrypting" : "Puretaan tiedostoa {file_name}...",
+    "success_encrypt" : "{file_name} salattiin onnistuneesti!",
+    "success_decrypt" : "{file_name} purettiin onnistuneesti!",
 
     "dropbox_text1" : "Klikkaa valitaksesi tiedosto, tai vedä tiedosto tähän",
     "dropbox_text2" : "Klikkaa valitaksesi eri tiedosto, tai vedä tiedosto tähän",
-    "dropbox_text3" : "Valittu tiedosto:",
+    "dropbox_text3" : "Valittu tiedosto: {file_name} ({file_size})",
 
     "password_field" : "Salasana",
     "confirmpassword_field" : "Vahvista salasana",
@@ -25,7 +25,7 @@
     "infopage_title2" : "Miten tiedostoja pakataan ja puretaan?",
     "infopage_title3" : "Tuetut selainversiot",
 
-    "info_1" : "Kehittänyt",
+    "info_1" : "DailyCrypt on {PSIL}in kehittämä.",
     "info_2" : "DailyCrypt on yksinkertainen salausnettisivu. Tavoitteemme on tehdä salauksesta kaikille saavutettavaa.",
     "info_3" : "DailyCrypt on tehty ilman palvelinta turvallisuuden varmistamiseksi. Koodi on avointa lähdekoodia, jolloin se on kaikkien saatavilla.",
 

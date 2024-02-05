@@ -14,7 +14,7 @@ export function useChunking(
     const workerRef: React.MutableRefObject<Worker|undefined> = useRef()
     const fileStoreRef = useRef(fileStore)
     const rust = useWasm()
-    const translate = useTranslation()
+    const translate = useTranslation().translate
 
    
     const handleStop = async()=>{

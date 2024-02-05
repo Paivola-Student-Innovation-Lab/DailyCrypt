@@ -14,7 +14,8 @@ interface Props {
 
 const Dropzone = (props: Props) => {
 
-  const translate = useTranslation();
+  const translate = useTranslation().translate;
+  const transNoInt = useTranslation().translateNoInterpolate;
 
   const formatFileSize = (sizeInBytes: number) => {
     const kilobytes = sizeInBytes / 1000; // Convert to kilobytes
@@ -48,7 +49,11 @@ const Dropzone = (props: Props) => {
       <input {...getInputProps()} />
       {props.isFiles ? (
         <Typography color="text.secondary">
-          {translate('dropbox_text3', '{"file_name": "' + props.isFiles.name + '", "file_size": "' + formatFileSize(props.isFiles.size) + '"}')} <b style={{ color: "var(--encryptgreen)" }}>{props.isFiles.name}</b> ({formatFileSize(props.isFiles.size)})
+          {transNoInt('dropbox_text3').split("{file_name}")[0]}
+          <b style={{ color: "var(--encryptgreen)" }}>{props.isFiles.name}</b>
+          {transNoInt('dropbox_text3').split("{file_name}")[1].split("{file_size}")[0]}
+          {formatFileSize(props.isFiles.size)}
+          {transNoInt('dropbox_text3').split("{file_name}")[1].split("{file_size}")[1]}
           <br></br>
           {translate('dropbox_text2')}
         </Typography>

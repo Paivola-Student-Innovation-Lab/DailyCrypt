@@ -9,8 +9,8 @@
     "download_decrypted" : "Download decrypted file",
     "restart_button" : "Restart",
 
-    "encrypting" : "Encrypting {file_name}",
-    "decrypting" : "Decrypting {file_name}",
+    "encrypting" : "Encrypting {file_name}...",
+    "decrypting" : "Decrypting {file_name}...",
     "success_encrypt" : "{file_name} has successfully been encrypted!",
     "success_decrypt" : "{file_name} has successfully been decrypted!",
 
@@ -25,7 +25,7 @@
     "infopage_title2" : "How to archive and extract files?",
     "infopage_title3" : "Supported browser versions",
 
-    "info_1" : "Developed by {PSIL}" ,
+    "info_1" : "Developed by {PSIL}." ,
     "info_2" : "DailyCrypt is a simple website for encryption. Our goal is to make encryption accessible for everyone.",
     "info_3" : "DailyCrypt is made without backend to ensure safety. Our code is open-source, making it available for everyone.",
 

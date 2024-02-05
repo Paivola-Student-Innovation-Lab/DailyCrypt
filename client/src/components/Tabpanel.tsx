@@ -40,7 +40,7 @@ function a11yProps(index: number) {
 }
 
 export default function Tabpanel() {
-  const translate = useTranslation();
+  const translate = useTranslation().translate;
 
   const [value, setValue] = React.useState(0);
 

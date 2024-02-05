@@ -13,12 +13,8 @@ import { Link } from 'react-router-dom';
 import useTranslation from "../hooks/useTranslation";
 
 export default function Info() {
-    const translate = useTranslation();
-    const psilString = translate('info_1', '{"PSIL": "<Link to=`https://psil.fi` className={styles.psil}>PSIL</Link>"}')
-    const psilObject = {__html: psilString}
-    const psilComponent = () => {
-        return <div dangerouslySetInnerHTML={psilObject}/>
-    }
+    const translate = useTranslation().translate;
+    const transNoInt = useTranslation().translateNoInterpolate;
     return (
         <div>
             <InfoHeader />
@@ -37,7 +33,9 @@ export default function Info() {
                                 {translate('info_3')}
                             </Typography>
                             <Typography className={styles.bodytext} variant="body1">
-                                {psilComponent()} <Link to="https://psil.fi" className={styles.psil}>PSIL</Link>
+                                {transNoInt('info_1').split("{PSIL}")[0]}
+                                <Link to="https://psil.fi" className={styles.psil}>PSIL</Link>
+                                {transNoInt('info_1').split("{PSIL}")[1]}
                             </Typography>
                         </CardContent>
                     </Card>

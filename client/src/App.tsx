@@ -48,7 +48,8 @@ const App = () => {
   const { chunk } = useChunking(setProgress, makeModal, setDropHidden, setTimeLeft, fileStore);
   const { handleCrypting } = useCrypting(chunk, setProgress, setEncrypting, setDropHidden, makeModal, password, passwordMismatch, files, fileStore);
   const {handleLoad} = useOnPageLoad(setHasOpfs, setFileStore, makeModal, closeModal);
-  const translate = useTranslation();
+  const translate = useTranslation().translate;
+  const transNoInt = useTranslation().translateNoInterpolate;
 
   const updateFiles = (files: File[]) => {
     setFiles(files);
@@ -174,7 +175,9 @@ const App = () => {
             {dropHidden && (progress < 100) &&
               <div className={Dropzonestyles.dropzone}>
                 <Typography color="text.secondary">
-                  {translate((encrypting ? "encrypting" : "decrypting"), ('{"file_name": "' + files[0].name + '"}'))} <b style={{ color: "var(--encryptgreen)" }}>{files[0].name}</b>...
+                  {transNoInt(encrypting ? "encrypting" : "decrypting").split("{file_name}")[0]}
+                  <b style={{ color: "var(--encryptgreen)" }}>{files[0].name}</b>
+                  {transNoInt(encrypting ? "encrypting" : "decrypting").split("{file_name}")[1]}
                 </Typography>
                 <LinearProgressWithLabel value={progress} />
               <Box className={styles.progressbuttons}>
@@ -188,8 +191,8 @@ const App = () => {
             }
             {dropHidden && (progress >= 100) &&
               <div className={Dropzonestyles.dropzone}>
-                <Alert severity="success">{translate(("success_" + (encrypting ? "en" : "de") + "crypt"), ('{"file_name": "' + files[0].name + '"}'))} </Alert>
-                <Button className={styles.downloadbutton} onClick={handleDownload} value="download"> {translate("download_" + (encrypting ? "en" : "de") + "crypted")} </Button>
+                <Alert severity="success">{translate(("success_" + (encrypting ? "encrypt" : "decrypt")), ('{"file_name": "' + files[0].name + '"}'))} </Alert>
+                <Button className={styles.downloadbutton} onClick={handleDownload} value="download"> {translate("download_" + (encrypting ? "encrypted" : "decrypted"))} </Button>
                 <Button className={styles.downloadbutton} onClick={handleRestart} value="restart"> {translate("restart_button")} </Button>
               </div>
             }

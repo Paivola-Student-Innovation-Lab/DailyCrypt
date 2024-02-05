@@ -13,7 +13,7 @@ export function useCrypting(
     files: any[],
     fileStore: string
     ) {
-        const PlainText = usePlainText()
+        const PlainText = usePlainText().translate
     
         const handleCrypting = async (isEncrypting: boolean) => {
             setProgress(0)

@@ -33,6 +33,16 @@ export default function useTranslation() {
 
       return translated;
     }
+    
+    const translateNoInterpolate = (key: string) => {
+      const translation = languageContext.dictionary[key];
+
+      if (!translation) {
+        return key;
+      }
+
+      return translation;
+    }
 
     const interpolate = (message: string, interpolations: Record<string, string>) => {
         return Object.keys(interpolations).reduce(
@@ -92,5 +102,5 @@ export default function useTranslation() {
     }
   };
     
-    return translate;
+    return {translate, translateNoInterpolate};
 };
