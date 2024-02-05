@@ -9,7 +9,10 @@ export const LanguageContext = createContext({
 });
 
 export function LanguageProvider({ children, dir, setDir } : {children:any, dir:string, setDir:any}) {
-    const defaultLanguage = Cookies.get('userLanguage') || 'en';
+    let defaultLanguage = Cookies.get('userLanguage') || 'en';
+    if (!(defaultLanguage in Object.keys(dictionaryList))) {
+        defaultLanguage = 'en';
+    }
     const [userLanguage, setUserLanguage] = useState(defaultLanguage);
 
     useEffect(() => {
