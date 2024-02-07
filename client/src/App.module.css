@@ -29,7 +29,7 @@
   height: max(min(10vw, 10vh), 100px);
 }
 
-div > .button, div > .downloadbutton {
+div > .button, .downloadbutton {
   height: fit-content;
   width: 22%;
   margin-right: 15%; margin-left: 15%;
@@ -40,7 +40,7 @@ div > .button, div > .downloadbutton {
   border: 5px solid var(--encryptgreen);
 }
 
-div > .downloadbutton {
+.downloadbutton {
   height: fit-content;
   width: fit-content;
   font-size: calc(var(--buttonfont)/2)

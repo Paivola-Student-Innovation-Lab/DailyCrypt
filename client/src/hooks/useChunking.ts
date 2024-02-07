@@ -3,29 +3,25 @@ import eventBus from "../utils/EventBus";
 import { useEffect, useRef } from "react";
 import useTranslation from "./useTranslation";
 
-export function useChunking(
+function useChunking(
   setProgress: (arg0: number) => void,
   makeModal: (arg0: string, arg1: string) => void,
-  setDropHidden: (arg0: boolean) => void,
-  setTimeLeft:(arg0: number[]) => void,
-  fileStore: string,) {
+  reset: () => Promise<void>
+  ) {
     const isPausedRef = useRef(false)
     const isStoppedRef = useRef(false)
     const workerRef: React.MutableRefObject<Worker|undefined> = useRef()
-    const fileStoreRef = useRef(fileStore)
-    const startTimeRef=useRef<undefined|number>()
     const rust = useWasm()
     const translate = useTranslation()
 
    
     const handleStop = async()=>{
-      await resetOpfs() 
+      
     }
     useEffect(() => {
       eventBus.on("pause", (paused) =>{
         isPausedRef.current = paused
         if (!paused && workerRef.current !== undefined) {
-          startTimeRef.current=undefined
           workerRef.current.postMessage("start")
         }
       eventBus.on("stop", ()=>{
@@ -34,46 +30,11 @@ export function useChunking(
       })
       return () => {
         eventBus.remove("pause", () => {})
-        eventBus.remove("stop", ()=>{})
+        eventBus.remove("stop", () => {})
       }
     }, []);
-
-    function secondsToHms(d: number) {
-      const h = Math.floor(d / 3600);
-      const m = Math.floor(d % 3600 / 60);
-      const s = Math.floor(d % 60);
-
-      return [h, m, s]; 
-    }
-    const handleProgress = (totalChunks: number, completedChunks: number) => {
-      const compleatedMultiplier = completedChunks/totalChunks
-      setProgress(Math.round(compleatedMultiplier*100))
-      // Handle time data
-      const currentTime = performance.now()
-      if(startTimeRef.current===undefined){
-        startTimeRef.current=currentTime
-      }
-      const totalTime = currentTime - startTimeRef.current //calculate how much time has passed since starting the program
-      const remainingTime = (1/compleatedMultiplier-1)*totalTime 
-      setTimeLeft(secondsToHms(remainingTime/1000 + 1))
-    }
-     
-    
-    
-    const resetOpfs = async () => {
-      //delete file from opfs and create a new one
-      if (workerRef.current !== undefined) {
-        workerRef.current.terminate()
-        workerRef.current = undefined
-      }
-      const opfs = await navigator.storage.getDirectory()
-      await opfs.removeEntry(fileStoreRef.current)
-      await opfs.getFileHandle(fileStoreRef.current, {create:true})
-      setDropHidden(false) // Show dropzone
-    }
-
    
-    const chunk = async (file: Blob, encrypting: boolean, password: string) => {
+    const chunk = async (file: Blob, encrypting: boolean, password: string, fileStore: string) => {
       let chunkSize = 4000000; // 4MB chunks
       chunkSize = encrypting ? chunkSize : chunkSize + 16; // Encrypted chunks are 16 bytes larger than non-encrypted ones
       const totalChunks = Math.ceil(file.size / chunkSize); // Calculate how many chunks to make
@@ -82,8 +43,6 @@ export function useChunking(
       let sendMessage=false
       isPausedRef.current=false
       isStoppedRef.current=false
-      fileStoreRef.current=fileStore
-      startTimeRef.current=undefined
       const createchunk = async(key:number)=>{
         // create chunk
         const start = key * chunkSize; // Choose where to start reading file (key = the number of the current chunk)
@@ -107,7 +66,7 @@ export function useChunking(
         if (isStoppedRef.current){
           i=-1
           isStoppedRef.current=false
-          await resetOpfs()
+          await reset()
           return
         }
         if(typeof message.data !== "string"){
@@ -117,11 +76,11 @@ export function useChunking(
           const error = message.data
           if(errors.includes(error.name)){
             const errorMessage = errormsg[errors.indexOf(error.name)]
-            await resetOpfs()
+            await reset()
             makeModal(errorMessage[0], errorMessage[1])
           }
           else {
-            await resetOpfs()
+            await reset()
             makeModal("error trying to write data to file" , error.name +": " + error.text)
           }
         }
@@ -133,15 +92,15 @@ export function useChunking(
             if (workerRef.current !== undefined){
               workerRef.current.postMessage([writableChunk, (i-1)*(chunkSize + (encrypting? 16 : -16)), fileStore])
             }
-            //creates chunk and stores it as the value of cryptedChunk. also checks if password is correct
-
+            
             //handle progress update
-            handleProgress(totalChunks, i-1)
+            setProgress((i-1)/totalChunks)
 
+            //creates chunk and stores it as the value of cryptedChunk. also checks if password is correct
             writableChunk = await createchunk(i)
             //handles incorrect password
             if (writableChunk.length === 0) { // Check for aead::Error on rustend
-              await resetOpfs()
+              await reset()
               makeModal("Invalid Decrypt Password!", "The decrypting password you used isn't the same one that was used for encrypting.")
               return
             }
@@ -158,7 +117,7 @@ export function useChunking(
               i+=1
               //checks if file is correct size
               if(((await (await (await navigator.storage.getDirectory()).getFileHandle(fileStore)).getFile()).size!==file.size + (encrypting ? totalChunks*16 : -totalChunks*16))){
-                await resetOpfs()
+                await reset()
                 makeModal("something went wrong and file is wrong size", "")
               } else {
                 setProgress(100)
@@ -166,7 +125,6 @@ export function useChunking(
                 workerRef.current.terminate()
               }
             }
-          const currentI=i
           ready=true
           //if worker sent a message during the time spent processing the chunk send a empty message to worker to re trigger the loop
           if(sendMessage){
@@ -185,7 +143,7 @@ export function useChunking(
       writableChunk = await createchunk(0)
       if(writableChunk.length===0){
         makeModal("Invalid Decrypt Password!", "The decrypting password you used isn't the same one that was used for encrypting.")
-        resetOpfs()
+        await reset()
         return
       }
       //sends message to worker to start working.
@@ -194,3 +152,4 @@ export function useChunking(
   return { chunk }
   
 }
+export default useChunking

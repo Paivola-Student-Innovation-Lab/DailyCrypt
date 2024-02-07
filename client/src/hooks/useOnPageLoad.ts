@@ -1,4 +1,4 @@
-export  function useOnPageLoad(setHasOpfs: (arg0: boolean) => void, setFileStore:(arg0: string) => void, makeModal: (arg0:string ,arg1:string ,arg2?: [buttontext: string, buttonfunc:() => void][])=> void, closeModal:()=>void){
+function useOnPageLoad(setFileStore:(arg0: string) => void, makeModal: (arg0:string ,arg1:string ,arg2?: [buttontext: string, buttonfunc:() => void][])=> void, closeModal:()=>void){
   const remove = async()=>{
     //removes all files from opfs
     for await (const key of (await navigator.storage.getDirectory()).keys()){
@@ -35,16 +35,6 @@ export  function useOnPageLoad(setHasOpfs: (arg0: boolean) => void, setFileStore
 
 
   const handleLoad = async() => {
-    //tries to use opfs to see if it is supported
-    try{
-        await navigator.storage.getDirectory()
-      }
-    catch(error){
-      //handles case where opfs isn't supported
-      console.log(error)
-      setHasOpfs(false)
-      return
-    }
     //checks if there are any files in opfs
     let filesinstore=false
     for await (const key of (await navigator.storage.getDirectory()).keys()){
@@ -61,3 +51,4 @@ export  function useOnPageLoad(setHasOpfs: (arg0: boolean) => void, setFileStore
   }
   return { handleLoad }
 }
+export default useOnPageLoad

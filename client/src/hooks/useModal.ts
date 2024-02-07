@@ -1,11 +1,10 @@
 
 import { useState } from "react";
-export function useModal() {
+function useModal() {
     const [modalOpen, setModalOpen] = useState(false);
     const [modalTitle, setModalTitle] = useState("");
     const [modalText, setModalText] = useState("");
-    const [dropHidden, setDropHidden] = useState(false);
-    const [modalButtons, setModalButtons] = useState([[()=>{}, ""]])
+    const [modalButtons, setModalButtons] = useState<[buttontext: string, buttonfunc:()=>void][]>()
     const makeModal = (title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][]) => {
         setModalTitle(title)
         setModalText(text)
@@ -18,12 +17,10 @@ export function useModal() {
     const closeModal = () => {
         setModalTitle("")
         setModalText("")
-        setModalButtons([[()=>{}, ""]])
+        setModalButtons(undefined)
         setModalOpen(false)
     }
-
-
-    return { dropHidden, setDropHidden, makeModal, closeModal, modalTitle, modalText, modalOpen, modalButtons}
+    return {makeModal, closeModal, modalTitle, modalText, modalOpen, modalButtons}
 }
 
-export default useModal
+export default useModal  
