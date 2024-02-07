@@ -27,7 +27,7 @@ function Root() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <App encryptFunc = {handleCrypting} hasOpfs={!(!navigator.storage.getDirectory)} dropHidden={dropHidden}/>,
+      element: <App encryptFunc = {handleCrypting} dropHidden={dropHidden}/>,
     },
     {
       path: "info",

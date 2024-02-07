@@ -1,40 +1,39 @@
 import useWasm from "./useWasm";
 import eventBus from "../utils/EventBus";
 import { useEffect, useRef } from "react";
-import useTranslation from "./useTranslation";
+import createChunk from "../utils/createChunk";
 
-function useChunking(
+function useCrypting(
   setProgress: (arg0: number) => void,
-  makeModal: (arg0: string, arg1: string) => void,
+  makeModal: (arg0: string, arg1: string, arg2?: [string, ()=>void][]) => void,
+  closeModal: ()=>void,
   reset: () => Promise<void>
   ) {
     const isPausedRef = useRef(false)
     const isStoppedRef = useRef(false)
     const workerRef: React.MutableRefObject<Worker|undefined> = useRef()
     const rust = useWasm()
-    const translate = useTranslation()
-
-   
-    const handleStop = async()=>{
-      
-    }
-    useEffect(() => {
-      eventBus.on("pause", (paused) =>{
-        isPausedRef.current = paused
-        if (!paused && workerRef.current !== undefined) {
+    const handlePause = ()=>{
+      isPausedRef.current = !isPausedRef.current
+        if (!isPausedRef.current && workerRef.current !== undefined) {
           workerRef.current.postMessage("start")
         }
-      eventBus.on("stop", ()=>{
-        handleStop()
-      })
-      })
+    }
+    const handleStop = ()=>{
+      isPausedRef.current = true
+      makeModal("Are you sure you want to cancel?", "This will stop the encryption/decryption process and delete the file.", 
+        [["Yes", () => {closeModal(); setTimeout(reset, 1000)}], ["No", () => {handlePause(); closeModal()}]])
+  }
+    useEffect(() => {
+      eventBus.on("pause", () => {handlePause()})
+      eventBus.on("stop", () => {handleStop()})
       return () => {
         eventBus.remove("pause", () => {})
         eventBus.remove("stop", () => {})
       }
     }, []);
    
-    const chunk = async (file: Blob, encrypting: boolean, password: string, fileStore: string) => {
+    const crypt = async (file: Blob, encrypting: boolean, password: string, fileStore: string) => {
       let chunkSize = 4000000; // 4MB chunks
       chunkSize = encrypting ? chunkSize : chunkSize + 16; // Encrypted chunks are 16 bytes larger than non-encrypted ones
       const totalChunks = Math.ceil(file.size / chunkSize); // Calculate how many chunks to make
@@ -43,21 +42,7 @@ function useChunking(
       let sendMessage=false
       isPausedRef.current=false
       isStoppedRef.current=false
-      const createchunk = async(key:number)=>{
-        // create chunk
-        const start = key * chunkSize; // Choose where to start reading file (key = the number of the current chunk)
-        const end = Math.min(start + chunkSize, file.size); // Choose where to stop reading file, if file ends before start+chunkSize, it chooses that point
-        const chunk = file.slice(start, end) // Make chunk by slicing the file from the starting point to the end point
-        const byteArray = new Uint8Array(await chunk.arrayBuffer()); // Read chunk as bytes
-        let cryptedChunk: Uint8Array
-        if (encrypting) { // Check if the crypt mode is set to encrypt
-          cryptedChunk = rust.encrypt(byteArray, password) // Encrypt chunk
-        }
-        else { // If crypt mode is set to decrypt
-          cryptedChunk = rust.decrypt(byteArray, password); // Decrypt chunk
-          }
-        return cryptedChunk
-      }
+
       let i = 1
       //create a chunk when worker sends a message
       workerRef.current = new Worker(new URL("../utils/writeworker.js", import.meta.url)) //creates webworker for compiling file
@@ -96,8 +81,14 @@ function useChunking(
             //handle progress update
             setProgress((i-1)/totalChunks)
 
-            //creates chunk and stores it as the value of cryptedChunk. also checks if password is correct
-            writableChunk = await createchunk(i)
+            //creates chunk and stores it as the value of cryptedChunk. 
+            if (encrypting){
+              writableChunk = rust.encrypt(await createChunk(i, chunkSize, file), password)
+            }
+            else{
+              writableChunk = rust.decrypt(await createChunk(i, chunkSize, file), password)
+            }
+
             //handles incorrect password
             if (writableChunk.length === 0) { // Check for aead::Error on rustend
               await reset()
@@ -140,7 +131,12 @@ function useChunking(
       }
      
       //generates first chunk
-      writableChunk = await createchunk(0)
+      if (encrypting){
+        writableChunk = rust.encrypt(await createChunk(0, chunkSize, file), password)
+      }
+      else{
+        writableChunk = rust.decrypt(await createChunk(0, chunkSize, file), password)
+      }
       if(writableChunk.length===0){
         makeModal("Invalid Decrypt Password!", "The decrypting password you used isn't the same one that was used for encrypting.")
         await reset()
@@ -149,7 +145,7 @@ function useChunking(
       //sends message to worker to start working.
       workerRef.current.postMessage("start")
   }
-  return { chunk }
+  return { crypt }
   
 }
-export default useChunking
+export default useCrypting

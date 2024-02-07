@@ -1,11 +1,11 @@
-function useOnPageLoad(setFileStore:(arg0: string) => void, makeModal: (arg0:string ,arg1:string ,arg2?: [buttontext: string, buttonfunc:() => void][])=> void, closeModal:()=>void){
+function useOnPageLoad(FileStoreRef: React.MutableRefObject<string>, makeModal: (arg0:string ,arg1:string ,arg2?: [buttontext: string, buttonfunc:() => void][])=> void, closeModal:()=>void){
   const remove = async()=>{
     //removes all files from opfs
     for await (const key of (await navigator.storage.getDirectory()).keys()){
       await(await navigator.storage.getDirectory()).removeEntry(key)
     }
     //creates default file
-    setFileStore("stored file")
+    FileStoreRef.current = "stored file"
     await(await navigator.storage.getDirectory()).getFileHandle("stored file", {create: true})
 
     //closes question modal
@@ -28,7 +28,7 @@ function useOnPageLoad(setFileStore:(arg0: string) => void, makeModal: (arg0:str
       key="stored file"+number
     }
     //creates file from key
-    setFileStore(key)
+    FileStoreRef.current = key
     await(await navigator.storage.getDirectory()).getFileHandle(key, {create: true})
     closeModal()
   }
@@ -45,7 +45,7 @@ function useOnPageLoad(setFileStore:(arg0: string) => void, makeModal: (arg0:str
     }
     //if no files were found creates default file
     if(!filesinstore){
-      setFileStore("stored file")
+      FileStoreRef.current = "stored file"
       await(await navigator.storage.getDirectory()).getFileHandle("stored file", {create: true})
     }
   }

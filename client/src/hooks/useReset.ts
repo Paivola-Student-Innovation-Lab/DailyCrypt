@@ -1,13 +1,13 @@
-function useReset(fileStore: string, setEncrypting: (arg0:boolean)=>void, setProgress: (arg0:number)=>void, setDropHidden: (arg0:boolean)=>void){
+function useReset(fileStoreRef: React.MutableRefObject<string>, setEncrypting: (arg0:boolean)=>void, setProgress: (arg0:number)=>void, setDropHidden: (arg0:boolean)=>void){
     const reset = async () => {
         //try to remove stored file 
         try{
-        await(await navigator.storage.getDirectory()).removeEntry(fileStore)
+        await(await navigator.storage.getDirectory()).removeEntry(fileStoreRef.current)
         }
         catch(error){}
     
         //create new stored file
-        await(await navigator.storage.getDirectory()).getFileHandle(fileStore, {create: true})
+        await(await navigator.storage.getDirectory()).getFileHandle(fileStoreRef.current, {create: true})
     
         //reset useStates
         setEncrypting(false)

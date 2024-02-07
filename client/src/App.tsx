@@ -13,12 +13,9 @@ import {useState} from "react";
 import useTranslation from "./hooks/useTranslation";
 
 
-const App = ({encryptFunc, hasOpfs, dropHidden} : {encryptFunc: ((files: File[], password: string, passwordMismatch: boolean, encrypting: boolean)=>Promise<void>),
-   hasOpfs: boolean,
-   dropHidden: boolean}) => {
+const App = ({encryptFunc, dropHidden} : {encryptFunc: ((files: File[], password: string, passwordMismatch: boolean, encrypting: boolean)=>Promise<void>), dropHidden: boolean}) => {
 
   // Usestates
-  const [encrypting, setEncrypting] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
 
   const [password, setPassword] = useState<string>("");
@@ -53,19 +50,17 @@ const App = ({encryptFunc, hasOpfs, dropHidden} : {encryptFunc: ((files: File[],
   };
 
   const handleEncrypt = async () => {
-    setEncrypting(true)
     encryptFunc(files, password, passwordMismatch, true)
   };
 
   const handleDecrypt = async () => {
-    setEncrypting(false)
     encryptFunc(files, password, passwordMismatch, false)
   }  
   return (
     <>
       <Header />
       <div className={styles.container}>
-        {hasOpfs &&
+        {!(!navigator.storage.getDirectory) &&
         <>
         <div className={styles.buttons}>
           <Button disabled={dropHidden} className={styles.button} onClick={handleEncrypt} value="encrypt">{translate('encrypt_button')}</Button>
@@ -87,7 +82,7 @@ const App = ({encryptFunc, hasOpfs, dropHidden} : {encryptFunc: ((files: File[],
           <TextField type="password" className={passwordMismatch ? styles["input-error"] : ""} label={translate('confirmpassword_field')} value={confirmPassword} onChange={handleConfirmPasswordInput} required />
         </div>
         </>}
-        {!hasOpfs &&
+        {!navigator.storage.getDirectory &&
         <>
           {document.documentElement.style.setProperty('--container-color', '#ff8585')}
           <Alert severity="error" variant="filled">
