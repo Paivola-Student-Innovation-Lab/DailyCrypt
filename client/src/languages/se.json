@@ -30,21 +30,29 @@
 
     "zip_info_1" : "Komprimera dina filer innan du krypterar. Välj ditt operativsystem för att se instruktioner hur du komprimerar filerna.",
 
-    "ubuntu_title" : "GUIDE FÖR UBUNTU",
+    "archiving" : "ARKIVERING",
     "ubuntu_instruction_1" : "Välj filer som du vill kryptera.",
     "ubuntu_instruction_2" : "Högerklicka och välj 'Compress'.",
     "ubuntu_instruction_3" : "Namnge filen (valfritt) och klicka på 'Create'.",
     "ubuntu_instruction_4" : "Filen kommer att visas i samma mapp.",
+    "extracting" : "UPPACKNING",
+    "ubuntu_instruction_5" : "Välj filen du vill packa upp (filen måste vara en zip-fil)",
+    "ubuntu_instruction_6" : "Högerklicka och välj 'Extract here'",
+    "ubuntu_instruction_7" : "Den uppackade filen kommer att visas i samma mapp",
 
-    "windows_title" : "GUIDE FÖR WINDOWS",
     "windows_instruction_1" : "Välj filer som du vill kryptera.",
     "windows_instruction_2" : "Högerklicka och välj 'Send to/Skicka till' och klicka på 'Compressed (zipped) folder/Komprimerad mapp'.",
     "windows_instruction_3" : "Filen kommer att visas i samma mapp.",
+    "windows_instruction_4" : "Välj den komprimerade filen du vill packa upp",
+    "windows_instruction_5" : "Högerklicka och välj 'Extract all...'",
+    "windows_instruction_6" : "Välj destinationen där du vill att filen ska visas",
+    "windows_instruction_7" : "Den uppackade filen kommer att visas på den valda destinationen",
 
-    "mac_title" : "GUIDE FÖR MAC",
     "mac_instruction_1" : "Välj filer som du vill kryptera.",
     "mac_instruction_2" : "Högerklicka och välj 'Compress/Komprimera'.",
     "mac_instruction_3" : "Filen kommer att visas i samma mapp.",
+    "mac_instruction_4" : "Dubbelklicka på zip-filen du vill packa upp",
+    "mac_instruction_5" : "Den uppackade filen kommer att visas i samma mapp",
 
 
     "empty_file" : "Ingen fil!",
