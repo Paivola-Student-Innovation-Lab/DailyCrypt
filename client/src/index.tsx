@@ -3,30 +3,42 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import App from "./App";
 import "./index.module.css";
 import Info from "./components/Infopage";
-import { LanguageContext } from "./components/LanguageContext";
-import { useContext, useState } from "react";
-
+import { dictionaryList } from "./languages";
+import { useEffect, useState } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { LanguageProvider } from "./components/LanguageContext";
 import Cookies from "js-cookie";
+import { IntlProvider } from "react-intl";
 
 function Root() {
-  const language = Cookies.get('userLanguage') || 'en';
-  const languageContext = useContext(LanguageContext);
-  const defaultDir = languageContext.dictionary[language]
+  let defaultLanguage = Cookies.get('userLanguage') || 'en';
+  if (!dictionaryList[defaultLanguage]) {
+      defaultLanguage = 'en';
+  }
+  const defaultDir = dictionaryList[defaultLanguage].languageDirection;
+
+  const [currentLanguage, setCurrentLanguage] = useState(defaultLanguage);
   const [dir, setDir] = useState(defaultDir)
+
+  useEffect(() => {
+      // Save the user's language preference to a cookie.
+      Cookies.set('userLanguage', currentLanguage, {
+          sameSite: 'None',
+          secure: true,
+      });
+      setDir(dictionaryList[currentLanguage].languageDirection)
+    }, [currentLanguage]);
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <App />,
+      element: <App setLanguage={setCurrentLanguage} />,
     },
     {
       path: "info",
-      element: <Info />,
+      element: <Info setLanguage={setCurrentLanguage} />,
     }
   ]);
 
@@ -39,11 +51,13 @@ function Root() {
   });
 
   return (
-    <LanguageProvider dir={dir} setDir={setDir}>
-      <ThemeProvider theme={theme}>
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </LanguageProvider>
+    <IntlProvider locale={currentLanguage} messages={dictionaryList[currentLanguage]}>
+      <div dir={dir}>
+        <ThemeProvider theme={theme}>
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </div>
+    </IntlProvider>
   );
 }
 

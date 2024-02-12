@@ -25,9 +25,9 @@ import {useOnPageLoad} from "./hooks/useOnPageLoad";
 //Other imports
 import downloadfile from "./utils/downloadfile";
 import eventBus from "./utils/EventBus";
-import useTranslation from "./hooks/useTranslation";
+import { FormattedMessage, useIntl } from 'react-intl';
 
-const App = () => {
+const App = (props: any) => {
 
   // Usestates
   const [hasOpfs, setHasOpfs] = useState(true);
@@ -48,8 +48,7 @@ const App = () => {
   const { chunk } = useChunking(setProgress, makeModal, setDropHidden, setTimeLeft, fileStore);
   const { handleCrypting } = useCrypting(chunk, setProgress, setEncrypting, setDropHidden, makeModal, password, passwordMismatch, files, fileStore);
   const {handleLoad} = useOnPageLoad(setHasOpfs, setFileStore, makeModal, closeModal);
-  const translate = useTranslation().translate;
-  const transNoInt = useTranslation().translateNoInterpolate;
+  const translate = useIntl().formatMessage;
 
   const updateFiles = (files: File[]) => {
     setFiles(files);
@@ -135,7 +134,7 @@ const App = () => {
   } })
   return (
     <>
-      <Header />
+      <Header setLanguage={props.setLanguage} />
       <div className={styles.container}>
         <Modal
           open={modalOpen}
@@ -163,8 +162,8 @@ const App = () => {
         {hasOpfs &&
         <>
         <div className={styles.buttons}>
-          <Button disabled={dropHidden} className={styles.button} onClick={handleEncrypt} value="encrypt">{translate('encrypt_button')}</Button>
-          <Button disabled={dropHidden} className={styles.button} onClick={handleDecrypt} value="decrypt">{translate('decrypt_button')}</Button>
+          <Button disabled={dropHidden} className={styles.button} onClick={handleEncrypt} value="encrypt"><FormattedMessage id='encrypt_button' /></Button>
+          <Button disabled={dropHidden} className={styles.button} onClick={handleDecrypt} value="decrypt"><FormattedMessage id='decrypt_button' /></Button>
         </div>
         <div className={styles.dropbox}>
 
@@ -175,9 +174,7 @@ const App = () => {
             {dropHidden && (progress < 100) &&
               <div className={Dropzonestyles.dropzone}>
                 <Typography color="text.secondary">
-                  {transNoInt(encrypting ? "encrypting" : "decrypting").split("{file_name}")[0]}
-                  <b style={{ color: "var(--encryptgreen)" }}>{files[0].name}</b>
-                  {transNoInt(encrypting ? "encrypting" : "decrypting").split("{file_name}")[1]}
+                  <FormattedMessage id={"crypting"} values={{encrypting: encrypting, file_name: <b style={{ color: "var(--encryptgreen)" }}>{files[0].name}</b>}} />
                 </Typography>
                 <LinearProgressWithLabel value={progress} />
               <Box className={styles.progressbuttons}>
@@ -185,15 +182,20 @@ const App = () => {
                 <Button className={styles.cancelbutton} id="cancelButton" onClick={handleStop} ><CancelIcon />Cancel</Button>
               </Box>
               <Typography>
-                {!paused ? (!(timeLeft[0] === 0 && timeLeft[1] === 0 && timeLeft[2] === 0) ? (translate("time_remaining", `{"hours": ${timeLeft[0]}, "minutes": ${timeLeft[1]}, "seconds": ${timeLeft[2]}}`)) : translate("loading_file")) : "Paused"}
+                {!paused ? (!(timeLeft[0] === 0 && timeLeft[1] === 0 && timeLeft[2] === 0) ? 
+                <FormattedMessage id={"time_remaining_s" + (timeLeft[0] !== 0 ? "mh" : (timeLeft[1] !== 0 ? "m" : ""))} values={{hours: timeLeft[0], minutes: timeLeft[1], seconds: timeLeft[2]}} /> : 
+                <FormattedMessage id="loading_file" />) :
+                "Paused"}
               </Typography>
             </div>
             }
             {dropHidden && (progress >= 100) &&
               <div className={Dropzonestyles.dropzone}>
-                <Alert severity="success">{translate(("success_" + (encrypting ? "encrypt" : "decrypt")), ('{"file_name": "' + files[0].name + '"}'))} </Alert>
-                <Button className={styles.downloadbutton} onClick={handleDownload} value="download"> {translate("download_" + (encrypting ? "encrypted" : "decrypted"))} </Button>
-                <Button className={styles.downloadbutton} onClick={handleRestart} value="restart"> {translate("restart_button")} </Button>
+                <Alert severity="success">
+                  <FormattedMessage id="success" values={{file_name: <b>{files[0].name}</b>, encrypted: encrypting}} /> 
+                  </Alert>
+                <Button className={styles.downloadbutton} onClick={handleDownload} value="download"> <FormattedMessage id='download_button' values={{encrypted: encrypting}} /> </Button>
+                <Button className={styles.downloadbutton} onClick={handleRestart} value="restart"> <FormattedMessage id='restart_button' /> </Button>
               </div>
             }
           </Box>
@@ -201,8 +203,8 @@ const App = () => {
 
         </div>
         <div className={styles.textfields}>
-          <TextField type="password" label={translate('password_field')} value={password} onChange={handlePasswordInput} required />
-          <TextField type="password" className={passwordMismatch ? styles["input-error"] : ""} label={translate('confirmpassword_field')} value={confirmPassword} onChange={handleConfirmPasswordInput} required />
+          <TextField type="password" label={translate({id: 'password_field'})} value={password} onChange={handlePasswordInput} required />
+          <TextField type="password" className={passwordMismatch ? styles["input-error"] : ""} label={translate({id: 'confirmpassword_field'})} value={confirmPassword} onChange={handleConfirmPasswordInput} required />
         </div>
         </>}
         {!hasOpfs &&

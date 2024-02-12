@@ -1,18 +1,15 @@
 {
     "languagekey" : "en",
     "languagename" : "English",
-    "languagedirection" : "ltr",
+    "languageDirection" : "ltr",
 
     "encrypt_button" : "Encrypt",
     "decrypt_button" : "Decrypt",
-    "download_encrypted" : "Download encrypted file",
-    "download_decrypted" : "Download decrypted file",
+    "download_button" : "Download {encrypted, select, true {encrypted} other {decrypted}} file",
     "restart_button" : "Restart",
 
-    "encrypting" : "Encrypting {file_name}...",
-    "decrypting" : "Decrypting {file_name}...",
-    "success_encrypt" : "{file_name} has successfully been encrypted!",
-    "success_decrypt" : "{file_name} has successfully been decrypted!",
+    "crypting" : "{encrypting, select, true {Encrypting} other {Decrypting}} {file_name}...",
+    "success" : "{file_name} has successfully been {encrypted, select, true {encrypted} other {decrypted}}!",
 
     "dropbox_text1" : "Click to select file or drag here",
     "dropbox_text2" : "Click to select a different file or drag here",
@@ -71,18 +68,9 @@
 
     "loading_file": "Waiting for file to be loaded...",
 
-    "hour_plural": {
-        "one": "{count} hour",
-        "other": "{count} hours"
-    },
-    "minute_plural": {
-        "one": "{count} minute",
-        "other": "{count} minutes"
-    },
-    "second_plural": {
-        "one": "{count} second",
-        "other": "{count} seconds"
-    },
-    "time_remaining": "{hours}, {minutes} and {seconds} remaining|{minutes} and {seconds} remaining|{seconds} remaining"
+    "time_remaining_s": "{seconds, plural, one {# second} other {# seconds}} remaining",
+    "time_remaining_sm": "{minutes, plural, one {# minute} other {# minutes}} and {seconds, plural, one {# second} other {# seconds}} remaining",
+    "time_remaining_smh": "{hours, plural, one {# hour} other {# hours}}, {minutes, plural, one {# minute} other {# minutes}} and {seconds, plural, one {# second} other {# seconds}} remaining"
+    
 }
 

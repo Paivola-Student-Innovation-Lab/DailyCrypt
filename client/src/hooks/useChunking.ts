@@ -1,7 +1,6 @@
 import useWasm from "./useWasm";
 import eventBus from "../utils/EventBus";
 import { useEffect, useRef } from "react";
-import useTranslation from "./useTranslation";
 
 export function useChunking(
   setProgress: (arg0: number) => void,
@@ -14,7 +13,6 @@ export function useChunking(
     const workerRef: React.MutableRefObject<Worker|undefined> = useRef()
     const fileStoreRef = useRef(fileStore)
     const rust = useWasm()
-    const translate = useTranslation().translate
 
    
     const handleStop = async()=>{

@@ -1,18 +1,15 @@
 {
     "languagekey" : "se",
     "languagename" : "Svenska (Swedish)",
-    "languagedirection" : "ltr",
+    "languageDirection" : "ltr",
 
     "encrypt_button" : "Kryptera",
     "decrypt_button" : "Dekryptera",
-    "download_encrypted" : "Ladda ner krypterad fil",
-    "download_decrypted" : "Ladda ner dekrypterad fil",
+    "download_button" : "Ladda ner {encrypted, select, true {krypterad} other {dekrypterad}} fil",
     "restart_button" : "Starta om",
 
-    "encrypting" : "Krypterar {file_name}...",
-    "decrypting" : "Dekrypterar {file_name}...",
-    "success_encrypt" : "{file_name} krypterades framgångsrikt!",
-    "success_decrypt" : "{file_name} dekrypterades framgångsrikt!",
+    "crypting" : "{encrypting, select, true {Krypterar} other {Dekrypterar} {file_name}...",
+    "success" : "{file_name} {encrypted, select, true {krypterades} other {dekrypterades}} framgångsrikt!",
 
     "dropbox_text1" : "Klicka här för att välja en fil, eller dra en fil hit",
     "dropbox_text2" : "Klicka här för att välja en annan fil, eller dra en annan fil hit",
@@ -64,18 +61,8 @@
 
     "loading_file": "Väntar att filen ska laddas upp...",
 
-    "hour_plural": {
-        "one": "{count} timme",
-        "other": "{count} timmar"
-    },
-    "minute_plural": {
-        "one": "{count} minut",
-        "other": "{count} minuter"
-    },
-    "second_plural": {
-        "one": "{count} sekund",
-        "other": "{count} sekunder"
-    },
-    "time_remaining": "{hours}, {minutes} och {seconds} kvar | {minutes} och {seconds} kvar | {seconds} kvar"
-}
+    "time_remaining_s": "{seconds, plural, one {# sekund} other {# sekunder}} kvar",
+    "time_remaining_sm": "{minutes, plural, one {# minut} other {# minuter}} och {seconds, plural, one {# sekund} other {# sekunder}} kvar",
+    "time_remaining_smh": "{hours, plural, one {# timme} other {# timmar}}, {minutes, plural, one {# minut} other {# minuter}} och {seconds, plural, one {# sekund} other {# sekunder}} kvar"
 
+}
