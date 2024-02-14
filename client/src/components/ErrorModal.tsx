@@ -1,31 +1,25 @@
 import { Box, Modal, Typography } from "@mui/material";
 import modalStyles from "./Errormodal.module.css"
+import useModal from "../hooks/useModal";
 
-interface ErrorModalProps{
-  open: boolean
-  onClose: ()=>void
-  title: string
-  text: string
-  Buttons?:[buttontext: string, buttonfunc:()=>void][]
 
-}
-const ErrorModal = (props: ErrorModalProps) => {
-
+const ErrorModal = () => {
+    const state = useModal()
     return (
         <Modal
-          open={props.open}
-          onClose={props.onClose}
+          open={state.modalOpen}
+          onClose={state.closeModal}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
           <Box className={modalStyles.modal}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              {props.title}
+              {state.modalTitle}
             </Typography>
             <Typography id="modal-modal-description" className={modalStyles.modaltext}>
-              {props.text}
+              {state.modalText}
             </Typography>
-            {props.Buttons && props.Buttons.map(button=>(
+            {state.modalButtons && state.modalButtons.map(button=>(
               <>
                 {(typeof button[1]==="function"&& typeof button[0]==="string") &&
 

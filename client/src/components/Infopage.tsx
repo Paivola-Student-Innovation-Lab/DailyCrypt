@@ -11,7 +11,6 @@ import FolderZipIcon from '@mui/icons-material/FolderZip';
 import TabIcon from '@mui/icons-material/Tab';
 import { Link } from 'react-router-dom';
 import useTranslation from "../hooks/useTranslation";
-import ProgressArea from "./ProgressArea";
 
 export default function Info({dropHidden}: {dropHidden: boolean}) {
     const translate = useTranslation();
@@ -23,9 +22,6 @@ export default function Info({dropHidden}: {dropHidden: boolean}) {
     return (
         <div>
             <InfoHeader />
-            {dropHidden &&
-                <ProgressArea/>
-            }
             <Grid container spacing={2}>
                 <Grid md={6} xs={6} item className={styles.grid}>
                     <Card className={styles.card} >

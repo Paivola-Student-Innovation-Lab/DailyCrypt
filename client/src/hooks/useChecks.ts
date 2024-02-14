@@ -1,17 +1,19 @@
 import enoughSpace from "../utils/Checkfilesize";
+import useModal from "./useModal";
 import usePlainText from "./useTranslation";
-function useChecks (
-makeModal: (title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][])=>void,
-) {
+function useChecks () {
     const PlainText = usePlainText()
-
+    const makeModal = useModal((state) => state.makeModal)
+    //check if verything is correct and file can be crypted
     const handleChecks = async (file: File, password: string, passwordMismatch: boolean, isEncrypting: boolean, fileStore: string) => {
         if (password !== "") {
         if (!passwordMismatch) {
             if (file) {
+                //check if there is enough space in opfs for the file
                 if(await enoughSpace(file.size, fileStore, isEncrypting)){
                     return true
                 }
+        //communicate to the user if something is inccorrect
                   else{
                     makeModal("Seems we can't store the file", "check infopage for storage information")
                   }

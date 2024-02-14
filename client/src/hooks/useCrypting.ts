@@ -1,29 +1,41 @@
+//hpoks
 import useWasm from "./useWasm";
-import eventBus from "../utils/EventBus";
 import { useEffect, useRef } from "react";
+
+//other
 import createChunk from "../utils/createChunk";
+import eventBus from "../utils/EventBus";
+import useModal from "./useModal";
 
 function useCrypting(
   setProgress: (arg0: number) => void,
-  makeModal: (arg0: string, arg1: string, arg2?: [string, ()=>void][]) => void,
-  closeModal: ()=>void,
-  reset: () => Promise<void>
+  reset: () => Promise<void>,
+  setPaused: (arg0: boolean)=>void
   ) {
+    //ref defenition
     const isPausedRef = useRef(false)
     const isStoppedRef = useRef(false)
     const workerRef: React.MutableRefObject<Worker|undefined> = useRef()
+    //hook defenition
     const rust = useWasm()
+    const {makeModal, closeModal} = useModal((state) => ({makeModal: state.makeModal, closeModal: state.closeModal}))
+    //handle pausing the crypting
     const handlePause = ()=>{
+      setPaused(!isPausedRef.current)
       isPausedRef.current = !isPausedRef.current
         if (!isPausedRef.current && workerRef.current !== undefined) {
           workerRef.current.postMessage("start")
         }
     }
+
+    //handle stopping the crypting
     const handleStop = ()=>{
       isPausedRef.current = true
+      setPaused(true)
       makeModal("Are you sure you want to cancel?", "This will stop the encryption/decryption process and delete the file.", 
         [["Yes", () => {closeModal(); setTimeout(reset, 1000)}], ["No", () => {handlePause(); closeModal()}]])
-  }
+    }
+    //recieve the pause and stop eventbusses
     useEffect(() => {
       eventBus.on("pause", () => {handlePause()})
       eventBus.on("stop", () => {handleStop()})
@@ -32,8 +44,10 @@ function useCrypting(
         eventBus.remove("stop", () => {})
       }
     }, []);
-   
+
+    //crypt the file
     const crypt = async (file: Blob, encrypting: boolean, password: string, fileStore: string) => {
+      //variable defenition
       let chunkSize = 4000000; // 4MB chunks
       chunkSize = encrypting ? chunkSize : chunkSize + 16; // Encrypted chunks are 16 bytes larger than non-encrypted ones
       const totalChunks = Math.ceil(file.size / chunkSize); // Calculate how many chunks to make
@@ -42,6 +56,7 @@ function useCrypting(
       let sendMessage=false
       isPausedRef.current=false
       isStoppedRef.current=false
+      setPaused(false)
 
       let i = 1
       //create a chunk when worker sends a message
@@ -54,6 +69,7 @@ function useCrypting(
           await reset()
           return
         }
+        //handle error in worker
         if(typeof message.data !== "string"){
           const errormsg = [["could not find storage file", "can't find file for storage. this may be caused by all opfs data being deleted by another tab. to fix this reload the page."]]
           const errors =["NotFoundError"]
@@ -69,6 +85,7 @@ function useCrypting(
             makeModal("error trying to write data to file" , error.name +": " + error.text)
           }
         }
+        //send another message and create a new chunk
         if (ready && !isPausedRef.current){
           ready=false
           sendMessage=false
@@ -145,7 +162,6 @@ function useCrypting(
       //sends message to worker to start working.
       workerRef.current.postMessage("start")
   }
-  return { crypt }
-  
+  return { crypt, paused: isPausedRef.current}
 }
 export default useCrypting

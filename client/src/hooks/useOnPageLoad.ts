@@ -1,4 +1,7 @@
-function useOnPageLoad(FileStoreRef: React.MutableRefObject<string>, makeModal: (arg0:string ,arg1:string ,arg2?: [buttontext: string, buttonfunc:() => void][])=> void, closeModal:()=>void){
+import useModal from "./useModal"
+
+function useOnPageLoad(FileStoreRef: React.MutableRefObject<string>){
+  const {makeModal, closeModal} = useModal((state) => ({makeModal: state.makeModal, closeModal: state.closeModal}))
   const remove = async()=>{
     //removes all files from opfs
     for await (const key of (await navigator.storage.getDirectory()).keys()){

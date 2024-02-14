@@ -22,8 +22,7 @@ function Root() {
   const languageContext = useContext(LanguageContext);
   const defaultDir = languageContext.dictionary[language]
   const [dir, setDir] = useState(defaultDir)
-  const {modalOpen, modalTitle, modalText, makeModal, closeModal, modalButtons} = useModal();
-  const {handleCrypting, progress, dropHidden, fileName, encrypt} = useFunctionality(makeModal, closeModal)
+  const {handleCrypting, progress, dropHidden, fileName, encrypt, paused} = useFunctionality()
   const router = createBrowserRouter([
     {
       path: "/",
@@ -46,8 +45,8 @@ function Root() {
   return (
     <LanguageProvider dir={dir} setDir={setDir}>
       <ThemeProvider theme={theme}>
-        <ErrorModal open={modalOpen} onClose={closeModal} title={modalTitle} text={modalText}  Buttons={modalButtons}/>
-        <ProgressProvider progress={progress} encrypting={encrypt} fileName={fileName}>
+        <ErrorModal/>
+        <ProgressProvider progress={progress} encrypting={encrypt} fileName={fileName} paused={paused}>
           <RouterProvider router={router} />
         </ProgressProvider>
       </ThemeProvider>
