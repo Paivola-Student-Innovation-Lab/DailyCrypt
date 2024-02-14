@@ -35,7 +35,7 @@ const Dropzone = (props: Props) => {
     props.updateFiles(acceptedFiles);
   };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop: handleDrop,
     multiple: false,
   } as DropzoneOptions);
