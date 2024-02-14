@@ -1,6 +1,6 @@
 .tabs {
-    padding-left: 1vw;
-    width: 90%;
+    width: 100%;
+    background-color: #eafbf5;
 }
 
 .pic {
@@ -9,9 +9,10 @@
 
 .picturebox {
     padding: 3%;
+    background-color: #eafbf5;
 }
 
 .instructiontext {
     display: block;
-    padding-top: 1vh;
+    margin-top: 1vh;
 }

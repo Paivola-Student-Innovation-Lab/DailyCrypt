@@ -10,11 +10,11 @@ import FolderZipIcon from '@mui/icons-material/FolderZip';
 import TabIcon from '@mui/icons-material/Tab';
 import { Link } from 'react-router-dom';
 import useTranslation from "../hooks/useTranslation";
-import AccordionUsage from "./Accordion";
+import { AccordionUsage, GuideAccordion } from "./Accordion";
 
 export default function Info() {
     const translate = useTranslation();
-    const psilString = translate('info_1', '{"PSIL": "<Link to=`https://psil.fi` className={styles.psil}>PSIL</Link>"}')
+    const psilString = translate('info_1', '{"PSIL": "<Link to=`https://psil.fi`> </Link>"}')
     const psilObject = {__html: psilString}
     const psilComponent = () => {
         return <div dangerouslySetInnerHTML={psilObject}/>
@@ -36,8 +36,9 @@ export default function Info() {
                             <Typography className={styles.bodytext} variant="body1">
                                 {translate('info_3')}
                             </Typography>
-                            <Typography className={styles.bodytext} variant="body1">
-                                {psilComponent()} <Link to="https://psil.fi" className={styles.psil}>PSIL</Link>
+                            <GuideAccordion />
+                            <Typography className={styles.psiltitle} variant="h6">
+                                {psilComponent()} <Link to="https://psil.fi"><img src='./images/psil.svg' className={styles.psil} alt=''/></Link>
                             </Typography>
                         </CardContent>
                     </Card>
