@@ -1,6 +1,6 @@
 .tabs {
     width: 100%;
-    background-color: #eafbf5;
+    background-color: var(--accordiongreen);
 }
 
 .pic {
@@ -9,7 +9,7 @@
 
 .picturebox {
     padding: 3%;
-    background-color: #eafbf5;
+    background-color: var(--accordiongreen);
 }
 
 .instructiontext {

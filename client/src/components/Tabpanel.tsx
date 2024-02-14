@@ -40,6 +40,58 @@ function a11yProps(index: number) {
   };
 }
 
+function DailyCryptTabpanel() {
+  const translate = useTranslation();
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box className={styles.tabs} >
+        <Tabs
+         value={value} 
+         onChange={handleChange} 
+         aria-label="basic tabs example" 
+         centered
+         variant="fullWidth"
+         selectionFollowsFocus>
+          <Tab label={translate('encrypt_title')} {...a11yProps(0)} />
+          <Tab label={translate('decrypt_title')} {...a11yProps(1)} />
+        </Tabs>
+      <CustomTabPanel value={value} index={0}>
+        <span className={styles.instructiontext} >{translate('howtouse_1e')}</span>
+        <img src='./images/dailycryptguide/howtouse1.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('howtouse_2e')}</span>
+        <img src='./images/dailycryptguide/howtouse2.png' className={styles.pic} alt='' />
+        <img src='./images/dailycryptguide/howtouse3.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('howtouse_3e')}</span>
+        <img src='./images/dailycryptguide/howtouse4.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('howtouse_4e')}</span>
+        <img src='./images/dailycryptguide/howtouse5.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('howtouse_5e')}</span>
+        <img src='./images/dailycryptguide/howtouse6.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('howtouse_6e')}</span>
+        <img src='./images/dailycryptguide/howtouse7.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('howtouse_7e')}</span>
+        <img src='./images/dailycryptguide/howtouse8.png' className={styles.pic} alt='' />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        <span className={styles.instructiontext} >{translate('howtouse_1d')}</span>
+        <img src='./images/dailycryptguide/howtouse9.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('howtouse_2d')}</span>
+        <img src='./images/dailycryptguide/howtouse10.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('howtouse_3d')}</span>
+        <img src='./images/dailycryptguide/howtouse11.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate('howtouse_4d')}</span>
+        <img src='./images/dailycryptguide/howtouse13.png' className={styles.pic} alt='' />
+      </CustomTabPanel>
+    </Box>
+  );
+}
+
 function ArchivingTabpanel() {
   const translate = useTranslation();
 
@@ -142,58 +194,6 @@ function ExtractingTabpanel() {
   );
 }
 
-function GuideTabpanel() {
-  const translate = useTranslation();
-
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
-
-  return (
-    <Box className={styles.tabs} >
-        <Tabs
-         value={value} 
-         onChange={handleChange} 
-         aria-label="basic tabs example" 
-         centered
-         variant="fullWidth"
-         selectionFollowsFocus>
-          <Tab label={translate('encrypt_title')} {...a11yProps(0)} />
-          <Tab label={translate('decrypt_title')} {...a11yProps(1)} />
-        </Tabs>
-      <CustomTabPanel value={value} index={0}>
-        <span className={styles.instructiontext} >{translate('howtouse_1e')}</span>
-        <img src='./images/dailycryptguide/howtouse1.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('howtouse_2e')}</span>
-        <img src='./images/dailycryptguide/howtouse2.png' className={styles.pic} alt='' />
-        <img src='./images/dailycryptguide/howtouse3.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('howtouse_3e')}</span>
-        <img src='./images/dailycryptguide/howtouse4.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('howtouse_4e')}</span>
-        <img src='./images/dailycryptguide/howtouse5.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('howtouse_5e')}</span>
-        <img src='./images/dailycryptguide/howtouse6.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('howtouse_6e')}</span>
-        <img src='./images/dailycryptguide/howtouse7.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('howtouse_7e')}</span>
-        <img src='./images/dailycryptguide/howtouse8.png' className={styles.pic} alt='' />
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        <span className={styles.instructiontext} >{translate('howtouse_1d')}</span>
-        <img src='./images/dailycryptguide/howtouse9.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('howtouse_2d')}</span>
-        <img src='./images/dailycryptguide/howtouse10.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('howtouse_3d')}</span>
-        <img src='./images/dailycryptguide/howtouse11.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('howtouse_4d')}</span>
-        <img src='./images/dailycryptguide/howtouse13.png' className={styles.pic} alt='' />
-      </CustomTabPanel>
-    </Box>
-  );
-}
-
 export {
-  ArchivingTabpanel, ExtractingTabpanel, GuideTabpanel
+  ArchivingTabpanel, ExtractingTabpanel, DailyCryptTabpanel
 }

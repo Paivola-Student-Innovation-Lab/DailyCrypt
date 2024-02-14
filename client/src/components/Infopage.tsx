@@ -10,7 +10,7 @@ import FolderZipIcon from '@mui/icons-material/FolderZip';
 import TabIcon from '@mui/icons-material/Tab';
 import { Link } from 'react-router-dom';
 import useTranslation from "../hooks/useTranslation";
-import { AccordionUsage, GuideAccordion } from "./Accordion";
+import { ArchiveExtractAccordion, DailyCryptAccordion } from "./Accordion";
 
 export default function Info() {
     const translate = useTranslation();
@@ -26,7 +26,7 @@ export default function Info() {
                 <Grid md={6} xs={6} item className={styles.grid}>
                     <Card className={styles.card} >
                         <CardContent>
-                            <Typography className={styles.infotext} variant="h4">
+                            <Typography className={styles.infotitle} variant="h4">
                                 {translate('infopage_title1')} <InfoIcon />
                             </Typography>
                             <div className={styles.divider} />
@@ -36,7 +36,7 @@ export default function Info() {
                             <Typography className={styles.bodytext} variant="body1">
                                 {translate('info_3')}
                             </Typography>
-                            <GuideAccordion />
+                            <DailyCryptAccordion />
                             <Typography className={styles.psiltitle} variant="h6">
                                 {psilComponent()} <Link to="https://psil.fi"><img src='./images/psil.svg' className={styles.psil} alt=''/></Link>
                             </Typography>
@@ -44,7 +44,7 @@ export default function Info() {
                     </Card>
                     <Card className={styles.card} >
                         <CardContent>
-                            <Typography className={styles.infotext} variant="h4">
+                            <Typography className={styles.infotitle} variant="h4">
                                 {translate('infopage_title3')} <TabIcon />
                             </Typography>
                             <div className={styles.divider} />
@@ -57,7 +57,7 @@ export default function Info() {
                 <Grid xs={6} md={6} item>
                     <Card className={styles.guide} >
                         <CardContent>
-                            <Typography className={styles.infotext} variant="h4">
+                            <Typography className={styles.infotitle} variant="h4">
                                 {translate('infopage_title2')} <FolderZipIcon />
                             </Typography>
                             <div className={styles.divider} />
@@ -66,7 +66,7 @@ export default function Info() {
                             </Typography>
                         </CardContent>
                         <CardActions className={styles.tabs}>
-                            <AccordionUsage />
+                            <ArchiveExtractAccordion />
                         </CardActions>
                     </Card>
                 </Grid>

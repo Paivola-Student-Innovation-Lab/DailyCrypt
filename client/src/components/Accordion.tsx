@@ -3,15 +3,41 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ArchivingTabpanel, ExtractingTabpanel, GuideTabpanel } from './Tabpanel';
+import { ArchivingTabpanel, ExtractingTabpanel, DailyCryptTabpanel } from './Tabpanel';
 import useTranslation from "../hooks/useTranslation";
 import styles from './Accordion.module.css';
 import { Typography } from '@mui/material';
 
-function AccordionUsage() {
+function DailyCryptAccordion() {
+  const translate = useTranslation();
+return  (
+  <div className={styles.dailycryptaccordion} >
+    <Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1-content"
+        id="panel1-header"
+        sx={{
+          color:"var(--encryptgreen)",
+          backgroundColor: "var(--accordiongreen)",
+        }}
+      >
+        <Typography variant='h6'>
+          {translate('dailycryptguide')}
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails className={styles.details}>
+        <DailyCryptTabpanel />
+      </AccordionDetails>
+    </Accordion>
+  </div>
+)
+}
+
+function ArchiveExtractAccordion() {
     const translate = useTranslation();
   return (
-    <div className={styles.accordion} >
+    <div className={styles.archiveaccordion} >
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -52,32 +78,6 @@ function AccordionUsage() {
   );
 }
 
-function GuideAccordion() {
-    const translate = useTranslation();
-  return  (
-    <div className={styles.guideaccordion} >
-      <Accordion>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1-content"
-          id="panel1-header"
-          sx={{
-            color:"var(--encryptgreen)",
-            backgroundColor: "var(--accordiongreen)",
-          }}
-        >
-          <Typography variant='h6'>
-            {translate('dailycryptguide')}
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails className={styles.details}>
-          <GuideTabpanel />
-        </AccordionDetails>
-      </Accordion>
-    </div>
-  )
-}
-
 export {
-  AccordionUsage, GuideAccordion
+  ArchiveExtractAccordion, DailyCryptAccordion
 }
