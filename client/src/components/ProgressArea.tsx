@@ -4,7 +4,6 @@ import LinearProgressWithLabel from "./LinearProgressWithLabel";
 
 //hooks
 import {useMemo} from "react";
-import useTranslation from "../hooks/useTranslation";
 import useTime from "../hooks/useTime";
 
 //styles
@@ -21,15 +20,17 @@ import eventBus from "../utils/EventBus";
 import usefunctionalityState from "../hooks/useFunctionalityState";
 import downloadfile from "../utils/downloadfile";
 import useModal from "../hooks/useModal";
+import { FormattedMessage} from "react-intl";
 
 function ProgressArea () {
     //hook defenitions
     const{makeModal, closeModal} = useModal((state) => ({makeModal: state.makeModal, closeModal: state.closeModal}))
     const{progress, encrypting, fileName, paused, filestore, setPaused, reset} = usefunctionalityState((state) => ({progress: state.progress, encrypting: state.encrypting, fileName: state.filename, paused: state.paused,filestore: state.filestore, setPaused: state.pause,reset: state.reset}))
-    const translate = useTranslation()
     const {handleTime, adjustStartTime, resetTime} = useTime(progress)
+
     //calculate time to show user from progress
     const timeLeft = useMemo(handleTime, [progress])
+    
     
     const handleDownload = () => {downloadfile(fileName, encrypting, filestore)}//download the crypted file
     const handleRestart = () => {resetTime(); reset()}//reset the page
@@ -53,24 +54,29 @@ function ProgressArea () {
         <>
         {progress < 100 &&
             <div className={Dropzonestyles.dropzone}>
-                <Typography color="text.secondary">
-                    {translate((encrypting ? "encrypting" : "decrypting"), ('{"file_name": "' + fileName + '"}'))} <b style={{ color: "var(--encryptgreen)" }}>{fileName}</b>...
-                </Typography>
-                <LinearProgressWithLabel value={progress*100} />
-                <Box className={progressareastyles.progressbuttons}>
-                    <Button className={progressareastyles.pausebutton} id="pauseButton" onClick={handlePause} >{paused ? <PlayCircleIcon /> : <PauseCircleIcon />} {paused ? "continue" : "pause"}</Button>
-                    <Button className={progressareastyles.cancelbutton} id="cancelButton" onClick={handleStop} ><CancelIcon />Cancel</Button>
-                </Box>
-                <Typography>
-                    { !paused ? (!(timeLeft[0] === 0 && timeLeft[1] === 0 && timeLeft[2] === 0) ? (translate("time_remaining")) : "Waiting for file to be loaded...") : "Paused"}
-                </Typography>
-            </div>
+            <Typography color="text.secondary">
+                <FormattedMessage id={"crypting"} values={{encrypting: encrypting, file_name: <b style={{ color: "var(--encryptgreen)" }}>{fileName}</b>}} />
+            </Typography>
+            <LinearProgressWithLabel value={progress*100} />
+            <Box className={progressareastyles.progressbuttons}>
+            <Button className={progressareastyles.pausebutton} id="pauseButton" onClick={handlePause} >{paused ? <PlayCircleIcon /> : <PauseCircleIcon />} {paused ? "continue" : "pause"}</Button>
+            <Button className={progressareastyles.cancelbutton} id="cancelButton" onClick={handleStop} ><CancelIcon />Cancel</Button>
+            </Box>
+            <Typography>
+            {!paused ? (!(timeLeft[0] === 0 && timeLeft[1] === 0 && timeLeft[2] === 0) ? 
+            <FormattedMessage id={"time_remaining_s" + (timeLeft[0] !== 0 ? "mh" : (timeLeft[1] !== 0 ? "m" : ""))} values={{hours: timeLeft[0], minutes: timeLeft[1], seconds: timeLeft[2]}} /> : 
+            <FormattedMessage id="loading_file" />) :
+            "Paused"}
+            </Typography>
+        </div>
         }
         {progress >= 100 &&
             <div className={Dropzonestyles.dropzone}>
-                <Alert severity="success">{translate(("success_" + (encrypting ? "en" : "de") + "crypt"), ('{"file_name": "' + fileName + '"}'))} </Alert>
-                <Button className={progressareastyles.downloadbutton} onClick={handleDownload} value="download"> {translate("download_" + (encrypting ? "en" : "de") + "crypted")} </Button>
-                <Button className={progressareastyles.downloadbutton} onClick={handleRestart} value="restart"> {translate("restart_button")} </Button>
+            <Alert severity="success">
+                <FormattedMessage id="success" values={{file_name: <b>{fileName}</b>, encrypted: encrypting}} /> 
+                </Alert>
+            <Button className={progressareastyles.downloadbutton} onClick={handleDownload} value="download"> <FormattedMessage id='download_button' values={{encrypted: encrypting}} /> </Button>
+            <Button className={progressareastyles.downloadbutton} onClick={handleRestart} value="restart"> <FormattedMessage id='restart_button' /> </Button>
             </div>
         }
     </> 

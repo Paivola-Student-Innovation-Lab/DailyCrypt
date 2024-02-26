@@ -1,9 +1,9 @@
+import { useIntl } from "react-intl";
 import enoughSpace from "../utils/Checkfilesize";
 import usefunctionalityState from "./useFunctionalityState";
 import useModal from "./useModal";
-import usePlainText from "./useTranslation";
 function useChecks () {
-    const PlainText = usePlainText()
+    const translate = useIntl().formatMessage;
     const makeModal = useModal((state) => state.makeModal)
     const fileStore = usefunctionalityState((state) => state.filestore)
     //check if verything is correct and file can be crypted
@@ -16,20 +16,20 @@ function useChecks () {
                     return true
                 }
         //communicate to the user if something is inccorrect
-                  else{
+                else{
                     makeModal("Seems we can't store the file", "check infopage for storage information")
-                  }
+                    }
+                }
+                else {
+                    makeModal(translate({id: "empty_file"}), isEncrypting ? translate({id: "empty_file_encrypt"}) : translate({id: "empty_file_decrypt"}));
+                }
             }
             else {
-            makeModal(PlainText("empty_file"), isEncrypting ? PlainText("empty_file_encrypt") : PlainText("empty_file_decrypt"));
+                makeModal(translate({id: "mismatch"}), translate({id: "mismatch_text"}));
             }
         }
-        else {
-            makeModal(PlainText("mismatch"), PlainText("mismatch_text"));
-        }
-        }
         else{
-        makeModal(PlainText("empty_password"), isEncrypting ? PlainText("empty_password_encrypt") : PlainText("empty_password_decrypt"));
+            makeModal(translate({id: "empty_password"}), isEncrypting ? translate({id: "empty_password_encrypt"}) : translate({id: "empty_password_decrypt"}));
         }
         return false
     }

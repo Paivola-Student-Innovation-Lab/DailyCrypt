@@ -10,11 +10,11 @@ import styles from "./App.module.css";
 
 // Hooks
 import {useState} from "react";
-import useTranslation from "./hooks/useTranslation";
 import usefunctionalityState from "./hooks/useFunctionalityState";
+import { FormattedMessage, useIntl } from "react-intl";
 
 
-const App = ({encryptFunc} : {encryptFunc: ((files: File[], password: string, passwordMismatch: boolean, encrypting: boolean)=>Promise<void>)}) => {
+const App = (props: any) => {
 
   // Usestates
   const [files, setFiles] = useState<File[]>([]);
@@ -24,7 +24,7 @@ const App = ({encryptFunc} : {encryptFunc: ((files: File[], password: string, pa
   const [passwordMismatch, setPasswordMismatch] = useState(false);
   
   // Hook declaration
-  const translate = useTranslation();
+  const translate = useIntl().formatMessage;
   const dropHidden = usefunctionalityState((state) => state.drophidden)
 
   //update files on input
@@ -57,22 +57,22 @@ const App = ({encryptFunc} : {encryptFunc: ((files: File[], password: string, pa
 
   //start encrypting
   const handleEncrypt = async () => {
-    encryptFunc(files, password, passwordMismatch, true)
+    props.encryptFunc(files, password, passwordMismatch, true)
   };
 
   //start decrypting
   const handleDecrypt = async () => {
-    encryptFunc(files, password, passwordMismatch, false)
+    props.encryptFunc(files, password, passwordMismatch, false)
   }  
   return (
     <>
-      <Header />
+      <Header setLanguage={props.setLanguage} />
       <div className={styles.container}>
         {!(!navigator.storage.getDirectory) &&
         <>
         <div className={styles.buttons}>
-          <Button disabled={dropHidden} className={styles.button} onClick={handleEncrypt} value="encrypt">{translate('encrypt_button')}</Button>
-          <Button disabled={dropHidden} className={styles.button} onClick={handleDecrypt} value="decrypt">{translate('decrypt_button')}</Button>
+          <Button disabled={dropHidden} className={styles.button} onClick={handleEncrypt} value="encrypt"><FormattedMessage id='encrypt_button' /></Button>
+          <Button disabled={dropHidden} className={styles.button} onClick={handleDecrypt} value="decrypt"><FormattedMessage id='decrypt_button' /></Button>
         </div>
         <div className={styles.dropbox}>
 
@@ -86,8 +86,8 @@ const App = ({encryptFunc} : {encryptFunc: ((files: File[], password: string, pa
           </Box>
         </div>
         <div className={styles.textfields}>
-          <TextField type="password" label={translate('password_field')} value={password} onChange={handlePasswordInput} required />
-          <TextField type="password" className={passwordMismatch ? styles["input-error"] : ""} label={translate('confirmpassword_field')} value={confirmPassword} onChange={handleConfirmPasswordInput} required />
+          <TextField type="password" label={translate({id: 'password_field'})} value={password} onChange={handlePasswordInput} required />
+          <TextField type="password" className={passwordMismatch ? styles["input-error"] : ""} label={translate({id: 'confirmpassword_field'})} value={confirmPassword} onChange={handleConfirmPasswordInput} required />
         </div>
         </>}
         {!navigator.storage.getDirectory &&

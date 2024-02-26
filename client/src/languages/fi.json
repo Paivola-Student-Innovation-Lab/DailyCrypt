@@ -1,31 +1,29 @@
 {
     "languagekey" : "fi",
-    "languagename" : "Suomi",
-    "languagedirection" : "ltr",
+    "languagename" : "Suomi (Finnish)",
+    "languageDirection" : "ltr",
 
     "encrypt_button" : "Salaa",
     "decrypt_button" : "Pura salaus",
-    "download_encrypted" : "Lataa salattu tiedosto",
-    "download_decrypted" : "Lataa purettu tiedosto",
+    "download_button" : "Lataa {encrypted, select, true {salattu} other {purettu}} tiedosto",
     "restart_button" : "Aloita alusta",
 
-    "encrypting" : "Salataan",
-    "decrypting" : "Puretaan",
-    "success_encrypt" : "salattiin onnistuneesti!",
-    "success_decrypt" : "purettiin onnistuneesti!",
+    "encrypting" : "Salataan tiedostoa {file_name}...",
+    "decrypting" : "Puretaan tiedostoa {file_name}...",
+    "success" : "{file_name} {encrypted, select, true {salattiin} other {purettiin}} onnistuneesti!",
 
     "dropbox_text1" : "Klikkaa valitaksesi tiedosto, tai vedä tiedosto tähän",
     "dropbox_text2" : "Klikkaa valitaksesi eri tiedosto, tai vedä tiedosto tähän",
-    "dropbox_text3" : "Valittu tiedosto:",
+    "dropbox_text3" : "Valittu tiedosto: {file_name} ({file_size})",
 
     "password_field" : "Salasana",
     "confirmpassword_field" : "Vahvista salasana",
 
     "infopage_title1" : "Mikä on DailyCrypt?",
-    "infopage_title2" : "Miten tiedostoja pakataan?",
+    "infopage_title2" : "Miten tiedostoja pakataan ja puretaan?",
     "infopage_title3" : "Tuetut selainversiot",
 
-    "info_1" : "Kehittänyt",
+    "info_1" : "DailyCrypt on {PSIL}in kehittämä.",
     "info_2" : "DailyCrypt on yksinkertainen salausnettisivu. Tavoitteemme on tehdä salauksesta kaikille saavutettavaa.",
     "info_3" : "DailyCrypt on tehty ilman palvelinta turvallisuuden varmistamiseksi. Koodi on avointa lähdekoodia, jolloin se on kaikkien saatavilla.",
 
@@ -33,21 +31,29 @@
 
     "zip_info_1" : "Pakkaa tiedostosi ennen salausta. Valitse käyttöjärjestelmäsi nähdäksesi ohjeet tiedostojen pakkaamiseen.",
 
-    "ubuntu_title" : "OHJE UBUNTULLE",
+    "archiving" : "PAKKAAMINEN",
     "ubuntu_instruction_1" : "Valitse tiedostot jotka tahdot salata.",
     "ubuntu_instruction_2" : "Paina hiiren oikeaa näppäintä ja valitse 'Compress'",
     "ubuntu_instruction_3" : "Nimeä tiedosto (vaihtoehtoinen) ja paina 'Create'",
     "ubuntu_instruction_4" : "Tiedosto ilmestyy samaan kansioon",
+    "extracting" : "PURKAMINEN",
+    "ubuntu_instruction_5" : "Valitse tiedosto, jonka haluat purkaa (tiedoston pitää olla zip-tiedosto)",
+    "ubuntu_instruction_6" : "Paina hiiren oikeaa näppäintä ja valitse 'Extract here'",
+    "ubuntu_instruction_7" : "Purettu tiedosto ilmestyy samaan kansioon",
 
-    "windows_title" : "OHJE WINDOWSILLE",
     "windows_instruction_1" : "Valitse tiedostot jotka tahdot salata.",
     "windows_instruction_2" : "Paina hiiren oikeaa näppäintä ja valitse 'Send to/Lähetä' ja paina 'Compressed (zipped) folder/Pakattu kansio'",
     "windows_instruction_3" : "Tiedosto ilmestyy samaan kansioon",
+    "windows_instruction_4" : "Valitse pakattu tiedosto, jonka haluat purkaa",
+    "windows_instruction_5" : "Paina hiiren oikeaa näppäintä ja valitse 'Extract all...'",
+    "windows_instruction_6" : "Valitse kohde, johon haluat tiedoston ilmestyvän",
+    "windows_instruction_7" : "Purettu tiedosto ilmestyy valitsemaasi kohteeseen",
 
-    "mac_title" : "OHJE MACILLE",
     "mac_instruction_1" : "Valitse tiedostot jotka tahdot salata.",
     "mac_instruction_2" : "Paina hiiren oikeaa näppäintä ja valitse 'Compress/Pakkaa'",
     "mac_instruction_3" : "Tiedosto ilmestyy samaan kansioon",
+    "mac_instruction_4" : "Kaksoisklikkaa zip-tiedostoa, jonka haluat purkaa",
+    "mac_instruction_5" : "Purettu tiedosto ilmestyy samaan kansioon",
 
     "empty_file" : "Ei tiedostoa!",
     "empty_password" : "Syötä salasana!",
@@ -61,12 +67,9 @@
     "mismatch_text" : "Syöttämäsi salasanat eivät ole keskenään samat.",
     "wrong_password_text" : "Salasana, jonka syötit, ei ollut sama salasana, jota käytettiin salauksessa.",
 
-    "hours" : "tuntia",
-    "hour" : "tunti",
-    "minutes" : "minuuttia",
-    "minute" : "minuutti",
-    "seconds" : "sekuntia",
-    "second" : "sekunti",
-    "remaining" : "jäljellä"
-}
+    "loading_file": "Ladataan tiedostoa...",
 
+    "time_remaining_s": "{seconds, plural, one {# sekunti} other {# sekuntia}} jäljellä",
+    "time_remaining_sm": "{minutes, plural, one {# minuutti} other {# minuuttia}} ja {seconds, plural, one {# sekunti} other {# sekuntia}} jäljellä",
+    "time_remaining_smh": "{hours, plural, one {# tunti} other {# tuntia}}, {minutes, plural, one {# minuutti} other {# minuuttia}} ja {seconds, plural, one {# sekunti} other {# sekuntia}} jäljellä"
+}
