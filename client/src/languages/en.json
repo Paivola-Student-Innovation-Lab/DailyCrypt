@@ -31,7 +31,7 @@
     "dailycryptguide" : "How to use DailyCrypt?",
     "encrypt_title" : "Encrypting",
     "decrypt_title" : "Decrypting",
-    "howtouse_1e" : "1. You need to archive your files first. Check guide for archiving under 'How to archive files?'",
+    "howtouse_1e" : "1. If you have two or more files, you need to archive your files first. Check guide for archiving under 'How to archive files?'",
     "howtouse_2e" : "2. In the front page, click the dropzone and select the archived folder you want to compress.",
     "howtouse_3e" : "3. Create a password and confirm it in the second field.",
     "howtouse_4e" : "4. Click 'Encrypt'.",
