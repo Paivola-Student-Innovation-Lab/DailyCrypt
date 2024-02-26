@@ -20,23 +20,32 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import eventBus from "../utils/EventBus";
 import usefunctionalityState from "../hooks/useFunctionalityState";
 import downloadfile from "../utils/downloadfile";
+import useModal from "../hooks/useModal";
 
 function ProgressArea () {
+    //hook defenitions
+    const{makeModal, closeModal} = useModal((state) => ({makeModal: state.makeModal, closeModal: state.closeModal}))
     const{progress, encrypting, fileName, paused, filestore, reset} = usefunctionalityState((state) => ({progress: state.progress, encrypting: state.encrypting, fileName: state.filename, paused: state.paused,filestore: state.filestore ,reset: state.reset}))
     const translate = useTranslation()
-    const {handleTime, startTimeRef} = useTime(progress)
+    const {handleTime, adjustStartTime, resetTime} = useTime(progress)
     //calculate time to show user from progress
     const timeLeft = useMemo(handleTime, [progress])
+    
+    const handleDownload = () => {downloadfile(fileName, encrypting, filestore)}//download the crypted file
+    const handleRestart = () => {resetTime(); reset()}//reset the page
 
-    //communicate button presses to functionality side
-    const handleDownload = () => {downloadfile(fileName, encrypting, filestore)}
-    const handleRestart = () => {reset()}
+    //pause crypting
     const handlePause = () => {
+        adjustStartTime()
         eventBus.dispatch("pause", null)
     }
+    //confirm stopping and stop
     const handleStop = () => {
-        startTimeRef.current = undefined
-        eventBus.dispatch("stop", null)
+        if(!paused){
+            handlePause()
+        }
+        makeModal("Are you sure you want to cancel?", "This will stop the encryption/decryption process and delete the file.", 
+            [["Yes", () => {closeModal(); setTimeout(reset, 1000)}], ["No", () => {handlePause(); closeModal()}]])
     }
     
     return(
