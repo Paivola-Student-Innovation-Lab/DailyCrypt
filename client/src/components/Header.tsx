@@ -7,7 +7,8 @@ import InfoIcon from '@mui/icons-material/Info';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { text } from "stream/consumers";
 import { styled } from "@mui/material/styles";
-import { LanguageButton } from "./LanguageButton"
+import { LanguageButton } from "./LanguageButton";
+import TemporaryDrawer from "./Drawer";
 
 const Header = () => {
   return (
@@ -19,20 +20,13 @@ const Header = () => {
             <Typography className={styles.text} variant="h3">
               <span>DailyCrypt</span> 
             </Typography>
-          </div>
-          <div className={styles.homebutton}>
-            <Typography className={styles.text} variant="h3">
-            <HomeIcon/> <span className={styles.mainpage}>Crypting</span> 
-            </Typography>
-          </div>
-          <div className={styles.infobutton}>
-            <Typography variant="h3" className={styles.infomui}>
-              <Link className={styles.infolink} to="info"><InfoIcon/> Info</Link>
-            </Typography>
           </div> 
           </div>
           <div className={styles.languagebutton}>
             <LanguageButton />
+          </div>
+          <div>
+            <TemporaryDrawer />
           </div>
         </div>
         <div className={styles.divider} />
@@ -51,22 +45,13 @@ const InfoHeader = () => {
               <span>DailyCrypt</span> 
             </Typography>
           </div>
-          <div className={styles.homebutton}>
-            <Typography variant="h3" className={styles.muihomelink} >
-              <Link className={styles.homelink} to="/"><HomeIcon/> Crypting</Link>
-            </Typography>
-          </div>
-          <div className={styles.infobutton}>
-            <Typography className={styles.info} variant="h3">
-              <InfoIcon/> <span className={styles.infotext}>Info</span>
-            </Typography>
-          </div>
         </div>
         <div className={styles.languagebutton}>
         <LanguageButton />
         </div>
-         
-        
+        <div>
+        <TemporaryDrawer />  
+        </div> 
       </div>
       <div className={styles.divider} />
     </div>
