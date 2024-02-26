@@ -14,9 +14,15 @@
 .modaltext {
     margin-top: 2rem;
 }
-.modalbuttons {
+
+.modalbuttons, .modalclosebutton{
     height: 10%;
     width: 35%;
     font-size: 18px;
     border: 1px solid var(--encryptgreen);
+}
+.modalclosebutton{
+    width:fit-content;
+    position: relative;
+    left:40%
 }
