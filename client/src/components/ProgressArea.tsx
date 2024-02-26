@@ -25,7 +25,7 @@ import useModal from "../hooks/useModal";
 function ProgressArea () {
     //hook defenitions
     const{makeModal, closeModal} = useModal((state) => ({makeModal: state.makeModal, closeModal: state.closeModal}))
-    const{progress, encrypting, fileName, paused, filestore, reset} = usefunctionalityState((state) => ({progress: state.progress, encrypting: state.encrypting, fileName: state.filename, paused: state.paused,filestore: state.filestore ,reset: state.reset}))
+    const{progress, encrypting, fileName, paused, filestore, setPaused, reset} = usefunctionalityState((state) => ({progress: state.progress, encrypting: state.encrypting, fileName: state.filename, paused: state.paused,filestore: state.filestore, setPaused: state.pause,reset: state.reset}))
     const translate = useTranslation()
     const {handleTime, adjustStartTime, resetTime} = useTime(progress)
     //calculate time to show user from progress
@@ -36,10 +36,11 @@ function ProgressArea () {
 
     //pause crypting
     const handlePause = () => {
+        setPaused(!paused)
         adjustStartTime()
         eventBus.dispatch("pause", null)
     }
-    //confirm stopping and stop
+    //confirm stopping and stop crypting
     const handleStop = () => {
         if(!paused){
             handlePause()

@@ -14,12 +14,14 @@ const useModal = create<modalState>()((set) => ({
     modalTitle: "",
     modalText: "",
     modalButtons: undefined,
+    //makes a modal
     makeModal:(title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][]) => set({
         modalOpen: true,
         modalTitle: title,
         modalText: text,
         modalButtons: modalQuestionOptions
-        }),
+    }),
+    //closes the modal
     closeModal: () => set({
         modalOpen: false,
         modalTitle: "",

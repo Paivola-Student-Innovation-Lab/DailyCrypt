@@ -3,15 +3,11 @@ import {useEffect} from "react";
 import useChecks from "./useChecks";
 import useCrypting from "./useCrypting";
 import useOnPageLoad from "./useOnPageLoad";
-//other
 import usefunctionalityState from "./useFunctionalityState";
 
 function useFunctionality() {
-    //usestate defenitions
-    
-    const{setUiState, reset} = usefunctionalityState((state)=>({setUiState: state.setUiState,reset: state.reset}))
-    
     //hook defenitions
+    const{setUiState, reset} = usefunctionalityState((state)=>({setUiState: state.setUiState,reset: state.reset}))
     const {handleChecks} = useChecks()
     const {handleLoad} = useOnPageLoad()
     const {crypt} = useCrypting()

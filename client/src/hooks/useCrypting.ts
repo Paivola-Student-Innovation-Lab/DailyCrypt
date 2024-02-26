@@ -1,4 +1,4 @@
-//hpoks
+//hooks
 import useWasm from "./useWasm";
 import { useEffect, useRef } from "react";
 
@@ -13,18 +13,17 @@ function useCrypting() {
     const isPausedRef = useRef(false)
     const workerRef: React.MutableRefObject<Worker|undefined> = useRef()
     //hook defenition
-    const{fileStore, setProgress, setPaused, reset} = usefunctionalityState((state) => ({fileStore: state.filestore, setProgress: state.updateProgress, setPaused: state.pause, reset: state.reset}))
+    const{fileStore, setProgress, reset} = usefunctionalityState((state) => ({fileStore: state.filestore, setProgress: state.updateProgress, reset: state.reset}))
     const rust = useWasm()
-    const {makeModal, closeModal} = useModal((state) => ({makeModal: state.makeModal, closeModal: state.closeModal}))
+    const {makeModal} = useModal((state) => ({makeModal: state.makeModal}))
     //handle pausing the crypting
     const handlePause = ()=>{
-      setPaused(!isPausedRef.current)
       isPausedRef.current = !isPausedRef.current
         if (!isPausedRef.current && workerRef.current !== undefined) {
           workerRef.current.postMessage("start")
         }
     }
-    //recieve the pause and stop eventbusses
+    //recieve pause eventbuss
     useEffect(() => {
       eventBus.on("pause", () => {handlePause()})
       return () => {
@@ -42,7 +41,6 @@ function useCrypting() {
       let ready = true
       let sendMessage=false
       isPausedRef.current=false
-      setPaused(false)
 
       let i = 1
       //create a chunk when worker sends a message

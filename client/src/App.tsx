@@ -22,16 +22,20 @@ const App = ({encryptFunc} : {encryptFunc: ((files: File[], password: string, pa
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [passwordMismatch, setPasswordMismatch] = useState(false);
-  const dropHidden = usefunctionalityState((state) => state.drophidden)
+  
   // Hook declaration
   const translate = useTranslation();
+  const dropHidden = usefunctionalityState((state) => state.drophidden)
 
+  //update files on input
   const updateFiles = (files: File[]) => {
     setFiles(files);
   };
 
+  //handle inputs of the password field
   const handlePasswordInput = (event: any) => {
     setPassword(event.target.value);
+    //check if the passwords are the same
     if (confirmPassword !== event.target.value) {
       setPasswordMismatch(true)
     }
@@ -39,9 +43,10 @@ const App = ({encryptFunc} : {encryptFunc: ((files: File[], password: string, pa
       setPasswordMismatch(false)
     }
   };
-
+  //handle inputs of the confirm password field
   const handleConfirmPasswordInput = (event: any) => {
     setConfirmPassword(event.target.value);
+    //check if the passwords are the same
     if (password !== event.target.value) {
       setPasswordMismatch(true)
     }
@@ -50,10 +55,12 @@ const App = ({encryptFunc} : {encryptFunc: ((files: File[], password: string, pa
     }
   };
 
+  //start encrypting
   const handleEncrypt = async () => {
     encryptFunc(files, password, passwordMismatch, true)
   };
 
+  //start decrypting
   const handleDecrypt = async () => {
     encryptFunc(files, password, passwordMismatch, false)
   }  

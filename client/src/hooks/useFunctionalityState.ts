@@ -1,7 +1,7 @@
 import { create } from "zustand"
 
 interface functionalityState{
-    useFunctions: any
+    useFunctions: any //used to call functions while setting states.
     progress: number
     paused: boolean
     encrypting: boolean
@@ -23,12 +23,13 @@ const usefunctionalityState = create<functionalityState>()((set)=>({
     filename: "crypted file",
     filestore: "file store",
 
+    //shows progressbar
     setUiState: (encrypting: boolean, filename: string) => set({
         drophidden: true,
         encrypting: encrypting,
         filename: filename
     }),
-
+    //resets crypting
     reset: () => set((state) => ({
             useFunctions: navigator.storage.getDirectory().then(async(directoryhandle) => {
                 await directoryhandle.removeEntry(state.filestore)
@@ -40,7 +41,7 @@ const usefunctionalityState = create<functionalityState>()((set)=>({
             drophidden: false,
             filename: "crypted file"
         })),
-
+    //update states
     pause: (pause: boolean) => set({paused: pause}),
     updateProgress: (progress: number) => set({progress: progress}),
     setFilestore: (filestore: string) => set({filestore: filestore})
