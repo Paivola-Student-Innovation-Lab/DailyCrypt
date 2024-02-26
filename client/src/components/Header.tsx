@@ -5,7 +5,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import { LanguageButton } from "./LanguageButton"
 
-const Header = () => {
+const Header = (props: any) => {
   return (
     <div>
       <div className={styles.header}>
@@ -19,7 +19,7 @@ const Header = () => {
           <Typography variant="h3" className={styles.infomui}>
             <Link className={styles.infolink} to="info"><InfoIcon/> info</Link>
           </Typography>
-          <LanguageButton />
+          <LanguageButton setLanguage={props.setLanguage} />
         </div> 
       </div>
       <div className={styles.divider} />
@@ -27,7 +27,7 @@ const Header = () => {
   );
 };
 
-const InfoHeader = () => {
+const InfoHeader = (props: any) => {
   return (
     <div>
       <div className={styles.header}>
@@ -41,7 +41,7 @@ const InfoHeader = () => {
           <Typography className={styles.info} variant="h3">
             <InfoIcon/> <span className={styles.infotext}>info</span>
           </Typography>
-          <LanguageButton />
+          <LanguageButton setLanguage={props.setLanguage} />
         </div>
       </div>
       <div className={styles.divider} />

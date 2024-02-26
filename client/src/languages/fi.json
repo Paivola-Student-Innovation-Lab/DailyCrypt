@@ -1,22 +1,20 @@
 {
     "languagekey" : "fi",
-    "languagename" : "Suomi",
-    "languagedirection" : "ltr",
+    "languagename" : "Suomi (Finnish)",
+    "languageDirection" : "ltr",
 
     "encrypt_button" : "Salaa",
     "decrypt_button" : "Pura salaus",
-    "download_encrypted" : "Lataa salattu tiedosto",
-    "download_decrypted" : "Lataa purettu tiedosto",
+    "download_button" : "Lataa {encrypted, select, true {salattu} other {purettu}} tiedosto",
     "restart_button" : "Aloita alusta",
 
-    "encrypting" : "Salataan",
-    "decrypting" : "Puretaan",
-    "success_encrypt" : "salattiin onnistuneesti!",
-    "success_decrypt" : "purettiin onnistuneesti!",
+    "encrypting" : "Salataan tiedostoa {file_name}...",
+    "decrypting" : "Puretaan tiedostoa {file_name}...",
+    "success" : "{file_name} {encrypted, select, true {salattiin} other {purettiin}} onnistuneesti!",
 
     "dropbox_text1" : "Klikkaa valitaksesi tiedosto, tai vedä tiedosto tähän",
     "dropbox_text2" : "Klikkaa valitaksesi eri tiedosto, tai vedä tiedosto tähän",
-    "dropbox_text3" : "Valittu tiedosto:",
+    "dropbox_text3" : "Valittu tiedosto: {file_name} ({file_size})",
 
     "password_field" : "Salasana",
     "confirmpassword_field" : "Vahvista salasana",
@@ -25,7 +23,7 @@
     "infopage_title2" : "Miten tiedostoja pakataan ja puretaan?",
     "infopage_title3" : "Tuetut selainversiot",
 
-    "info_1" : "Kehittänyt",
+    "info_1" : "DailyCrypt on {PSIL}in kehittämä.",
     "info_2" : "DailyCrypt on yksinkertainen salausnettisivu. Tavoitteemme on tehdä salauksesta kaikille saavutettavaa.",
     "info_3" : "DailyCrypt on tehty ilman palvelinta turvallisuuden varmistamiseksi. Koodi on avointa lähdekoodia, jolloin se on kaikkien saatavilla.",
 
@@ -69,12 +67,9 @@
     "mismatch_text" : "Syöttämäsi salasanat eivät ole keskenään samat.",
     "wrong_password_text" : "Salasana, jonka syötit, ei ollut sama salasana, jota käytettiin salauksessa.",
 
-    "hours" : "tuntia",
-    "hour" : "tunti",
-    "minutes" : "minuuttia",
-    "minute" : "minuutti",
-    "seconds" : "sekuntia",
-    "second" : "sekunti",
-    "remaining" : "jäljellä"
-}
+    "loading_file": "Ladataan tiedostoa...",
 
+    "time_remaining_s": "{seconds, plural, one {# sekunti} other {# sekuntia}} jäljellä",
+    "time_remaining_sm": "{minutes, plural, one {# minuutti} other {# minuuttia}} ja {seconds, plural, one {# sekunti} other {# sekuntia}} jäljellä",
+    "time_remaining_smh": "{hours, plural, one {# tunti} other {# tuntia}}, {minutes, plural, one {# minuutti} other {# minuuttia}} ja {seconds, plural, one {# sekunti} other {# sekuntia}} jäljellä"
+}

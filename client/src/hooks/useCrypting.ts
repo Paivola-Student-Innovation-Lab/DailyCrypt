@@ -1,6 +1,6 @@
 import { SetStateAction } from "react";
 import enoughSpace from "../utils/Checkfilesize";
-import usePlainText from "./useTranslation";
+import { useIntl } from "react-intl";
 
 export function useCrypting(
     chunk: { (file: Blob, encrypting: boolean, password: string): Promise<void>; (arg0: any, arg1: boolean, arg2: any): any; },
@@ -13,7 +13,7 @@ export function useCrypting(
     files: any[],
     fileStore: string
     ) {
-        const PlainText = usePlainText()
+        const translate = useIntl().formatMessage
     
         const handleCrypting = async (isEncrypting: boolean) => {
             setProgress(0)
@@ -33,15 +33,15 @@ export function useCrypting(
                       }
                 }
                 else {
-                makeModal(PlainText("empty_file"), isEncrypting ? PlainText("empty_file_encrypt") : PlainText("empty_file_decrypt"));
+                makeModal(translate({id: "empty_file"}), isEncrypting ? translate({id: "empty_file_encrypt"}) : translate({id: "empty_file_decrypt"}));
                 }
             }
             else {
-                makeModal(PlainText("mismatch"), PlainText("mismatch_text"));
+                makeModal(translate({id: "mismatch"}), translate({id: "mismatch_text"}));
             }
             }
             else{
-            makeModal(PlainText("empty_password"), isEncrypting ? PlainText("empty_password_encrypt") : PlainText("empty_password_decrypt"));
+            makeModal(translate({id: "empty_password"}), isEncrypting ? translate({id: "empty_password_encrypt"}) : translate({id: "empty_password_decrypt"}));
             }
         }
         return { handleCrypting } 

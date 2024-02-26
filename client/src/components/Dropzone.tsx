@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 
 import styles from "./Dropzone.module.css";
 
-import useTranslation from "../hooks/useTranslation";
+import { FormattedMessage } from "react-intl";
 
 interface Props {
   updateFiles: (files: File[]) => void;
@@ -13,9 +13,6 @@ interface Props {
 }
 
 const Dropzone = (props: Props) => {
-
-  const translate = useTranslation();
-
   const formatFileSize = (sizeInBytes: number) => {
     const kilobytes = sizeInBytes / 1000; // Convert to kilobytes
     const megabytes = kilobytes / 1000; // Convert to megabytes
@@ -48,14 +45,22 @@ const Dropzone = (props: Props) => {
       <input {...getInputProps()} />
       {props.isFiles ? (
         <Typography color="text.secondary">
-          {translate('dropbox_text3', '{"file_name": "' + props.isFiles.name + '", "file_size": "' + formatFileSize(props.isFiles.size) + '"}')} <b style={{ color: "var(--encryptgreen)" }}>{props.isFiles.name}</b> ({formatFileSize(props.isFiles.size)})
+          <FormattedMessage 
+            id="dropbox_text3" 
+            values={
+              {
+              file_name: <b style={{ color: "var(--encryptgreen)" }}>{props.isFiles.name}</b>,
+              file_size: formatFileSize(props.isFiles.size)
+              }
+            }
+          />
           <br></br>
-          {translate('dropbox_text2')}
+          <FormattedMessage id="dropbox_text2" />
         </Typography>
       ) : (
         <>
           <Typography color="text.secondary">
-          {translate('dropbox_text1')}
+          <FormattedMessage id="dropbox_text1" />
           </Typography>
           <FileUploadRounded />
         </>
