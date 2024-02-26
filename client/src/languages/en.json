@@ -45,7 +45,7 @@
 
     "browser_info1" : "in progress",
 
-    "zip_info_1" : "You need to archive your files before encryption. Choose the guide that you want to see and then choose your operating system.",
+    "zip_info_1" : "You need to archive your files if you have more than one file before encryption. Choose the guide that you want to see and then choose your operating system.",
 
     "archiving" : "How to archive files?",
     "ubuntu_instruction_1" : "1. Select the files you want to encrypt.",
