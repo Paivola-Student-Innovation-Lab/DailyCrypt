@@ -11,9 +11,10 @@ import styles from "./App.module.css";
 // Hooks
 import {useState} from "react";
 import useTranslation from "./hooks/useTranslation";
+import usefunctionalityState from "./hooks/useFunctionalityState";
 
 
-const App = ({encryptFunc, dropHidden} : {encryptFunc: ((files: File[], password: string, passwordMismatch: boolean, encrypting: boolean)=>Promise<void>), dropHidden: boolean}) => {
+const App = ({encryptFunc} : {encryptFunc: ((files: File[], password: string, passwordMismatch: boolean, encrypting: boolean)=>Promise<void>)}) => {
 
   // Usestates
   const [files, setFiles] = useState<File[]>([]);
@@ -21,7 +22,7 @@ const App = ({encryptFunc, dropHidden} : {encryptFunc: ((files: File[], password
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [passwordMismatch, setPasswordMismatch] = useState(false);
-
+  const dropHidden = usefunctionalityState((state) => state.drophidden)
   // Hook declaration
   const translate = useTranslation();
 

@@ -11,8 +11,10 @@ import FolderZipIcon from '@mui/icons-material/FolderZip';
 import TabIcon from '@mui/icons-material/Tab';
 import { Link } from 'react-router-dom';
 import useTranslation from "../hooks/useTranslation";
+import usefunctionalityState from "../hooks/useFunctionalityState";
 
-export default function Info({dropHidden}: {dropHidden: boolean}) {
+export default function Info() {
+    const dropHidden = usefunctionalityState((state) => state.drophidden)
     const translate = useTranslation();
     const psilString = translate('info_1', '{"PSIL": "<Link to=`https://psil.fi` className={styles.psil}>PSIL</Link>"}')
     const psilObject = {__html: psilString}

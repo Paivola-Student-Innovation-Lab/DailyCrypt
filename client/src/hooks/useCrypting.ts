@@ -6,17 +6,15 @@ import { useEffect, useRef } from "react";
 import createChunk from "../utils/createChunk";
 import eventBus from "../utils/EventBus";
 import useModal from "./useModal";
+import usefunctionalityState from "./useFunctionalityState";
 
-function useCrypting(
-  setProgress: (arg0: number) => void,
-  reset: () => Promise<void>,
-  setPaused: (arg0: boolean)=>void
-  ) {
+function useCrypting() {
     //ref defenition
     const isPausedRef = useRef(false)
     const isStoppedRef = useRef(false)
     const workerRef: React.MutableRefObject<Worker|undefined> = useRef()
     //hook defenition
+    const{fileStore, setProgress, setPaused, reset} = usefunctionalityState((state) => ({fileStore: state.filestore, setProgress: state.updateProgress, setPaused: state.pause, reset: state.reset}))
     const rust = useWasm()
     const {makeModal, closeModal} = useModal((state) => ({makeModal: state.makeModal, closeModal: state.closeModal}))
     //handle pausing the crypting
@@ -46,7 +44,7 @@ function useCrypting(
     }, []);
 
     //crypt the file
-    const crypt = async (file: Blob, encrypting: boolean, password: string, fileStore: string) => {
+    const crypt = async (file: Blob, encrypting: boolean, password: string) => {
       //variable defenition
       let chunkSize = 4000000; // 4MB chunks
       chunkSize = encrypting ? chunkSize : chunkSize + 16; // Encrypted chunks are 16 bytes larger than non-encrypted ones

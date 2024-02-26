@@ -3,7 +3,7 @@ import { Alert, Box, Button, Typography } from "@mui/material";
 import LinearProgressWithLabel from "./LinearProgressWithLabel";
 
 //hooks
-import { useCallback, useContext, useMemo} from "react";
+import {useMemo} from "react";
 import useTranslation from "../hooks/useTranslation";
 import useTime from "../hooks/useTime";
 
@@ -17,28 +17,21 @@ import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
 //other
-import { ProgressContext } from "./ProgressContext";
 import eventBus from "../utils/EventBus";
-import { render } from "react-dom";
+import usefunctionalityState from "../hooks/useFunctionalityState";
+import downloadfile from "../utils/downloadfile";
 
 function ProgressArea () {
-    const{progress, encrypting, fileName, paused} = useContext(ProgressContext)
+    const{progress, encrypting, fileName, paused, filestore, reset} = usefunctionalityState((state) => ({progress: state.progress, encrypting: state.encrypting, fileName: state.filename, paused: state.paused,filestore: state.filestore ,reset: state.reset}))
     const translate = useTranslation()
     const {handleTime, startTimeRef} = useTime(progress)
     //calculate time to show user from progress
     const timeLeft = useMemo(handleTime, [progress])
 
     //communicate button presses to functionality side
-    const handleDownload = () => {
-        eventBus.dispatch("download", null)
-    }
-    const handleRestart = () =>{
-        console.log("lol")
-        startTimeRef.current = undefined
-        eventBus.dispatch("restart", null)
-    }
+    const handleDownload = () => {downloadfile(fileName, encrypting, filestore)}
+    const handleRestart = () => {reset()}
     const handlePause = () => {
-        startTimeRef.current = undefined
         eventBus.dispatch("pause", null)
     }
     const handleStop = () => {

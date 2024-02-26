@@ -1,39 +1,28 @@
 //hooks
-import {useEffect, useRef, useState } from "react";
+import {useEffect} from "react";
 import useChecks from "./useChecks";
 import useCrypting from "./useCrypting";
 import useOnPageLoad from "./useOnPageLoad";
-import useReset from "./useReset";
-
 //other
-import eventBus from "../utils/EventBus";
-import downloadfile from "../utils/downloadfile";
+import usefunctionalityState from "./useFunctionalityState";
 
 function useFunctionality() {
     //usestate defenitions
-    const [progress, setProgress] = useState(0)
-    const [dropHidden, setDropHidden] = useState(false)
-    const [fileName, setFileName] = useState("file")
-    const [encrypt, setEncrypting] = useState(true)
-    const [paused, setPaused] = useState(false)
-
-    const fileStoreRef = useRef("file store")
+    
+    const{setUiState, reset} = usefunctionalityState((state)=>({setUiState: state.setUiState,reset: state.reset}))
     
     //hook defenitions
     const {handleChecks} = useChecks()
-    const {handleLoad} = useOnPageLoad( fileStoreRef)
-    const {reset} = useReset(fileStoreRef, setEncrypting, setProgress, setDropHidden)
-    const {crypt} = useCrypting(setProgress, reset, setPaused)
+    const {handleLoad} = useOnPageLoad()
+    const {crypt} = useCrypting()
     
     //start encrypting/decrypting the file
     const handleCrypting = async(files: File[], password: string, passwordMismatch: boolean, encrypting: boolean)=> {
-      if(await handleChecks(files[0], password, passwordMismatch, encrypting, fileStoreRef.current)){//check if all the conditions to crypt a file are met
-        setDropHidden(true)
-        setFileName(files[0].name)
-        setEncrypting(encrypting)
+      if(await handleChecks(files[0], password, passwordMismatch, encrypting)){//check if all the conditions to crypt a file are met
+        setUiState(encrypting, files[0].name)
         await new Promise( res => setTimeout(res, 1) ); // Wait 1ms for the loading bar to load
         //initialize crypting
-        await crypt(files[0], encrypting, password, fileStoreRef.current);
+        await crypt(files[0], encrypting, password);
       }
     }
 
@@ -52,16 +41,8 @@ function useFunctionality() {
         window.removeEventListener('beforeunload', handleReset)
     } })
 
-    //recieve some of the eventbusses and handle
-    useEffect(() => {
-      eventBus.on("download", ()=>{downloadfile(fileName, encrypt, fileStoreRef.current)})
-      eventBus.on("restart", ()=>{handleReset()})
-      return()=>{
-        eventBus.remove("download", () => {})
-        eventBus.remove("restart", () => {})
-      }
-    }, [])
-  return { handleCrypting, progress, dropHidden, fileName, encrypt, paused} 
+    //recieve some of the eventbusses and handle them
+  return { handleCrypting} 
 }
 
 export default useFunctionality

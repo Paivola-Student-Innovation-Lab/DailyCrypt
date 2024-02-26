@@ -15,7 +15,7 @@ function useTime(progress: number){
       const handleTime = () => {
         const currentTime = performance.now()
         if(startTimeRef.current===undefined){
-          startTimeRef.current=currentTime
+          startTimeRef.current = currentTime
         }
         const totalTime = currentTime - startTimeRef.current //calculate how much time has passed since starting crypting
         const remainingTime = (1/progress-1)*totalTime 

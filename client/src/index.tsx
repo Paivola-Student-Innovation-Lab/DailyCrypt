@@ -14,7 +14,6 @@ import {
 import { LanguageProvider } from "./components/LanguageContext";
 import Cookies from "js-cookie";
 import useModal from "./hooks/useModal";
-import { ProgressProvider } from "./components/ProgressContext";
 import useFunctionality from "./hooks/useFunctionality";
 
 function Root() {
@@ -22,15 +21,15 @@ function Root() {
   const languageContext = useContext(LanguageContext);
   const defaultDir = languageContext.dictionary[language]
   const [dir, setDir] = useState(defaultDir)
-  const {handleCrypting, progress, dropHidden, fileName, encrypt, paused} = useFunctionality()
+  const {handleCrypting} = useFunctionality()
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <App encryptFunc = {handleCrypting} dropHidden={dropHidden}/>,
+      element: <App encryptFunc = {handleCrypting}/>,
     },
     {
       path: "info",
-      element: <Info dropHidden={dropHidden}/>,
+      element: <Info/>,
     }
   ]);
 
@@ -46,9 +45,7 @@ function Root() {
     <LanguageProvider dir={dir} setDir={setDir}>
       <ThemeProvider theme={theme}>
         <ErrorModal/>
-        <ProgressProvider progress={progress} encrypting={encrypt} fileName={fileName} paused={paused}>
-          <RouterProvider router={router} />
-        </ProgressProvider>
+        <RouterProvider router={router} />
       </ThemeProvider>
     </LanguageProvider>
   );

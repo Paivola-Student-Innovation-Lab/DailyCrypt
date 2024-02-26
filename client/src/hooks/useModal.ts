@@ -1,4 +1,5 @@
 import { create } from "zustand"
+
 interface modalState {
     modalOpen: boolean
     modalTitle: string
@@ -13,13 +14,13 @@ const useModal = create<modalState>()((set) => ({
     modalTitle: "",
     modalText: "",
     modalButtons: undefined,
-    makeModal:(title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][]) => set(() => ({
+    makeModal:(title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][]) => set({
         modalOpen: true,
         modalTitle: title,
         modalText: text,
         modalButtons: modalQuestionOptions
-        })),
-    closeModal: ()=> set({
+        }),
+    closeModal: () => set({
         modalOpen: false,
         modalTitle: "",
         modalText: "",

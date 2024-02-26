@@ -1,11 +1,13 @@
 import enoughSpace from "../utils/Checkfilesize";
+import usefunctionalityState from "./useFunctionalityState";
 import useModal from "./useModal";
 import usePlainText from "./useTranslation";
 function useChecks () {
     const PlainText = usePlainText()
     const makeModal = useModal((state) => state.makeModal)
+    const fileStore = usefunctionalityState((state) => state.filestore)
     //check if verything is correct and file can be crypted
-    const handleChecks = async (file: File, password: string, passwordMismatch: boolean, isEncrypting: boolean, fileStore: string) => {
+    const handleChecks = async (file: File, password: string, passwordMismatch: boolean, isEncrypting: boolean) => {
         if (password !== "") {
         if (!passwordMismatch) {
             if (file) {
