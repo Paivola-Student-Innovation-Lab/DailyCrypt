@@ -135,6 +135,6 @@ function useCrypting() {
       //sends message to worker to start working.
       workerRef.current.postMessage("start")
   }
-  return { crypt, paused: isPausedRef.current}
+  return { crypt }
 }
 export default useCrypting

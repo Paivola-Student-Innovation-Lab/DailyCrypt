@@ -29,7 +29,7 @@ function useFunctionality() {
     
     //reset opfs when someone tries to unload the page
     const handleReset = async() => {
-      await reset()
+      reset()
     }
     useEffect(() => {
       window.addEventListener('beforeunload', handleReset)
