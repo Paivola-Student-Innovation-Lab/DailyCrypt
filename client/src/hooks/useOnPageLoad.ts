@@ -1,4 +1,9 @@
-export  function useOnPageLoad(setHasOpfs: (arg0: boolean) => void, setFileStore:(arg0: string) => void, makeModal: (arg0:string ,arg1:string ,arg2?: [buttontext: string, buttonfunc:() => void][])=> void, closeModal:()=>void){
+import usefunctionalityState from "./useFunctionalityState"
+import useModal from "./useModal"
+
+function useOnPageLoad(){
+  const {makeModal, closeModal} = useModal((state) => ({makeModal: state.makeModal, closeModal: state.closeModal}))
+  const setFileStore = usefunctionalityState((state) => state.setFilestore)
   const remove = async()=>{
     //removes all files from opfs
     for await (const key of (await navigator.storage.getDirectory()).keys()){
@@ -11,9 +16,6 @@ export  function useOnPageLoad(setHasOpfs: (arg0: boolean) => void, setFileStore
     //closes question modal
     closeModal()
   }
-
-  
-
   const createNew = async()=>{
     //adds an increasing number to the end of the default key until key is no longer in array of stored files
     let number=0
@@ -30,11 +32,6 @@ export  function useOnPageLoad(setHasOpfs: (arg0: boolean) => void, setFileStore
 
 
   const handleLoad = async() => {
-    //tries to use opfs to see if it is supported
-    if (!navigator.storage.getDirectory) {
-      setHasOpfs(false)
-      return   
-    }
     //checks if there are any files in opfs
     let filesinstore=false
     if (Object.keys(await navigator.storage.getDirectory()).length>0){
@@ -50,3 +47,4 @@ export  function useOnPageLoad(setHasOpfs: (arg0: boolean) => void, setFileStore
   }
   return { handleLoad }
 }
+export default useOnPageLoad

@@ -1,29 +1,32 @@
+import { create } from "zustand"
 
-import { useState } from "react";
-export function useModal() {
-    const [modalOpen, setModalOpen] = useState(false);
-    const [modalTitle, setModalTitle] = useState("");
-    const [modalText, setModalText] = useState("");
-    const [dropHidden, setDropHidden] = useState(false);
-    const [modalButtons, setModalButtons] = useState([[()=>{}, ""]])
-    const makeModal = (title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][]) => {
-        setModalTitle(title)
-        setModalText(text)
-        setModalOpen(true)
-        if (modalQuestionOptions){
-            setModalButtons(modalQuestionOptions)
-        }
-    }
-
-    const closeModal = () => {
-        setModalTitle("")
-        setModalText("")
-        setModalButtons([[()=>{}, ""]])
-        setModalOpen(false)
-    }
-
-
-    return { dropHidden, setDropHidden, makeModal, closeModal, modalTitle, modalText, modalOpen, modalButtons}
+interface modalState {
+    modalOpen: boolean
+    modalTitle: string
+    modalText: string
+    modalButtons: [string, ()=>void][]|undefined
+    makeModal: (title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][]) => void
+    closeModal: () => void
 }
 
-export default useModal
+const useModal = create<modalState>()((set) => ({
+    modalOpen: false,
+    modalTitle: "",
+    modalText: "",
+    modalButtons: undefined,
+    //makes a modal
+    makeModal:(title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][]) => set({
+        modalOpen: true,
+        modalTitle: title,
+        modalText: text,
+        modalButtons: modalQuestionOptions
+    }),
+    //closes the modal
+    closeModal: () => set({
+        modalOpen: false,
+        modalTitle: "",
+        modalText: "",
+        modalButtons: undefined
+    })
+}))
+export default useModal  

@@ -42,7 +42,9 @@
     "react-scripts": "5.0.1",
     "rustend": "file:../rustend/pkg",
     "typescript": "^4.9.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zustand": "4.5.0"
+    
   },
   "eslintConfig": {
     "extends": [
