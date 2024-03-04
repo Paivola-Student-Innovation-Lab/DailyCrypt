@@ -8,7 +8,7 @@ import { Alert, Button, Modal, TextField, Typography, Box, AlertTitle, Link as M
 import { Link } from "react-router-dom";
 import LinearProgressWithLabel from "./components/LinearProgressWithLabel";
 import Dropzone from "./components/Dropzone";
-import {Header} from "./components/Header";
+import {Header2} from "./components/Header";
 
 // Styles
 import styles from "./App.module.css";
@@ -134,7 +134,7 @@ const App = () => {
   } })
   return (
     <>
-      <Header />
+      <Header2 />
       <div className={styles.container}>
         <Modal
           open={modalOpen}

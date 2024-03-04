@@ -1,4 +1,4 @@
-import { InfoHeader } from "./Header";
+import { Header2 } from "./Header";
 import Tabpanel from "./Tabpanel";
 import styles from "./Infopage.module.css";
 import { Typography } from "@mui/material";
@@ -21,7 +21,7 @@ export default function Info() {
     }
     return (
         <div>
-            <InfoHeader />
+            <Header2 />
             <div className={styles.page}>
                 <Grid md={6} xs={6} item className={styles.grid}>
                     <Card className={styles.card} >

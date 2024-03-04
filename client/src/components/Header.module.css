@@ -1,105 +1,46 @@
-h3 {
-  margin: 0;
-}
-
-.info, .text, .infolink, .homelink {
-  color: var(--encryptgreen);
-  margin: auto;
-}
-
-.info{
-  color: var(--encryptgreen);
-  margin-right: 0%;
-}
-
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2vh 5vw;
-  gap: 15%;
-}
-.navigationbuttons{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-
-}
-.dailycrypt{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.navigationbuttons > .homebutton, .navigationbuttons > .infobutton  {
-  display: flex;
-  align-items: center;
+    padding: 1vh 5vw;
+    display: flex;
+    flex-direction: column;
 }
 
-.muihomelink { 
-  display: flex;
-  padding: 10vh, 0;
-  justify-content: center;
-}
-
-.infotext, .mainpage {
-  text-decoration: underline;
-}
-
-.infolink {
-  color: var(--encryptgreen);
-  margin: auto;
-  justify-self: right;
-}
-
-.infolink, .homelink {
-  text-decoration: none;
-}
-
-.infolink:hover, .homelink:hover {
-    color: var(--decryptgreen);
-    transition-duration: 0.4s;
+.languagebutton {
+    display: flex;
+    margin: auto;
 }
 
 .divider {
-  width: 90vw;
-  margin: 0 5vw;
-  border-bottom: 4px solid var(--encryptgreen);
+    width: 90vw;
+    margin: 1 5vw;
+    border-bottom: 2px solid var(--encryptgreen);
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    padding: 0 0 1vh;
+}
+
+
+.drawer {
+    margin: auto;
+    margin-right: 1vw;
 }
 
 .pic {
-  height: 8vh;
+    height: 50px;
 }
-.languagebutton{
-  height: fit-content;
-  width: fit-content;
-}
-
 
 .text {
-  text-underline-offset: 1.4vh;
-  margin-left: 0%;
+    color: var(--encryptgreen);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.5vh;
+    margin: auto;
+    width: 100vw;
+    margin-left: 0.5vw;
 }
 
-.infomui {
-  display: flex;
-  padding: 10vh, 0;
-  justify-content: center;
-}
-@media only screen and (max-width: 1080px){
-  .header {
-    gap: 20px;
-  }
-  .navigationbuttons{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap:20px;
-    
-  }
-  .languagebutton{
-    display: flex;
-    align-self: flex-start;
-    margin-top: 10px;
-  }
+.link {
+    color: var(--encryptgreen);
+    text-decoration: none;
 }
