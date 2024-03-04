@@ -115,7 +115,6 @@ function ArchivingTabpanel() {
           <Tab label={translate({id: 'mac'})} {...a11yProps(2)} />
         </Tabs>
       <CustomTabPanel value={value} index={0}>
-        {translate({id: 'archiving'})}
         <span className={styles.instructiontext} >{translate({id: 'ubuntu_instruction_1'})}</span>
         <img src='./images/linux/linux1.png' className={styles.pic} alt='' />
         <span className={styles.instructiontext} >{translate({id: 'ubuntu_instruction_2'})}</span>
