@@ -31,16 +31,17 @@ export default function Info(props: any) {
                                 <FormattedMessage id="info_3" />
                             </Typography>
                             <DailyCryptAccordion />
-                            <Typography className={styles.psiltitle} variant="h6">
-                            <FormattedMessage id="info_1" 
-                                    values={{ PSIL: <Link to="https://psil.fi">PSIL</Link> }}
-                                /> <Link to="https://psil.fi"><img src='./images/psil.svg' className={styles.psil} alt=''/></Link>
+                            <Typography className={styles.psiltitle} variant="body1">
+                                <FormattedMessage id="info_1" 
+                                    values={{ PSIL: "PSIL" }}
+                                /> 
                             </Typography>
+                            <Link to="https://psil.fi"><img src='./images/psil.svg' className={styles.psil} alt=''/></Link>
                         </CardContent>
                     </Card>
                     <Card className={styles.card} >
                         <CardContent>
-                            <Typography className={styles.infotext} variant="h4">
+                            <Typography className={styles.infotitle} variant="h4">
                                 <FormattedMessage id='infopage_title3' /> <TabIcon />
                             </Typography>
                             <div className={styles.divider} />
@@ -53,7 +54,7 @@ export default function Info(props: any) {
                 <Grid xs={6} md={6} item>
                     <Card className={styles.guide} >
                         <CardContent>
-                            <Typography className={styles.infotext} variant="h4">
+                            <Typography className={styles.infotitle} variant="h4">
                                 <FormattedMessage id="infopage_title2" /> <FolderZipIcon />
                             </Typography>
                             <div className={styles.divider} />

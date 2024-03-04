@@ -25,9 +25,11 @@
     "info_1" : "Developed by {PSIL}." ,
     "info_2" : "DailyCrypt is a simple website for encryption. Our goal is to make encryption accessible for everyone.",
     "info_3" : "DailyCrypt is made without backend to ensure safety. Our code is open-source, making it available for everyone.",
+    
     "dailycryptguide" : "How to use DailyCrypt?",
     "encrypt_title" : "Encrypting",
     "decrypt_title" : "Decrypting",
+    
     "howtouse_1e" : "1. If you have two or more files, you need to archive your files first. Check guide for archiving under 'How to archive files?'",
     "howtouse_2e" : "2. In the front page, click the dropzone and select the archived folder you want to compress.",
     "howtouse_3e" : "3. Create a password and confirm it in the second field.",
@@ -35,10 +37,11 @@
     "howtouse_5e" : "5. If you want to stop the encryption process, click 'Pause'. If you want to end the whole encryption process, click 'Cancel'.",
     "howtouse_6e" : "6. When the encryption process is ready, you can download the encrypted file by clicking 'Download encrypted file'.",
     "howtouse_7e" : "7. If you want to encrypt more files, click 'Restart'.",
-    "howtouse_8d" : "1. To decrypt your files, you need to choose already encrypted file. The file will have 'encrypted-' in front of the file name. Click the dropzone and choose the encrypted file you want to decrypt. Use the same password you created when encrypting the file.",
-    "howtouse_11d" : "2. Click 'Decrypt'.",
-    "howtouse_12d" : "3. When the decryption process is ready, click 'Download decrypted file'.",
-    "howtouse_13d" : "4. To access the original file, you need to extract the zipped file. Check the guide for extracting under 'How to extract files?'.",
+    
+    "howtouse_1d" : "1. To decrypt your files, you need to choose already encrypted file. The file will have 'encrypted-' in front of the file name. Click the dropzone and choose the encrypted file you want to decrypt. Use the same password you created when encrypting the file.",
+    "howtouse_2d" : "2. Click 'Decrypt'.",
+    "howtouse_3d" : "3. When the decryption process is ready, click 'Download decrypted file'.",
+    "howtouse_4d" : "4. To access the original file, you need to extract the zipped file. Check the guide for extracting under 'How to extract files?'.",
 
     "browser_info1" : "in progress",
 

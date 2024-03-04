@@ -21,7 +21,7 @@
     background-color: #ffffff;
 }
 
-.bodytext {
+.bodytext, .psiltitle {
     color: #1e1e1e;
     margin-top: 1%;
     padding-top: 2%;
@@ -44,8 +44,6 @@
     width: 25%;
 }
 
-.psiltitle {
-    margin-bottom: 1%;
-    padding-top: 1%;
+.psiltitle a:visited, .psiltitle a {
     color: var(--encryptgreen);
 }
