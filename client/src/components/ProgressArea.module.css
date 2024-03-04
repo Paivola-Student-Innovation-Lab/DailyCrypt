@@ -1,0 +1,17 @@
+
+.progressbuttons {
+    align-items: center;
+  }
+div > .downloadbutton {
+    height: fit-content;
+    width: fit-content;
+    font-size: calc(var(--buttonfont)/2);
+    margin-right: 15%; margin-left: 15%;
+    text-transform: none;
+    background-color: var(--encryptgreen);
+    color: white;
+    border: 5px solid var(--encryptgreen)
+}
+div > .downloadbutton:hover {
+   background-color: var(--decryptgreen);
+}

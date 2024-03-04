@@ -1,15 +1,16 @@
-import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ArchivingTabpanel, ExtractingTabpanel, DailyCryptTabpanel } from './Tabpanel';
-import useTranslation from "../hooks/useTranslation";
 import styles from './Accordion.module.css';
 import { Typography } from '@mui/material';
+import { useIntl } from 'react-intl';
+
+
 
 function DailyCryptAccordion() {
-  const translate = useTranslation();
+  const translate = useIntl().formatMessage;
 return  (
   <div className={styles.dailycryptaccordion} >
     <Accordion>
@@ -23,7 +24,7 @@ return  (
         }}
       >
         <Typography variant='h6'>
-          {translate('dailycryptguide')}
+          {translate({id: 'dailycryptguide'})}
         </Typography>
       </AccordionSummary>
       <AccordionDetails className={styles.details}>
@@ -35,7 +36,7 @@ return  (
 }
 
 function ArchiveExtractAccordion() {
-    const translate = useTranslation();
+  const translate = useIntl().formatMessage;
   return (
     <div className={styles.archiveaccordion} >
       <Accordion>
@@ -49,7 +50,7 @@ function ArchiveExtractAccordion() {
           }}
         >
             <Typography variant='h6'>
-                {translate('archiving')}
+                {translate({id: 'archiving'})}
             </Typography>
         </AccordionSummary>
         <AccordionDetails className={styles.details}>
@@ -67,7 +68,7 @@ function ArchiveExtractAccordion() {
           }}
         >
             <Typography variant='h6'>
-                {translate('extracting')}
+                {translate({id: 'extracting'})}
             </Typography>
         </AccordionSummary>
         <AccordionDetails className={styles.details} >
