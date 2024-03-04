@@ -33,7 +33,7 @@
     "encrypt_title" : "Salaaminen",
     "decrypt_title" : "Salauksen purkaminen",
     
-    "howtouse_1e" : "1. Pakkaa tiedostosi ennen salaamista. Katso ohje tiedostojen pakkaamiseen kohdasta 'Miten tiedosto pakataan?'",
+    "howtouse_1e" : "1. Jos sinulla on kaksi tai useampia tiedostoja, sinun täytyy ensin arkistoida tiedostosi. Katso ohje tiedostojen pakkaamiseen kohdasta 'Miten tiedosto pakataan?'",
     "howtouse_2e" : "2. Mene etusivulle, klikkaa pudotusaluetta ja valitse pakattu kansio, jonka haluat salata.",
     "howtouse_3e" : "3. Luo salasana ja vahvista se toisessa tekstikentässä.",
     "howtouse_4e" : "4. Klikkaa nappia, jossa lukee 'Salaa'.",

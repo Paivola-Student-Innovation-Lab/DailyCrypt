@@ -34,7 +34,7 @@
     "decrypt_title" : "Dekryptering",
 
     "howtouse_1e" : "1. Om du har två eller flera filer måste du arkivera dina filer först. Kolla guiden för arkivering under 'Hur arkiverar man filer?'",
-    "howtouse_2e" : "2. På startsidan, klicka på dropzonen och välj den arkiverade mappen du vill komprimera.",
+    "howtouse_2e" : "2. På startsidan, klicka på dropzonen och välj den arkiverade mappen du vill kryptera.",
     "howtouse_3e" : "3. Skapa ett lösenord och bekräfta det i andra fältet.",
     "howtouse_4e" : "4. Klicka på 'Kryptera'.",
     "howtouse_5e" : "5. Om du vill pausa krypteringsprocessen, klicka på 'Pausa'. Om du vill avsluta hela krypteringsprocessen, klicka på 'Avbryt'.",
