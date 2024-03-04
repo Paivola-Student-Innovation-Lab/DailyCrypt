@@ -9,6 +9,9 @@
     "restart_button" : "Starta om",
 
     "crypting" : "{encrypting, select, true {Krypterar} other {Dekrypterar} {file_name}...",
+    "pause_button" : "Pausa",
+    "unpause_button" : "Fortsätt",
+    "resume_button" : "Avbryt",
     "success" : "{file_name} {encrypted, select, true {krypterades} other {dekrypterades}} framgångsrikt!",
 
     "dropbox_text1" : "Klicka här för att välja en fil, eller dra en fil hit",

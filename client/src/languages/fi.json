@@ -9,6 +9,9 @@
     "restart_button" : "Aloita alusta",
 
     "crypting" : "{encrypting, select, true {Salataan} other {Puretaan}} tiedostoa {file_name}...",
+    "pause_button" : "Keskeytä",
+    "unpause_button" : "Jatka",
+    "cancel_button" : "Peruuta",
     "success" : "{file_name} {encrypted, select, true {salattiin} other {purettiin}} onnistuneesti!",
 
     "dropbox_text1" : "Klikkaa valitaksesi tiedosto, tai vedä tiedosto tähän",
@@ -34,7 +37,7 @@
     "howtouse_2e" : "2. Mene etusivulle, klikkaa pudotusaluetta ja valitse pakattu kansio, jonka haluat salata.",
     "howtouse_3e" : "3. Luo salasana ja vahvista se toisessa tekstikentässä.",
     "howtouse_4e" : "4. Klikkaa nappia, jossa lukee 'Salaa'.",
-    "howtouse_5e" : "5. Jos haluat keskeyttää salausprosessin, klikkaa 'Pause'. Jos haluat lopettaa koko salausprosessin, klikkaa 'Cancel'.",
+    "howtouse_5e" : "5. Jos haluat keskeyttää salausprosessin, klikkaa 'Keskeytä'. Jos haluat lopettaa koko salausprosessin, klikkaa 'Peruuta'.",
     "howtouse_6e" : "6. Kun salausprosessi on valmis, lataa salattu tiedosto painamalla 'Lataa salattu tiedosto'.",
     "howtouse_7e" : "7. Jos haluat salata lisää tiedostoja, paina 'Aloita alusta'.",
     

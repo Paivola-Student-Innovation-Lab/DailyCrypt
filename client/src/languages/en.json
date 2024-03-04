@@ -9,6 +9,9 @@
     "restart_button" : "Restart",
 
     "crypting" : "{encrypting, select, true {Encrypting} other {Decrypting}} {file_name}...",
+    "pause_button" : "Pause",
+    "unpause_button" : "Continue",
+    "cancel_button" : "Cancel",
     "success" : "{file_name} has successfully been {encrypted, select, true {encrypted} other {decrypted}}!",
 
     "dropbox_text1" : "Click to select file or drag here",

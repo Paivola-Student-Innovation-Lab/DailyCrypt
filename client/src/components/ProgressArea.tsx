@@ -59,8 +59,8 @@ function ProgressArea () {
             </Typography>
             <LinearProgressWithLabel value={progress*100} />
             <Box className={progressareastyles.progressbuttons}>
-            <Button className={progressareastyles.pausebutton} id="pauseButton" onClick={handlePause} >{paused ? <PlayCircleIcon /> : <PauseCircleIcon />} {paused ? "continue" : "pause"}</Button>
-            <Button className={progressareastyles.cancelbutton} id="cancelButton" onClick={handleStop} ><CancelIcon />Cancel</Button>
+            <Button className={progressareastyles.pausebutton} id="pauseButton" onClick={handlePause} >{paused ? <PlayCircleIcon /> : <PauseCircleIcon />} <FormattedMessage id={`${paused ? "unpause" : "pause"}_button`} /></Button>
+            <Button className={progressareastyles.cancelbutton} id="cancelButton" onClick={handleStop} ><CancelIcon /><FormattedMessage id="cancel_button" /></Button>
             </Box>
             <Typography>
                 {!paused ? (!(isNaN(timeLeft[0]) && isNaN(timeLeft[1]) && isNaN(timeLeft[2])) ? 
