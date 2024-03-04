@@ -17,12 +17,8 @@ const enoughSpace = async(size: number, fileStore:string, encrypting: boolean) =
         //write data to opfs to mark this files size
         const writeWorker = new Worker(new URL("../utils/writeworker.js", import.meta.url))
         writeWorker.onmessage = (message) => {
-            if (message.data==="written") {
-                resolve(true)
-            }
-            else{
-                resolve(false)
-            }
+            writeWorker.terminate()
+            resolve((message.data==="written") ? true : false)
         }
         writeWorker.postMessage([new Uint8Array([]), size + totalChunks*(encrypting ? +16 : -16), fileStore])
 })
