@@ -9,6 +9,9 @@
     "restart_button" : "Starta om",
 
     "crypting" : "{encrypting, select, true {Krypterar} other {Dekrypterar} {file_name}...",
+    "pause_button" : "Pausa",
+    "unpause_button" : "Fortsätt",
+    "resume_button" : "Avbryt",
     "success" : "{file_name} {encrypted, select, true {krypterades} other {dekrypterades}} framgångsrikt!",
 
     "dropbox_text1" : "Klicka här för att välja en fil, eller dra en fil hit",
@@ -26,16 +29,33 @@
     "info_2" : "DailyCrypt är en enkel krypteringswebbsida. Vårt mål är att göra kryptering tillgänglig för alla.",
     "info_3" : "DailyCrypt är tillverkad utan en server för att säkerställa säkerheten. Koden är öppen källkod, så den är tillgänglig för alla.",
 
+    "dailycryptguide" : "Hur använder man DailyCrypt?",
+    "encrypt_title" : "Kryptering",
+    "decrypt_title" : "Dekryptering",
+
+    "howtouse_1e" : "1. Om du har två eller flera filer måste du arkivera dina filer först. Kolla guiden för arkivering under 'Hur arkiverar man filer?'",
+    "howtouse_2e" : "2. På startsidan, klicka på dropzonen och välj den arkiverade mappen du vill kryptera.",
+    "howtouse_3e" : "3. Skapa ett lösenord och bekräfta det i andra fältet.",
+    "howtouse_4e" : "4. Klicka på 'Kryptera'.",
+    "howtouse_5e" : "5. Om du vill pausa krypteringsprocessen, klicka på 'Pausa'. Om du vill avsluta hela krypteringsprocessen, klicka på 'Avbryt'.",
+    "howtouse_6e" : "6. När krypteringsprocessen är klar kan du ladda ner den krypterade filen genom att klicka på 'Ladda ner krypterad fil'.",
+    "howtouse_7e" : "7. Om du vill kryptera fler filer, klicka på 'Starta om'.",
+
+    "howtouse_1d" : "1. För att dekryptera dina filer behöver du välja en redan krypterad fil. Filen kommer att ha 'encrypted-' framför filnamnet. Klicka på dropzonen och välj den krypterade filen du vill dekryptera. Använd samma lösenord som du skapade när du krypterade filen.",
+    "howtouse_2d" : "2. Klicka på 'Dekryptera'.",
+    "howtouse_3d" : "3. När dekrypteringsprocessen är klar, klicka på 'Ladda ner dekrypterad fil'.",
+    "howtouse_4d" : "4. För att komma åt den ursprungliga filen måste du packa upp den zippade filen. Kolla guiden för att packa upp under 'Hur packar man upp filer?'.",
+
     "browser_info1" : "Jobbar på det...",
 
     "zip_info_1" : "Komprimera dina filer innan du krypterar. Välj ditt operativsystem för att se instruktioner hur du komprimerar filerna.",
 
-    "archiving" : "ARKIVERING",
+    "archiving" : "Hur arkiverar man filer?",
     "ubuntu_instruction_1" : "Välj filer som du vill kryptera.",
     "ubuntu_instruction_2" : "Högerklicka och välj 'Compress'.",
     "ubuntu_instruction_3" : "Namnge filen (valfritt) och klicka på 'Create'.",
     "ubuntu_instruction_4" : "Filen kommer att visas i samma mapp.",
-    "extracting" : "UPPACKNING",
+    "extracting" : "Hur packar man upp filer?",
     "ubuntu_instruction_5" : "Välj filen du vill packa upp (filen måste vara en zip-fil)",
     "ubuntu_instruction_6" : "Högerklicka och välj 'Extract here'",
     "ubuntu_instruction_7" : "Den uppackade filen kommer att visas i samma mapp",

@@ -59,14 +59,14 @@ function ProgressArea () {
             </Typography>
             <LinearProgressWithLabel value={progress*100} />
             <Box className={progressareastyles.progressbuttons}>
-            <Button className={progressareastyles.pausebutton} id="pauseButton" onClick={handlePause} >{paused ? <PlayCircleIcon /> : <PauseCircleIcon />} {paused ? "continue" : "pause"}</Button>
-            <Button className={progressareastyles.cancelbutton} id="cancelButton" onClick={handleStop} ><CancelIcon />Cancel</Button>
+            <Button className={progressareastyles.pausebutton} id="pauseButton" onClick={handlePause} >{paused ? <PlayCircleIcon /> : <PauseCircleIcon />} <FormattedMessage id={`${paused ? "unpause" : "pause"}_button`} /></Button>
+            <Button className={progressareastyles.cancelbutton} id="cancelButton" onClick={handleStop} ><CancelIcon /><FormattedMessage id="cancel_button" /></Button>
             </Box>
             <Typography>
-            {!paused ? (!(timeLeft[0] === 0 && timeLeft[1] === 0 && timeLeft[2] === 0) ? 
-            <FormattedMessage id={"time_remaining_s" + (timeLeft[0] !== 0 ? "mh" : (timeLeft[1] !== 0 ? "m" : ""))} values={{hours: timeLeft[0], minutes: timeLeft[1], seconds: timeLeft[2]}} /> : 
-            <FormattedMessage id="loading_file" />) :
-            "Paused"}
+                {!paused ? (!(isNaN(timeLeft[0]) && isNaN(timeLeft[1]) && isNaN(timeLeft[2])) ? 
+                <FormattedMessage id={"time_remaining_s" + (timeLeft[0] !== 0 ? "mh" : (timeLeft[1] !== 0 ? "m" : ""))} values={{hours: timeLeft[0], minutes: timeLeft[1], seconds: timeLeft[2]}} /> : 
+                <FormattedMessage id="loading_file" />) :
+                "Paused"}
             </Typography>
         </div>
         }
