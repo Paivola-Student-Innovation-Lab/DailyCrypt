@@ -2,7 +2,7 @@
 import { Alert, Button, TextField, Typography, Box, AlertTitle} from "@mui/material";
 import { Link } from "react-router-dom";
 import Dropzone from "./components/Dropzone";
-import {Header2} from "./components/Header";
+import {Header} from "./components/Header";
 import ProgressArea from './components/ProgressArea';
 
 // Styles
@@ -66,7 +66,7 @@ const App = (props: any) => {
   }  
   return (
     <>
-      <Header2 setLanguage={props.setLanguage} />
+      <Header setLanguage={props.setLanguage} />
       <div className={styles.container}>
         {!(!navigator.storage.getDirectory) &&
         <>

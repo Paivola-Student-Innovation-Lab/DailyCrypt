@@ -1,4 +1,4 @@
-import { Header2 } from "./Header";
+import { Header } from "./Header";
 import styles from "./Infopage.module.css";
 import { Typography } from "@mui/material";
 import Card from "@mui/material/Card";
@@ -15,8 +15,8 @@ import { FormattedMessage } from "react-intl";
 export default function Info(props: any) {
     return (
         <div>
-            <Header2 setLanguage={props.setLanguage} />
-            <Grid container spacing={2} className={styles.page}>
+            <Header setLanguage={props.setLanguage} />
+            <div className={styles.page}>
                 <Grid md={6} xs={6} item className={styles.grid}>
                     <Card className={styles.card} >
                         <CardContent>
@@ -67,7 +67,7 @@ export default function Info(props: any) {
                         </CardActions>
                     </Card>
                 </Grid>
-            </Grid>
+            </div>
         </div>
     );
 };

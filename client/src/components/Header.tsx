@@ -3,7 +3,7 @@ import TemporaryDrawer from "./Drawer";
 import { LanguageButton } from "./LanguageButton";
 import { Link } from "react-router-dom";
 
-const Header2 = (props: any) => {
+const Header = (props: any) => {
     return (
         <div className={styles.header}>
             <div className={styles.buttons} >
@@ -25,4 +25,4 @@ const Header2 = (props: any) => {
     );
 }
 
-export { Header2 }
+export { Header }
