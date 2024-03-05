@@ -4,7 +4,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import styles from './Tabpanel.module.css';
-import useTranslation from '../hooks/useTranslation';
+import { useIntl } from 'react-intl';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -21,6 +21,7 @@ function CustomTabPanel(props: TabPanelProps) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
+      className={styles.tabpanel}
       {...other}
     >
       {value === index && (
@@ -39,8 +40,8 @@ function a11yProps(index: number) {
   };
 }
 
-export default function Tabpanel() {
-  const translate = useTranslation();
+function DailyCryptTabpanel() {
+  const translate = useIntl().formatMessage;
 
   const [value, setValue] = React.useState(0);
 
@@ -50,61 +51,149 @@ export default function Tabpanel() {
 
   return (
     <Box className={styles.tabs} >
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label={translate('ubuntu')} {...a11yProps(0)} />
-          <Tab label={translate('windows')} {...a11yProps(1)} />
-          <Tab label={translate('mac')} {...a11yProps(2)} />
+        <Tabs
+         value={value} 
+         onChange={handleChange} 
+         aria-label="basic tabs example" 
+         centered
+         variant="fullWidth"
+         selectionFollowsFocus>
+          <Tab label={translate({id: 'encrypt_title'})} {...a11yProps(0)} />
+          <Tab label={translate({id: 'decrypt_title'})} {...a11yProps(1)} />
         </Tabs>
       <CustomTabPanel value={value} index={0}>
-        {translate('ubuntu_title')}
-        <span className={styles.instructiontext} >{translate('ubuntu_instruction_1')}</span>
+        <span className={styles.instructiontext} >{translate({id: 'howtouse_1e'})}</span>
+        <img src='./images/dailycryptguide/howtouse1.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate({id: 'howtouse_2e'})}</span>
+        <img src='./images/dailycryptguide/howtouse2.png' className={styles.pic} alt='' />
+        <img src='./images/dailycryptguide/howtouse3.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate({id: 'howtouse_3e'})}</span>
+        <img src='./images/dailycryptguide/howtouse4.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate({id: 'howtouse_4e'})}</span>
+        <img src='./images/dailycryptguide/howtouse5.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate({id: 'howtouse_5e'})}</span>
+        <img src='./images/dailycryptguide/howtouse6.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate({id: 'howtouse_6e'})}</span>
+        <img src='./images/dailycryptguide/howtouse7.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate({id: 'howtouse_7e'})}</span>
+        <img src='./images/dailycryptguide/howtouse8.png' className={styles.pic} alt='' />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        <span className={styles.instructiontext} >{translate({id: 'howtouse_1d'})}</span>
+        <img src='./images/dailycryptguide/howtouse9.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate({id: 'howtouse_2d'})}</span>
+        <img src='./images/dailycryptguide/howtouse10.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate({id: 'howtouse_3d'})}</span>
+        <img src='./images/dailycryptguide/howtouse11.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate({id: 'howtouse_4d'})}</span>
+        <img src='./images/dailycryptguide/howtouse13.png' className={styles.pic} alt='' />
+      </CustomTabPanel>
+    </Box>
+  );
+}
+
+function ArchivingTabpanel() {
+  const translate = useIntl().formatMessage;
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box className={styles.tabs} >
+        <Tabs 
+          value={value} 
+          onChange={handleChange} 
+          aria-label="basic tabs example" 
+          centered
+          variant="fullWidth"
+          selectionFollowsFocus>
+          <Tab label={translate({id: 'ubuntu'})} {...a11yProps(0)} />
+          <Tab label={translate({id: 'windows'})} {...a11yProps(1)} />
+          <Tab label={translate({id: 'mac'})} {...a11yProps(2)} />
+        </Tabs>
+      <CustomTabPanel value={value} index={0}>
+        <span className={styles.instructiontext} >{translate({id: 'ubuntu_instruction_1'})}</span>
         <img src='./images/linux/linux1.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('ubuntu_instruction_2')}</span>
+        <span className={styles.instructiontext} >{translate({id: 'ubuntu_instruction_2'})}</span>
         <img src='./images/linux/linux2.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('ubuntu_instruction_3')}</span>
+        <span className={styles.instructiontext} >{translate({id: 'ubuntu_instruction_3'})}</span>
         <img src='./images/linux/linux3.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('ubuntu_instruction_4')}</span>
+        <span className={styles.instructiontext} >{translate({id: 'ubuntu_instruction_4'})}</span>
         <img src='./images/linux/linux4.png' className={styles.pic} alt='' />
-        {translate('ubuntu_title2')}
-        <span className={styles.instructiontext} >{translate('ubuntu_instruction_5')}</span>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        <span className={styles.instructiontext} >{translate({id: 'windows_instruction_1'})}</span>
+        <img src='./images/windows/windows1.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate({id: 'windows_instruction_2'})}</span>
+        <img src='./images/windows/windows2.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate({id: 'windows_instruction_3'})}</span>
+        <img src='./images/windows/windows3.png' className={styles.pic} alt='' />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+        <span className={styles.instructiontext} >{translate({id: 'mac_instruction_1'})}</span>
+        <img src='./images/mac/mac1.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate({id: 'mac_instruction_2'})}</span>
+        <img src='./images/mac/mac2.png' className={styles.pic} alt='' />
+        <span className={styles.instructiontext} >{translate({id: 'mac_instruction_3'})}</span>
+        <img src='./images/mac/mac3.png' className={styles.pic} alt='' />
+      </CustomTabPanel>
+    </Box>
+  );
+}
+
+function ExtractingTabpanel() {
+  const translate = useIntl().formatMessage;
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box className={styles.tabs} >
+        <Tabs
+          value={value} 
+          onChange={handleChange} 
+          aria-label="basic tabs example" 
+          centered
+          variant="fullWidth"
+          selectionFollowsFocus>
+          <Tab label={translate({id: 'ubuntu'})} {...a11yProps(0)} />
+          <Tab label={translate({id: 'windows'})} {...a11yProps(1)} />
+          <Tab label={translate({id: 'mac'})} {...a11yProps(2)} />
+        </Tabs>
+      <CustomTabPanel value={value} index={0}>
+        <span className={styles.instructiontext} >{translate({id: 'ubuntu_instruction_5'})}</span>
         <img src='./images/linux/linux5.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('ubuntu_instruction_6')}</span>
+        <span className={styles.instructiontext} >{translate({id: 'ubuntu_instruction_6'})}</span>
         <img src='./images/linux/linux6.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('ubuntu_instruction_7')}</span>
+        <span className={styles.instructiontext} >{translate({id: 'ubuntu_instruction_7'})}</span>
         <img src='./images/linux/linux7.png' className={styles.pic} alt='' />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        {translate('windows_title')}
-        <span className={styles.instructiontext} >{translate('windows_instruction_1')}</span>
-        <img src='./images/windows/windows1.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('windows_instruction_2')}</span>
-        <img src='./images/windows/windows2.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('windows_instruction_3')}</span>
-        <img src='./images/windows/windows3.png' className={styles.pic} alt='' />
-        {translate('windows_title2')}
-        <span className={styles.instructiontext} >{translate('windows_instruction_4')}</span>
+        <span className={styles.instructiontext} >{translate({id: 'windows_instruction_4'})}</span>
         <img src='./images/windows/windows4.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('windows_instruction_5')}</span>
+        <span className={styles.instructiontext} >{translate({id: 'windows_instruction_5'})}</span>
         <img src='./images/windows/windows5.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('windows_instruction_6')}</span>
+        <span className={styles.instructiontext} >{translate({id: 'windows_instruction_6'})}</span>
         <img src='./images/windows/windows6.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('windows_instruction_7')}</span>
+        <span className={styles.instructiontext} >{translate({id: 'windows_instruction_7'})}</span>
         <img src='./images/windows/windows7.png' className={styles.pic} alt='' />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        {translate('mac_title')}
-        <span className={styles.instructiontext} >{translate('mac_instruction_1')}</span>
-        <img src='./images/mac/mac1.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('mac_instruction_2')}</span>
-        <img src='./images/mac/mac2.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('mac_instruction_3')}</span>
-        <img src='./images/mac/mac3.png' className={styles.pic} alt='' />
-        {translate('mac_title2')}
-        <span className={styles.instructiontext} >{translate('mac_instruction_4')}</span>
+        <span className={styles.instructiontext} >{translate({id: 'mac_instruction_4'})}</span>
         <img src='./images/mac/mac4.png' className={styles.pic} alt='' />
-        <span className={styles.instructiontext} >{translate('mac_instruction_5')}</span>
+        <span className={styles.instructiontext} >{translate({id: 'mac_instruction_5'})}</span>
         <img src='./images/mac/mac5.png' className={styles.pic} alt='' />
       </CustomTabPanel>
     </Box>
   );
+}
+
+export {
+  ArchivingTabpanel, ExtractingTabpanel, DailyCryptTabpanel
 }

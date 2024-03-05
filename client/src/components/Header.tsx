@@ -3,7 +3,7 @@ import TemporaryDrawer from "./Drawer";
 import { LanguageButton } from "./LanguageButton";
 import { Link } from "react-router-dom";
 
-const Header2 = () => {
+const Header2 = (props: any) => {
     return (
         <div className={styles.header}>
             <div className={styles.buttons} >
@@ -17,7 +17,7 @@ const Header2 = () => {
                     </Link>
                 </span>
                 <div className={styles.language}>
-                    <LanguageButton />
+                    <LanguageButton setLanguage={props.setLanguage}/>
                 </div>
             </div>
             <div className={styles.divider} />

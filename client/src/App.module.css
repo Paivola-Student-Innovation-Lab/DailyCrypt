@@ -24,8 +24,7 @@
 }
 
 
-div > .button, div > .downloadbutton {
- 
+div > .button{
   font-size: var(--buttonfont);
   text-transform: none;
   background-color: var(--encryptgreen);
@@ -33,13 +32,11 @@ div > .button, div > .downloadbutton {
   border: 5px solid var(--encryptgreen);
 }
 
-div > .downloadbutton {
-  margin-right: 15%; margin-left: 15%;
-  height: fit-content;
-  width: fit-content;
-}
-div > .button:hover, div > .downloadbutton:hover {
+
+
+div > .button:hover{
   background-color: var(--decryptgreen);
+  border: 5px solid var(--decryptgreen);
 }
 .bottomcontainer{
   position: relative;
@@ -79,9 +76,6 @@ div > .button:hover, div > .downloadbutton:hover {
   font-weight: bold;
 }
 
-.progressbuttons {
-  align-items: center;
-}
 @media only screen and (max-width: 1080px){
   .container{
     margin: 5vh 5vw;

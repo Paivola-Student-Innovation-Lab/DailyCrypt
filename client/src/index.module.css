@@ -9,5 +9,5 @@ body {
   --encryptgreen: #29c08d;
   --decryptgreen: #0d6b4c;
   --accordiongreen: #eafbf5;
-  --buttonfont: 24px;
+  --buttonfont: calc(4rem - 32px);
 }
