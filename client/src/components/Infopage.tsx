@@ -20,7 +20,7 @@ export default function Info(props: any) {
                 <Grid md={6} xs={6} item className={styles.grid}>
                     <Card className={styles.card} >
                         <CardContent>
-                            <Typography className={styles.infotitle} variant="h4">
+                            <Typography className={styles.infotitle} variant="h5">
                                 <FormattedMessage id="infopage_title1" />  <InfoIcon />
                             </Typography>
                             <div className={styles.divider} />
@@ -41,7 +41,7 @@ export default function Info(props: any) {
                     </Card>
                     <Card className={styles.card} >
                         <CardContent>
-                            <Typography className={styles.infotitle} variant="h4">
+                            <Typography className={styles.infotitle} variant="h5">
                                 <FormattedMessage id='infopage_title3' /> <TabIcon />
                             </Typography>
                             <div className={styles.divider} />
@@ -54,7 +54,7 @@ export default function Info(props: any) {
                 <Grid xs={6} md={6} item className={styles.grid}>
                     <Card className={styles.guide} >
                         <CardContent>
-                            <Typography className={styles.infotitle} variant="h4">
+                            <Typography className={styles.infotitle} variant="h5">
                                 <FormattedMessage id="infopage_title2" /> <FolderZipIcon />
                             </Typography>
                             <div className={styles.divider} />
