@@ -28,8 +28,8 @@ const App = (props: any) => {
   const dropHidden = usefunctionalityState((state) => state.drophidden)
 
   //update files on input
-  const updateFiles = (files: File[]) => {
-    setFiles(files);
+  const updateFiles = (newFiles: File[]) => {
+    setFiles(files.concat(newFiles));
   };
 
   //handle inputs of the password field
@@ -58,11 +58,13 @@ const App = (props: any) => {
   //start encrypting
   const handleEncrypt = async () => {
     props.encryptFunc(files, password, passwordMismatch, true)
+    setFiles([])
   };
 
   //start decrypting
   const handleDecrypt = async () => {
     props.encryptFunc(files, password, passwordMismatch, false)
+    setFiles([])
   }  
   return (
     <>

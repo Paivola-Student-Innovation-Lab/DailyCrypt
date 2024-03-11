@@ -4,6 +4,7 @@ import useChecks from "./useChecks";
 import useCrypting from "./useCrypting";
 import useOnPageLoad from "./useOnPageLoad";
 import usefunctionalityState from "./useFunctionalityState";
+import createZipEntries from "../utils/createZipEntry";
 
 function useFunctionality() {
     //hook defenitions
@@ -18,7 +19,7 @@ function useFunctionality() {
         setUiState(encrypting, files[0].name)
         await new Promise( res => setTimeout(res, 1) ); // Wait 1ms for the loading bar to load
         //initialize crypting
-        await crypt(files[0], encrypting, password);
+        await crypt(encrypting? await createZipEntries(files) : files, encrypting, password);
       }
     }
 

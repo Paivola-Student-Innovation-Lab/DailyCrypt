@@ -1,20 +1,24 @@
 //hooks
 import useWasm from "./useWasm";
 import { useEffect, useRef } from "react";
-
-//other
-import createChunk from "../utils/createChunk";
-import eventBus from "../utils/EventBus";
 import useModal from "./useModal";
 import usefunctionalityState from "./useFunctionalityState";
+
+//other
+import eventBus from "../utils/EventBus";
+import calculateArraySize from "../utils/calculateArraySize";
+import {useChunking} from "./useChunking";
+
 
 function useCrypting() {
     //ref defenition
     const isPausedRef = useRef(false)
     const workerRef: React.MutableRefObject<Worker|undefined> = useRef()
+  
     //hook defenition
     const{fileStore, setProgress, reset} = usefunctionalityState((state) => ({fileStore: state.filestore, setProgress: state.updateProgress, reset: state.reset}))
     const rust = useWasm()
+    const createChunk = useChunking()
     const {makeModal} = useModal((state) => ({makeModal: state.makeModal}))
     //handle pausing the crypting
     const handlePause = ()=>{
@@ -32,15 +36,17 @@ function useCrypting() {
     }, []);
 
     //crypt the file
-    const crypt = async (file: Blob, encrypting: boolean, password: string) => {
+    const crypt = async (files: File[], encrypting: boolean, password: string) => {
       //variable defenition
       let chunkSize = 4000000; // 4MB chunks
       chunkSize = encrypting ? chunkSize : chunkSize + 16; // Encrypted chunks are 16 bytes larger than non-encrypted ones
-      const totalChunks = Math.ceil(file.size / chunkSize); // Calculate how many chunks to make
+      const fileSize=calculateArraySize(files)
+      const totalChunks = Math.ceil(fileSize / chunkSize); // Calculate how many chunks to make
+
       let writableChunk: Uint8Array
       let ready = true
-      let sendMessage=false
-      isPausedRef.current=false
+      let sendMessage = false
+      isPausedRef.current = false
 
       let i = 1
       //create a chunk when worker sends a message
@@ -79,10 +85,10 @@ function useCrypting() {
             if(i!==totalChunks){
               //creates chunk and stores it as the value of cryptedChunk. 
               if (encrypting){
-                writableChunk = rust.encrypt(await createChunk(i, chunkSize, file), password)
+                writableChunk = rust.encrypt(await createChunk(i, chunkSize, files), password)
               }
               else{
-                writableChunk = rust.decrypt(await createChunk(i, chunkSize, file), password)
+                writableChunk = rust.decrypt(await createChunk(i, chunkSize, files), password)
               }
 
               //handles incorrect password
@@ -102,7 +108,7 @@ function useCrypting() {
           }
           else{
             //checks if file is correct size
-            if(((await (await (await navigator.storage.getDirectory()).getFileHandle(fileStore)).getFile()).size!==file.size + (encrypting ? totalChunks*16 : -totalChunks*16))){
+            if(((await (await (await navigator.storage.getDirectory()).getFileHandle(fileStore)).getFile()).size!==fileSize + (encrypting ? totalChunks*16 : -totalChunks*16))){
               reset()
               makeModal("something went wrong and file is wrong size", "")
             } else {
@@ -122,10 +128,10 @@ function useCrypting() {
      
       //generates first chunk
       if (encrypting){
-        writableChunk = rust.encrypt(await createChunk(0, chunkSize, file), password)
+        writableChunk = rust.encrypt(await createChunk(0, chunkSize, files), password)
       }
       else{
-        writableChunk = rust.decrypt(await createChunk(0, chunkSize, file), password)
+        writableChunk = rust.decrypt(await createChunk(0, chunkSize, files), password)
       }
       if(writableChunk.length===0){
         makeModal("Invalid Decrypt Password!", "The decrypting password you used isn't the same one that was used for encrypting.")

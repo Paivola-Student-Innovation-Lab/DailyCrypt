@@ -9,6 +9,6 @@ const downloadfile = async(filename: string, encrypting: boolean, fileStore:stri
     //get file from opfs and download it
     const opfsRoot = await navigator.storage.getDirectory();
     const fileHandle = await opfsRoot.getFileHandle(fileStore);
-    saveAs(await fileHandle.getFile(), filename)
+    saveAs(await fileHandle.getFile(), "encrypted-files.zip")
 }
 export default downloadfile
