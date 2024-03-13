@@ -9,7 +9,7 @@
     "build:react": "vite build",
     "build:wasm": "cd ../rustend && wasm-pack build --target web --out-dir pkg",
     "build": "npm run build:wasm && npm run build:react",
-    "dev": "vite",
+    "dev": "npm run build:wasm && vite",
     "serve": "vite preview"
   },
   "license": "GPL",
