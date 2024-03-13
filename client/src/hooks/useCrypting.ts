@@ -7,7 +7,7 @@ import usefunctionalityState from "./useFunctionalityState";
 //other
 import eventBus from "../utils/EventBus";
 import calculateArraySize from "../utils/calculateArraySize";
-import {useChunking} from "./useChunking";
+import {chunkFile, useChunking} from "./useChunking";
 
 
 function useCrypting() {
@@ -36,11 +36,11 @@ function useCrypting() {
     }, []);
 
     //crypt the file
-    const crypt = async (files: File[], encrypting: boolean, password: string) => {
+    const crypt = async (files: (Blob | Uint8Array)[], encrypting: boolean, password: string, multipleFiles: boolean) => {
       //variable defenition
       let chunkSize = 4000000; // 4MB chunks
       chunkSize = encrypting ? chunkSize : chunkSize + 16; // Encrypted chunks are 16 bytes larger than non-encrypted ones
-      const fileSize=calculateArraySize(files)
+      const fileSize = calculateArraySize(files)
       const totalChunks = Math.ceil(fileSize / chunkSize); // Calculate how many chunks to make
 
       let writableChunk: Uint8Array
@@ -85,15 +85,15 @@ function useCrypting() {
             if(i!==totalChunks){
               //creates chunk and stores it as the value of cryptedChunk. 
               if (encrypting){
-                writableChunk = rust.encrypt(await createChunk(i, chunkSize, files), password)
+                writableChunk = rust.encrypt( multipleFiles? await createChunk(i, chunkSize, files) : await chunkFile(i*chunkSize, chunkSize, files[0]), password)
               }
               else{
-                writableChunk = rust.decrypt(await createChunk(i, chunkSize, files), password)
+                writableChunk = rust.decrypt( multipleFiles? await createChunk(i, chunkSize, files) : await chunkFile(i*chunkSize, chunkSize, files[0]), password)
               }
 
               //handles incorrect password
               if (writableChunk.length === 0) { // Check for aead::Error on rustend
-                await reset()
+                reset()
                 makeModal("Invalid Decrypt Password!", "The decrypting password you used isn't the same one that was used for encrypting.")
                 return
               }
