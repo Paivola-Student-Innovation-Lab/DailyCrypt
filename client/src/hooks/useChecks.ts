@@ -12,7 +12,7 @@ function useChecks () {
         if (password !== "") {
             if (!passwordMismatch) {
                 if (files[0]) {
-                    if (!(!isEncrypting && files.length>1))
+                    if (isEncrypting || files.length===1)
                     //check if there is enough space in opfs for the file
                         if(await enoughSpace(calculateArraySize(files), fileStore, isEncrypting)){
                             return true
