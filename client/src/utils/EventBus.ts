@@ -1,3 +1,4 @@
+//used for messaging between functionality and the ui
 const eventBus = {
     on(event: any, callback: (arg0: any) => any) {
         document.addEventListener(event, (e) => callback(e.detail));

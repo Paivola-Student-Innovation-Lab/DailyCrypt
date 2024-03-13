@@ -21,6 +21,7 @@ function useFunctionality() {
         await new Promise( res => setTimeout(res, 1) ); // Wait 1ms for the loading bar to load
         
         //initialize crypting
+        //if there are multiple files, generate an array wich will combine as a zip file
         await crypt(multipleFiles? await createZipEntries(files) : files, encrypting, password, multipleFiles);
       }
     }

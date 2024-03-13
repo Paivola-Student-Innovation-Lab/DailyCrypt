@@ -48,7 +48,7 @@ function useCrypting() {
       let sendMessage = false
       isPausedRef.current = false
 
-      let i = 1
+      let i = 0
       //create a chunk when worker sends a message
       workerRef.current = new Worker(new URL("../utils/writeworker.js", import.meta.url)) //creates webworker for compiling file
       workerRef.current.onmessage = async(message) => {
@@ -75,13 +75,17 @@ function useCrypting() {
           sendMessage=false
           if ( i <= totalChunks) {
             //send message to worker to add previous chunk in the end of the compilation file
-            if (workerRef.current !== undefined){
+            if (workerRef.current !== undefined && i>0){
               workerRef.current.postMessage([writableChunk, (i-1)*(chunkSize + (encrypting? 16 : -16)), fileStore])
+              //update progress
+              setProgress((i-1)/totalChunks)
             }
-            
-            //update progress
-            setProgress((i-1)/totalChunks)
+            //send another generic message if this is the first chunk
+            else{
+              sendMessage=true
+            }
 
+            
             if(i!==totalChunks){
               //creates chunk and stores it as the value of cryptedChunk. 
               if (encrypting){
@@ -126,19 +130,7 @@ function useCrypting() {
         }
       }
      
-      //generates first chunk
-      if (encrypting){
-        writableChunk = rust.encrypt(await createChunk(0, chunkSize, files), password)
-      }
-      else{
-        writableChunk = rust.decrypt(await createChunk(0, chunkSize, files), password)
-      }
-      if(writableChunk.length===0){
-        makeModal("Invalid Decrypt Password!", "The decrypting password you used isn't the same one that was used for encrypting.")
-        reset()
-        return
-      }
-      //sends message to worker to start working.
+      //sends message to worker to start the crypting.
       workerRef.current.postMessage("start")
   }
   return { crypt }
