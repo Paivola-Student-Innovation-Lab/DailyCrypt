@@ -6,7 +6,6 @@ import { useState } from "react";
 import { dictionaryList } from "../languages";
 
 
-
 export const LanguageButton = (props: any) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -27,8 +26,8 @@ export const LanguageButton = (props: any) => {
 
   return (
     <div className={styles.languagebutton}>
-      <Button onClick={handleClick} endIcon={<KeyboardArrowDownIcon />}>
-        <TranslateIcon />
+      <Button onClick={handleClick} endIcon={<KeyboardArrowDownIcon fontSize="large"/>}>
+        <TranslateIcon fontSize="large"/>
       </Button>
       <Menu className={styles.languagemenu} anchorEl={anchorEl} open={open} onClose={handleClose}>
         {Object.values(dictionaryList).map(languageData => (

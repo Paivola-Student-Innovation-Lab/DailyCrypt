@@ -1,24 +1,27 @@
-
+.grid {
+    width: 40%;
+    margin: 0 5vw;
+}
 .grid .card {
     display: flex;
-    flex-direction: column;
     align-items: left;
-    margin: 10vh 8vw;
-    padding: 2.5vh 1vh 0vh 1vh;
     background-color: #ffffff;
+    margin: 5vh 0vw;
+    padding: 0.5vh 1vh 0vh 1vh;
 }
 
-.card, .guide {
-    width: 75%
+.page{
+    display: flex;
+    justify-content: space-around;
 }
 
 .guide {
     display: flex;
     flex-direction: column;
     align-items: left;
-    margin: 10vh 5vw;
-    padding: 2.5vh 1vh 0 1vh;
     background-color: #ffffff;
+    margin: 5vh 0vw;
+    padding: 0.5vh 1vh 0 1vh;
 }
 
 .bodytext, .psiltitle {
@@ -34,9 +37,9 @@
 }
 
 .divider {
-    width: 35vw;
+    width: 100%;
     margin: 0 0vw;
-    height: 0.5vh;
+    height: 0.25vh;
     background-color: var(--encryptgreen);
 }
 
@@ -44,6 +47,21 @@
     width: 25%;
 }
 
-.psiltitle a:visited, .psiltitle a {
-    color: var(--encryptgreen);
+    &:hover {
+        color: var(--decryptgreen);
+        transition-duration: 0.4s;
+    }
+
+@media only screen and (max-width:1080px){
+    .page{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .grid{
+        width: 90%;
+    }
+    .guide{
+        margin-top: 0vh;
+    }
 }
