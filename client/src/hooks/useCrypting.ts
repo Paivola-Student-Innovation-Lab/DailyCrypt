@@ -74,7 +74,7 @@ function useCrypting() {
           ready=false
           sendMessage=false
           if ( i <= totalChunks) {
-            //send message to worker to add previous chunk in the end of the compilation file
+            //if this isn't the first chunk send message to worker to add previous chunk in the end of the compilation file
             if (workerRef.current !== undefined && i>0){
               workerRef.current.postMessage([writableChunk, (i-1)*(chunkSize + (encrypting? 16 : -16)), fileStore])
               //update progress

@@ -29,7 +29,7 @@ const App = (props: any) => {
 
   //update files on input
   const updateFiles = (newFiles: File[]) => {
-    setFiles(files.concat(newFiles));
+    setFiles(newFiles);
   };
 
   //handle inputs of the password field
