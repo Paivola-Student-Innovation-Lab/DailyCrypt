@@ -1,5 +1,5 @@
 import { chunkFile } from "../hooks/useChunking";
-
+import {crc32} from "crc"
 
 //original source https://gist.github.com/rvaiya/4a2192df729056880a027789ae3cd4b7
 
@@ -21,17 +21,15 @@ async function createZipEntries(files: File[]) {
             return tbl;
     }();
     //generate the crc checksum of the file
-    async function crc32(file: File) {
-        let crc = -1;
+    async function generateCrc32(file: File) {
+        let crc;
         const chunkSize = 4000000;
         const totalChunks = Math.ceil(file.size / chunkSize);
         for(let amount = 0; amount<totalChunks; amount++){
                 const arr = await chunkFile(amount*chunkSize, chunkSize, file)
-                for(let i=0; i<arr.length; i++) {
-                        crc = (crc >>> 8) ^ crc32_table[(crc ^ arr[i]) & 0xFF];
-                }
+                crc = crc32(arr, crc)
         }
-        return (crc ^ (-1)) >>> 0;
+        return crc? crc : -1;
     }
 
     //add values to the array(file header) as sertain byte length
@@ -56,7 +54,7 @@ async function createZipEntries(files: File[]) {
     for(const file of files){
         const fh = new Uint8Array(30+file.name.length);
         const fname = te.encode((file.webkitRelativePath!=="")? file.webkitRelativePath : file.name);
-        const chksum = await crc32(file);
+        const chksum = await generateCrc32(file);
 
         //create a local file header for the file
         putUint32s(fh, 0, 0x04034b50);
