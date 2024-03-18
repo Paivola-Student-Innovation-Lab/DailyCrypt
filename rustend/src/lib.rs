@@ -8,25 +8,41 @@ extern {
 }
 
 #[wasm_bindgen]
-pub fn encrypt(chunk: Vec<u8>, password: &str) -> Vec<u8> {
-    let encrypted = match crypt::encrypt_chunk(chunk, password) {
+pub fn encrypt(chunk: Vec<u8>, nonce_vec: Vec<u8>, keybytes: Vec<u8>) -> Vec<u8> {
+    match crypt::encrypt_chunk(chunk, nonce_vec, keybytes) {
+        Ok(result) => result,
+        Err(err) => {
+            panic!("Error: {}", err)
+        }
+    }
+}
+
+#[wasm_bindgen]
+pub fn decrypt(chunk: Vec<u8>, nonce_vec: Vec<u8>, keybytes: Vec<u8>) -> Vec<u8>  {
+    match crypt::decrypt_chunk(chunk, nonce_vec, keybytes) {
+        Ok(result) => result,
+        Err(_err) => {
+            [].to_vec()
+        }
+    }
+}
+
+#[wasm_bindgen]
+pub fn get_cipher_key(passwd: &str) -> Vec<u8> {
+    let sha = sha256::digest(passwd); // Digest password (turn it into 64 hex bytes)
+    (0..sha.len()).step_by(2).map(|byte| u8::from_str_radix(&sha[byte..byte+2], 16).unwrap()).collect::<Vec<u8>>().try_into().unwrap() // Turn hex bytes into real bytes
+}
+
+
+#[wasm_bindgen]
+pub fn get_nonce(password: &str) -> Vec<u8> {
+    let nonce = match crypt::generate_nonce(password) {
         Ok(result) => result,
         Err(err) => {
             panic!("Error: {}", err)
         }
     };
-    encrypted
-}
-
-#[wasm_bindgen]
-pub fn decrypt(chunk: Vec<u8>, password: &str) -> Vec<u8>  {
-    let decrypted = match crypt::decrypt_chunk(chunk, password) {
-        Ok(result) => result,
-        Err(_err) => {
-            [].to_vec()
-        }
-    };
-    decrypted
+    nonce.to_vec()
 }
 
 #[cfg(test)]
