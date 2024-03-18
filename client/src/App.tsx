@@ -72,10 +72,6 @@ const App = (props: any) => {
       <div className={styles.container}>
         {!(!navigator.storage.getDirectory) &&
         <>
-        <div className={styles.buttons}>
-          <Button disabled={dropHidden} className={styles.button} onClick={handleEncrypt} value="encrypt"><FormattedMessage id='encrypt_button' /></Button>
-          <Button disabled={dropHidden} className={styles.button} onClick={handleDecrypt} value="decrypt"><FormattedMessage id='decrypt_button' /></Button>
-        </div>
         <div className={styles.dropbox}>
 
           <Box className={dropHidden ? styles.dropzoneborder : styles.dropzonecoloredborder}>
@@ -87,10 +83,18 @@ const App = (props: any) => {
             }
           </Box>
         </div>
+        {!dropHidden &&
+        <div className={styles.bottomcontainer}>
         <div className={styles.textfields}>
           <TextField type="password" label={translate({id: 'password_field'})} value={password} onChange={handlePasswordInput} required />
           <TextField type="password" className={passwordMismatch ? styles["input-error"] : ""} label={translate({id: 'confirmpassword_field'})} value={confirmPassword} onChange={handleConfirmPasswordInput} required />
         </div>
+        <div className={styles.buttons}>
+          <Button disabled={dropHidden} className={styles.button} onClick={handleEncrypt} value="encrypt"><FormattedMessage id='encrypt_button' /></Button>
+          <Button disabled={dropHidden} className={styles.button} onClick={handleDecrypt} value="decrypt"><FormattedMessage id='decrypt_button' /></Button>
+        </div> 
+        </div>
+        }
         </>}
         {!navigator.storage.getDirectory &&
         <>

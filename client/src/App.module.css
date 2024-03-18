@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,17 +23,8 @@
   border: 2px dashed var(--encryptgreen);
 }
 
-.buttons {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: max(min(10vw, 10vh), 100px);
-}
 
 div > .button{
-  height: fit-content;
-  width: 22%;
-  margin-right: 15%; margin-left: 15%;
   font-size: var(--buttonfont);
   text-transform: none;
   background-color: var(--encryptgreen);
@@ -44,14 +36,31 @@ div > .button{
 
 div > .button:hover{
   background-color: var(--decryptgreen);
+  border: 5px solid var(--decryptgreen);
 }
-
+.bottomcontainer{
+  position: relative;
+  left: 17%;
+  width: 66%;
+  display: flex;
+  align-self: normal;
+  flex-direction: row;
+  justify-content: space-around;
+}
 .textfields {
   display: flex;
-  width: 100%;
-  justify-content: space-around;
-  padding: 2vh 0;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 10px;
 } 
+.buttons {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 5px;
+}
 
 .input-error > *, .input-error > * > * {
   color: red !important;
@@ -67,3 +76,16 @@ div > .button:hover{
   font-weight: bold;
 }
 
+@media only screen and (max-width: 1080px){
+  .container{
+    margin: 5vh 5vw;
+  }
+  .bottomcontainer{
+    flex-direction: column;
+    gap:10px;
+  }
+  .buttons{
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}

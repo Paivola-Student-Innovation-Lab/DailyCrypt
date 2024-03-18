@@ -1,4 +1,4 @@
-import { InfoHeader } from "./Header";
+import { Header } from "./Header";
 import styles from "./Infopage.module.css";
 import { Typography } from "@mui/material";
 import Card from "@mui/material/Card";
@@ -15,12 +15,12 @@ import { FormattedMessage } from "react-intl";
 export default function Info(props: any) {
     return (
         <div>
-            <InfoHeader setLanguage={props.setLanguage} />
-            <Grid container spacing={2}>
+            <Header setLanguage={props.setLanguage} />
+            <div className={styles.page}>
                 <Grid md={6} xs={6} item className={styles.grid}>
                     <Card className={styles.card} >
                         <CardContent>
-                            <Typography className={styles.infotitle} variant="h4">
+                            <Typography className={styles.infotitle} variant="h5">
                                 <FormattedMessage id="infopage_title1" />  <InfoIcon />
                             </Typography>
                             <div className={styles.divider} />
@@ -41,7 +41,7 @@ export default function Info(props: any) {
                     </Card>
                     <Card className={styles.card} >
                         <CardContent>
-                            <Typography className={styles.infotitle} variant="h4">
+                            <Typography className={styles.infotitle} variant="h5">
                                 <FormattedMessage id='infopage_title3' /> <TabIcon />
                             </Typography>
                             <div className={styles.divider} />
@@ -51,10 +51,10 @@ export default function Info(props: any) {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid xs={6} md={6} item>
+                <Grid xs={6} md={6} item className={styles.grid}>
                     <Card className={styles.guide} >
                         <CardContent>
-                            <Typography className={styles.infotitle} variant="h4">
+                            <Typography className={styles.infotitle} variant="h5">
                                 <FormattedMessage id="infopage_title2" /> <FolderZipIcon />
                             </Typography>
                             <div className={styles.divider} />
@@ -67,7 +67,7 @@ export default function Info(props: any) {
                         </CardActions>
                     </Card>
                 </Grid>
-            </Grid>
+            </div>
         </div>
     );
 };
