@@ -4,6 +4,7 @@ import useChecks from "./useChecks";
 import useCrypting from "./useCrypting";
 import useOnPageLoad from "./useOnPageLoad";
 import usefunctionalityState from "./useFunctionalityState";
+import createZipEntries from "../utils/createZipEntry";
 
 function useFunctionality() {
     //hook defenitions
@@ -14,11 +15,14 @@ function useFunctionality() {
     
     //start encrypting/decrypting the file
     const handleCrypting = async(files: File[], password: string, passwordMismatch: boolean, encrypting: boolean)=> {
-      if(await handleChecks(files[0], password, passwordMismatch, encrypting)){//check if all the conditions to crypt a file are met
-        setUiState(encrypting, files[0].name)
+      if(await handleChecks(files, password, passwordMismatch, encrypting)){//check if all the conditions to crypt a file are met
+        const multipleFiles = files.length>1
+        setUiState(encrypting, multipleFiles? "files.zip" : files[0].name)
         await new Promise( res => setTimeout(res, 1) ); // Wait 1ms for the loading bar to load
+        
         //initialize crypting
-        await crypt(files[0], encrypting, password);
+        //if there are multiple files, generate an array wich will combine as a zip file
+        await crypt(multipleFiles? await createZipEntries(files) : files, encrypting, password, multipleFiles);
       }
     }
 
