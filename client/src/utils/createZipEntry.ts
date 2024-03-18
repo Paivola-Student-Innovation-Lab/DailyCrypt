@@ -4,22 +4,6 @@ import {crc32} from "crc"
 //original source https://gist.github.com/rvaiya/4a2192df729056880a027789ae3cd4b7
 
 async function createZipEntries(files: File[]) {
-    // Generate the crc32 table instead of hardcoding it to avoid having a giant constant
-    // in the minified output...
-    const crc32_table = function() {
-        const tbl = [];
-        let c;
-        for(let n = 0; n < 256; n++){
-                c = n;
-        for(let k =0; k < 8; k++){
-                c = ((c&1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1));
-        }
-
-        tbl[n] = c;
-        }
-
-            return tbl;
-    }();
     //generate the crc checksum of the file
     async function generateCrc32(file: File) {
         let crc;
