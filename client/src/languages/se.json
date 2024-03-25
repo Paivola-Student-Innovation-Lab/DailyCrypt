@@ -91,6 +91,14 @@
 
     "time_remaining_s": "{seconds, plural, one {# sekund} other {# sekunder}} kvar",
     "time_remaining_sm": "{minutes, plural, one {# minut} other {# minuter}} och {seconds, plural, one {# sekund} other {# sekunder}} kvar",
-    "time_remaining_smh": "{hours, plural, one {# timme} other {# timmar}}, {minutes, plural, one {# minut} other {# minuter}} och {seconds, plural, one {# sekund} other {# sekunder}} kvar"
+    "time_remaining_smh": "{hours, plural, one {# timme} other {# timmar}}, {minutes, plural, one {# minut} other {# minuter}} och {seconds, plural, one {# sekund} other {# sekunder}} kvar",
+
+    "store_failed": "Det gick inte att lagra filen.",
+    "store_failed_text": "Mer detaljerad information om att lagra filer finns på infosidan",
+    "decrypt_multiple": "Du kann inte dekryptera flera filer samtidigt.",
+    "decrypt_multiple_text": "För att dekryptera flera filer, dekryptera en fil i taget.",
+    "__COMMENT": "The rest of the swedish translations will be added soon.",
+    "remove_tab": "Avlägsna",
+    "create_tab": "Skapa"
 
 }

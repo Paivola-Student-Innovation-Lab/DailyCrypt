@@ -3,6 +3,7 @@ import useWasm from "./useWasm";
 import { useEffect, useRef } from "react";
 import useModal from "./useModal";
 import usefunctionalityState from "./useFunctionalityState";
+import { useIntl } from "react-intl";
 
 // Other imports
 import eventBus from "../utils/EventBus";
@@ -11,13 +12,14 @@ import {chunkFile, useChunking} from "./useChunking";
 
 
 function useCrypting() {
-    // Ref defenition
+    // Ref definition
     const isPausedRef = useRef(false)
     const workerRef: React.MutableRefObject<Worker|undefined> = useRef()
   
-    // Hook defenition
+    // Hook definition
     const{fileStore, setProgress, reset} = usefunctionalityState((state) => ({fileStore: state.filestore, setProgress: state.updateProgress, reset: state.reset}))
     const rust = useWasm()
+    const translate = useIntl().formatMessage
     const createChunk = useChunking()
     const {makeModal} = useModal((state) => ({makeModal: state.makeModal}))
     // Handle pausing
@@ -54,22 +56,15 @@ function useCrypting() {
       // Create a chunk when worker sends a message
       workerRef.current = new Worker(new URL("../utils/writeworker.js", import.meta.url)) //creates webworker for compiling file
       workerRef.current.onmessage = async(message) => {
-        // If worker sends number, get error message associated with that number and make a modal with it
         // Handle error in worker
         if(typeof message.data !== "string"){
-          const errormsg = [["could not find storage file", "can't find file for storage. this may be caused by all opfs data being deleted by another tab. to fix this reload the page."]]
-          const errors =["NotFoundError"]
-          // Associate errors with numbers and use them to make error modals
+          const errors: {[key: string]: string[]}  = {
+            "NotFoundError": [translate({id: "storage_not_found"}), translate({id: "storage_not_found_text"})]
+          }
           const error = message.data
           // Restart website
           reset()
-          if(errors.includes(error.name)){
-            const errorMessage = errormsg[errors.indexOf(error.name)]
-            makeModal(errorMessage[0], errorMessage[1])
-          }
-          else {
-            makeModal("error trying to write data to file" , error.name +": " + error.text)
-          }
+          errors[error.name] ? makeModal(errors[error.name][0], errors[error.name][1]) : makeModal(translate({id: "writing_error"}) , error.name +": " + error.text)
           return
         }
         // Send another message and create a new chunk
@@ -77,7 +72,7 @@ function useCrypting() {
           ready=false
           sendMessage=false
           if ( i <= totalChunks) {
-            // If this isn't the first, chunk send a message to worker to add the previous chunk in the end of the compilation file
+            // If this isn't the first chunk, send a message to worker to add the previous chunk in the end of the compilation file
             if (workerRef.current !== undefined && i>0){
               workerRef.current.postMessage([writableChunk, (i-1)*(chunkSize + (encrypting? 16 : -16)), fileStore])
               // Update progress
@@ -101,7 +96,7 @@ function useCrypting() {
               // Handle incorrect password
               if (writableChunk.length === 0) { // Check for aead::Error on rustend
                 reset()
-                makeModal("Invalid Decrypt Password!", "The decrypting password you used isn't the same one that was used for encrypting.")
+                makeModal(translate({id: "wrong_password"}), translate({id: "wrong_password_text"}))
                 return
               }
             }
@@ -117,7 +112,7 @@ function useCrypting() {
             // Checks if the file is of correct size
             if(((await (await (await navigator.storage.getDirectory()).getFileHandle(fileStore)).getFile()).size!==fileSize + (encrypting ? totalChunks*16 : -totalChunks*16))){
               reset()
-              makeModal("something went wrong and file is wrong size", "")
+              makeModal(translate({id: "wrong_filesize"}), "")
             } else {
               setProgress(100)
               if (workerRef.current !== undefined)

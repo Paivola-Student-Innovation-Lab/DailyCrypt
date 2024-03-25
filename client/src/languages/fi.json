@@ -90,5 +90,18 @@
 
     "time_remaining_s": "{seconds, plural, one {# sekunti} other {# sekuntia}} jäljellä",
     "time_remaining_sm": "{minutes, plural, one {# minuutti} other {# minuuttia}} ja {seconds, plural, one {# sekunti} other {# sekuntia}} jäljellä",
-    "time_remaining_smh": "{hours, plural, one {# tunti} other {# tuntia}}, {minutes, plural, one {# minuutti} other {# minuuttia}} ja {seconds, plural, one {# sekunti} other {# sekuntia}} jäljellä"
+    "time_remaining_smh": "{hours, plural, one {# tunti} other {# tuntia}}, {minutes, plural, one {# minuutti} other {# minuuttia}} ja {seconds, plural, one {# sekunti} other {# sekuntia}} jäljellä",
+
+    "store_failed": "Tiedoston tallentamisessa tapahtui virhe",
+    "store_failed_text": "Info sivulta löytyy lisää tietoa tiedostojen tallennuksesta.",
+    "decrypt_multple": "Et voi purkaa usean tiedoston salausta kerrallaan.",
+    "decrypt_multple_text": "Pura tiedostot yksi kerrallaan.",
+    "storage_not_found": "Tallennustiedostoa ei löytynyt",
+    "storage_not_found_text": "Tallennustiedostoa ei löytynyt. Tämän voi aiheuttaa se, että toinen välilehti on poistanut OPFS tiedostot. Käynnistä sivu uudelleen.",
+    "write_error": "Jokin meni pieleen tiedoston kirjoittamisessa",
+    "wrong_filesize": "Jokin meni pieleen ja tiedoston koko on väärä",
+    "another_tab": "Toinen välilehti auki",
+    "another_tab_text": "Sinulla on DailyCrypt auki toisessa välilehdessä. Voit joko poistaa toisten välilehtien tiedostot, tai luoda uuden tiedoston tätä välilehteä varten. Toisten välilehtien tiedostojen poistaminen saattaa aiheuttaa ongelmia.",
+    "remove_tab": "Poista",
+    "create_tab": "Luo"
 }
