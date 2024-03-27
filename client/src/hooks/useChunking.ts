@@ -1,6 +1,6 @@
 import { useRef } from "react";
 //combine two arrays by making a new array and putting their containts in there.
-const combineUint8Arrays = (array1: Uint8Array, array2: Uint8Array) => {
+export const combineUint8Arrays = (array1: Uint8Array, array2: Uint8Array) => {
     const newArray = new Uint8Array(array1.length + array2.length)
     newArray.set(array1)
     newArray.set(array2, array1.length)
