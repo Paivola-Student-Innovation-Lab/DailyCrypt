@@ -1,7 +1,6 @@
 //hooks
 import {useEffect} from "react";
 import useChecks from "./useChecks";
-import useCrypting from "./useCrypting";
 import useOnPageLoad from "./useOnPageLoad";
 import usefunctionalityState from "./useFunctionalityState";
 import createZipEntries from "../utils/createZipEntry";

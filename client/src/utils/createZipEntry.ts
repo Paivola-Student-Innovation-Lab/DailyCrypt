@@ -1,4 +1,4 @@
-import { chunkFile } from "../hooks/useChunking";
+import { chunkFile } from "./Chunking";
 import {crc32} from "crc"
 
 //original source https://gist.github.com/rvaiya/4a2192df729056880a027789ae3cd4b7

@@ -1,7 +1,6 @@
 import init from "rustend";
-import { encrypt, decrypt } from "rustend";
-import { chunkFile, combineUint8Arrays } from "../hooks/useChunking";
-import { fabClasses } from "@mui/material";
+import { encrypt, decrypt, get_cipher_key, get_nonce } from "rustend";
+import { chunkFile, combineUint8Arrays } from "./Chunking";
 
 init()
 let paused = false
@@ -59,23 +58,27 @@ onmessage = async(message) => {
             }
             return(byteArray)
         }
+        //Generate nonce and key
+        const nonce = get_nonce(password)
+        const key = get_cipher_key(password)
+        
         //Crypt a chunk
        const cryptChunk = async () => {
         if(id <= endId){
             const chunk = await createChunk(id, files)
             let cryptedChunk;
             if(encrypting){
-                cryptedChunk = encrypt(chunk, password)
+                cryptedChunk = encrypt(chunk, nonce, key)
             }
             else{
-                cryptedChunk = decrypt(chunk, password)
+                cryptedChunk = decrypt(chunk, nonce, key)
                 }
             postMessage([id, cryptedChunk])
             id += 1
             wait(cryptChunk)
         }
         }
-        
+
         cryptChunk()
     }    
 }
