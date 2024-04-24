@@ -78,6 +78,10 @@
     "empty_password" : "Enter password!",
     "mismatch" : "Passwords don't match!",
     "wrong_password" : "Wrong decrypt password!",
+    "error_unexpected" : "An unexpected error has occurred",
+    "decrypt_multiple": "You can't decrypt multiple files at the same time",
+    "store_failed": "Seems like we can't store the file",
+    "another_tab": "Another tab open",
 
     "empty_file_encrypt" : "You need to select a file before you can encrypt it.",
     "empty_file_decrypt" : "You need to select a file before you can decrypt it.",
@@ -85,6 +89,12 @@
     "empty_password_decrypt" : "You need to enter a decryption password (the same password you used to encrypt the file) to decrypt a file.",
     "mismatch_text" : "The passwords you entered don't match.",
     "wrong_password_text" : "The decrypting password you entered is not the same one that was used for encrypting.",
+    "write_error": "An unexpected error happened while trying to write the data to the file",
+    "wrong_filesize": "Something went wrong and the file is of wrong size",
+    "decrypt_multiple_text": "Please decrypt one file at a time",
+    "store_failed_text": "Check the info page for more information on file storing",
+    "another_tab_text": "Seems like you have Dailycrypt open in another tab. You can choose whether to delete all the files being processed by other tabs or to create a new file for this tab. Removing files may cause issues in other pages.",
+    
 
     "loading_file": "Waiting for file to be loaded...",
 
@@ -92,16 +102,6 @@
     "time_remaining_sm": "{minutes, plural, one {# minute} other {# minutes}} and {seconds, plural, one {# second} other {# seconds}} remaining",
     "time_remaining_smh": "{hours, plural, one {# hour} other {# hours}}, {minutes, plural, one {# minute} other {# minutes}} and {seconds, plural, one {# second} other {# seconds}} remaining",
 
-    "store_failed": "Seems like we can't store the file",
-    "store_failed_text": "Check the info page for more information on file storing",
-    "decrypt_multiple": "You can't decrypt multiple files at the same time",
-    "decrypt_multiple_text": "Please decrypt one file at a time",
-    "storage_not_found": "Storage file not found",
-    "storage_not_found_text": "The storage file could not be found. This may be caused by the OPFS data being deleted by another tab. Reload the page to fix this.",
-    "write_error": "An unexpected error happened while trying to write the data to the file",
-    "wrong_filesize": "Something went wrong and the file is of wrong size",
-    "another_tab": "Another tab open",
-    "another_tab_text": "Seems like you have Dailycrypt open in another tab. You can choose whether to delete all the files being processed by other tabs or to create a new file for this tab. Removing files may cause issues in other pages.",
     "remove_tab": "Remove",
     "create_tab": "Create"
 
