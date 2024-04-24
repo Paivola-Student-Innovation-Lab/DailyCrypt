@@ -26,3 +26,9 @@
     position: relative;
     left:40%
 }
+@media only screen and (max-width:1080px){
+    .modal {
+        top:40%;
+        width: 80%;
+    }
+}

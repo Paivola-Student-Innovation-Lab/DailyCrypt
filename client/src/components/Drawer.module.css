@@ -1,0 +1,13 @@
+.link {
+    color: var(--encryptgreen);
+}
+
+.icon {
+    padding-right: 15px;
+}
+
+.topbox {
+    display: flex;
+    padding: 6vh 5vw;
+    gap: 15%;
+}

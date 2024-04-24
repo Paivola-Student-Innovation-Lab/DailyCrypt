@@ -1,32 +1,38 @@
+import { create } from "zustand"
 
-import { useState } from "react";
-export function useModal() {
-    const [modalOpen, setModalOpen] = useState(false);
-    const [modalTitle, setModalTitle] = useState("");
-    const [modalText, setModalText] = useState("");
-    const [dropHidden, setDropHidden] = useState(false);
-    const [modalButtons, setModalButtons] = useState([[()=>{}, ""]])
-    const [modalOnClose, setModalOnClose] = useState<undefined|(() => void)>()
-    const makeModal = (title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][], OnClose?:()=> void) => {
-        setModalTitle(title)
-        setModalText(text)
-        setModalOpen(true)
-        setModalOnClose(OnClose)
-        if (modalQuestionOptions){
-            setModalButtons(modalQuestionOptions)
-        }
-    }
+interface modalState {
+    modalOpen: boolean
+    modalTitle: string
+    modalText: string
+    modalButtons: [string, ()=>void][]|undefined
+    preventModalClose: boolean
+    makeModal: (title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][], preventModalClose?: boolean) => void
+    closeModal: () => void
 
-    const closeModal = () => {
-        setModalTitle("")
-        setModalText("")
-        setModalButtons([[()=>{}, ""]])
-        setModalOpen(false)
-        setModalOnClose(undefined)
-    }
-
-
-    return { dropHidden, setDropHidden, makeModal, closeModal, modalTitle, modalText, modalOpen, modalButtons, modalOnClose}
 }
 
-export default useModal
+const useModal = create<modalState>()((set) => ({
+    modalOpen: false,
+    modalTitle: "",
+    modalText: "",
+    modalButtons: undefined,
+    preventModalClose: false,
+    
+    //makes a modal
+    makeModal:(title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][], preventModalClose?: boolean) => set({
+        modalOpen: true,
+        modalTitle: title,
+        modalText: text,
+        modalButtons: modalQuestionOptions,
+        preventModalClose: preventModalClose||false,
+    }),
+    //closes the modal
+    closeModal: () => set({
+        modalOpen: false,
+        modalTitle: "",
+        modalText: "",
+        modalButtons: undefined,
+        preventModalClose: false
+    })
+}))
+export default useModal  
