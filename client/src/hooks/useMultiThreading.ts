@@ -27,10 +27,11 @@ const useMultithreading = () => {
             writeWorkerRef.current.postMessage("start")
           }
       }
-    // Stop workers
+
     const handleStop = () => {
+        //clear worker memory
         for(const worker of workersRef.current){
-            worker.postMessage("stop")
+            worker.postMessage("clear")
         }
     }
     // Recieve pause and stop eventbus
@@ -134,7 +135,7 @@ const useMultithreading = () => {
                 }
             }
             //Unpause workers
-            else if(workersPaused){
+            if(workersPaused && writeWorkerQueRef.current.length <= 10){
                 workersPaused = false
                 for(const worker of workersRef.current){
                     worker.postMessage("unpause")
@@ -172,7 +173,7 @@ const useMultithreading = () => {
             const end = previousEnd + chunksPerWorker + ((leftoverChunks>0)? 1 : 0)
             leftoverChunks -= ((leftoverChunks>0)? 1 : 0)
             //Send workers the data needed to start crypting
-            worker.postMessage([files, password, encrypting, previousEnd+1, end, chunkSize])
+            worker.postMessage({files, password, encrypting, startId: (previousEnd+1),endId: end, chunkSize})
             previousEnd = end
         }
     }
