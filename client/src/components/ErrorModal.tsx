@@ -1,7 +1,7 @@
-import { Box, Modal, Typography } from "@mui/material";
+import { Box, Button, Modal, Typography } from "@mui/material";
 import modalStyles from "./Errormodal.module.css"
 import useModal from "../hooks/useModal";
-import { useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 
 const ErrorModal = () => {
@@ -15,7 +15,7 @@ const ErrorModal = () => {
         >
           <Box className={modalStyles.modal}>
             {!state.preventModalClose &&
-              <button className={modalStyles.modalclosebutton} onClick={state.closeModal}>{useIntl().formatMessage({id: 'close'})}</button>
+              <Button className={modalStyles.modalclosebutton} onClick={state.closeModal}><FormattedMessage id="close" /> </Button>
             }
             <Typography id="modal-modal-title" variant="h6" component="h2">
               {state.modalTitle}
