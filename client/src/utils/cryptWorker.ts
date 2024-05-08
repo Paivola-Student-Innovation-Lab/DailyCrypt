@@ -63,8 +63,8 @@ onmessage = async(message) => {
             cryptFiles()
         }
         else if(message.data === "clear"){
-           //when user stops crypting
-           //crypting is paused before stopping
+           //when crypting is stopped
+           paused = true //pause crypting if it isn't paused already
             deletedFileSize = 0
             cryptData = {files: [], encrypting: true, startId: 0, endId: -1, chunkSize: 0, nonce: new Uint8Array, key: new Uint8Array}
         }
