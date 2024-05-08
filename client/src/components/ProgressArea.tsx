@@ -22,7 +22,7 @@ import downloadfile from "../utils/downloadfile";
 import useModal from "../hooks/useModal";
 import { FormattedMessage} from "react-intl";
 
-function ProgressArea () {
+export function ProgressArea () {
     //hook defenitions
     const{makeModal, closeModal} = useModal((state) => ({makeModal: state.makeModal, closeModal: state.closeModal}))
     const{progress, encrypting, fileName, paused, filestore, setPaused, reset} = usefunctionalityState((state) => ({progress: state.progress, encrypting: state.encrypting, fileName: state.filename, paused: state.paused,filestore: state.filestore, setPaused: state.pause,reset: state.reset}))
@@ -83,4 +83,52 @@ function ProgressArea () {
     )
     
 }
-export default ProgressArea
+
+export function HeaderProgressBar () {
+    //hook defenitions
+    const{makeModal, closeModal} = useModal((state) => ({makeModal: state.makeModal, closeModal: state.closeModal}))
+    const{progress, encrypting, fileName, paused, filestore, setPaused, reset} = usefunctionalityState((state) => ({progress: state.progress, encrypting: state.encrypting, fileName: state.filename, paused: state.paused,filestore: state.filestore, setPaused: state.pause,reset: state.reset}))
+    const {handleTime, adjustStartTime, resetTime} = useTime(progress)
+
+    //calculate time to show user from progress
+    const timeLeft = useMemo(handleTime, [progress])
+    
+    
+    const handleDownload = () => {downloadfile(fileName, encrypting, filestore)}//download the crypted file
+    const handleRestart = () => {resetTime(); reset()}//reset the page
+
+    //pause crypting
+    const handlePause = () => {
+        setPaused(!paused)
+        adjustStartTime()
+        eventBus.dispatch("pause", null)
+    }
+    //confirm stopping and stop crypting
+    const handleStop = () => {
+        if(!paused){
+            handlePause()
+        }
+        makeModal("Are you sure you want to cancel?", "This will stop the encryption/decryption process and delete the file.", 
+            [["Yes", () => {closeModal(); setTimeout(reset, 1000)}], ["No", () => {handlePause(); closeModal()}]])
+    }
+    
+    return(
+        <>
+        {progress < 100 &&
+            <div className={progressareastyles.headerprogressbar}>
+            <LinearProgressWithLabel value={progress*100} textColor="white"/>
+            <Box className={progressareastyles.progressbuttons}>
+            <Button className={progressareastyles.headerbutton} id="pauseButton" onClick={handlePause} >{paused ? <PlayCircleIcon /> : <PauseCircleIcon />} </Button>
+            <Button className={progressareastyles.headerbutton} id="cancelButton" onClick={handleStop} ><CancelIcon /></Button>
+            </Box>
+        </div>
+        }
+        {progress >= 100 &&
+            <Alert severity="success">
+                <FormattedMessage id="success" values={{file_name: <b>{fileName}</b>, encrypted: encrypting}} /> 
+                </Alert>
+        }
+    </> 
+    )
+
+}

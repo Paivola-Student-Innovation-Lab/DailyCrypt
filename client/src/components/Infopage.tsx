@@ -16,7 +16,7 @@ export default function Info(props: any) {
     return (
         <div>
             <Header2 setLanguage={props.setLanguage} />
-            <Grid container spacing={2} className={styles.page}>
+            <div className={styles.page}>
                 <Grid md={6} xs={6} item className={styles.grid}>
                     <Card className={styles.card} >
                         <CardContent>
@@ -67,7 +67,7 @@ export default function Info(props: any) {
                         </CardActions>
                     </Card>
                 </Grid>
-            </Grid>
+            </div>
         </div>
     );
 };

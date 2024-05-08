@@ -3,7 +3,7 @@ import { Alert, Button, TextField, Typography, Box, AlertTitle} from "@mui/mater
 import { Link } from "react-router-dom";
 import Dropzone from "./components/Dropzone";
 import {Header2} from "./components/Header";
-import ProgressArea from './components/ProgressArea';
+import { ProgressArea } from './components/ProgressArea';
 
 // Styles
 import styles from "./App.module.css";
