@@ -19,6 +19,7 @@ WORKDIR /app/client
 COPY --from=0 /app/rustend/pkg/ ../rustend/pkg/
 
 COPY client/package.json .
+COPY client/package-lock.json .
 
 RUN npm install
 
