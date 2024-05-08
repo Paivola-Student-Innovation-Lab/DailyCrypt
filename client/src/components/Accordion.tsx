@@ -7,7 +7,67 @@ import styles from './Accordion.module.css';
 import { Typography } from '@mui/material';
 import { useIntl } from 'react-intl';
 
-
+function FrontPageAccordion() {
+  const translate = useIntl().formatMessage;
+  return (
+    <div className={styles.dailycryptaccordion} >
+    <Accordion>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1-content"
+        id="panel1-header"
+        sx={{
+          color:"var(--encryptgreen)",
+          backgroundColor: "var(--accordiongreen)",
+        }}
+      >
+        <span className={styles.title}>
+          {translate({id: 'dailycryptguide'})}
+        </span>
+      </AccordionSummary>
+      <AccordionDetails className={styles.details}>
+        <DailyCryptTabpanel />
+      </AccordionDetails>
+    </Accordion>
+    <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+          sx={{
+            color: "var(--encryptgreen)",
+            backgroundColor: "var(--accordiongreen)",
+          }}
+        >
+            <span className={styles.title}>
+                {translate({id: 'archiving'})}
+            </span>
+        </AccordionSummary>
+        <AccordionDetails className={styles.details}>
+          <ArchivingTabpanel />
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+          sx={{
+            color: "var(--encryptgreen)",
+            backgroundColor: "var(--accordiongreen)",
+          }}
+        >
+            <span className={styles.title}>
+                {translate({id: 'extracting'})}
+            </span>
+        </AccordionSummary>
+        <AccordionDetails className={styles.details} >
+          <ExtractingTabpanel />
+        </AccordionDetails>
+      </Accordion>
+  </div>
+  )
+}
 
 function DailyCryptAccordion() {
   const translate = useIntl().formatMessage;
@@ -80,5 +140,5 @@ function ArchiveExtractAccordion() {
 }
 
 export {
-  ArchiveExtractAccordion, DailyCryptAccordion
+  ArchiveExtractAccordion, DailyCryptAccordion, FrontPageAccordion
 }

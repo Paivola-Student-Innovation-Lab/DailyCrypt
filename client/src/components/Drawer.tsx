@@ -11,9 +11,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
 import styles from './Drawer.module.css';
-import { Divider } from '@mui/material';
 
-export default function TemporaryDrawer() {
+export default function SideMenu() {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
