@@ -1,5 +1,13 @@
 .link {
     color: var(--encryptgreen);
+    text-decoration: none;
+}
+
+.drawerbox {
+    width: 275px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .icon {
@@ -10,4 +18,16 @@
     display: flex;
     padding: 6vh 5vw;
     gap: 15%;
+}
+
+.psilLink {
+    display: flex;
+    align-self: flex-start;
+    margin-top: auto;
+    width: 50%;
+
+}
+
+.psilImage {
+    width: 100%;
 }
