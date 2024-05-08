@@ -47,7 +47,7 @@ function ProgressArea () {
             handlePause()
         }
         makeModal("Are you sure you want to cancel?", "This will stop the encryption/decryption process and delete the file.", 
-            [["Yes", () => {closeModal(); setTimeout(reset, 1000)}], ["No", () => {handlePause(); closeModal()}]])
+            [["Yes", () => {closeModal(); setTimeout(reset, 1000)}], ["No", () => {handlePause(); closeModal()}]], true)
     }
     
     return(
