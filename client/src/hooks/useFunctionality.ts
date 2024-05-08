@@ -1,17 +1,17 @@
 //hooks
 import {useEffect} from "react";
 import useChecks from "./useChecks";
-import useCrypting from "./useCrypting";
 import useOnPageLoad from "./useOnPageLoad";
 import usefunctionalityState from "./useFunctionalityState";
 import createZipEntries from "../utils/createZipEntry";
+import useMultithreading from "./useMultiThreading";
 
 function useFunctionality() {
     //hook defenitions
     const{setUiState, reset} = usefunctionalityState((state)=>({setUiState: state.setUiState,reset: state.reset}))
     const {handleChecks} = useChecks()
     const {handleLoad} = useOnPageLoad()
-    const {crypt} = useCrypting()
+    const cryptFiles = useMultithreading()
     
     //start encrypting/decrypting the file
     const handleCrypting = async(files: File[], password: string, passwordMismatch: boolean, encrypting: boolean)=> {
@@ -19,10 +19,9 @@ function useFunctionality() {
         const multipleFiles = files.length>1
         setUiState(encrypting, multipleFiles? "files.zip" : files[0].name)
         await new Promise( res => setTimeout(res, 1) ); // Wait 1ms for the loading bar to load
-        
         //initialize crypting
         //if there are multiple files, generate an array wich will combine as a zip file
-        await crypt(multipleFiles? await createZipEntries(files) : files, encrypting, password, multipleFiles);
+        await cryptFiles(multipleFiles? await createZipEntries(files) : files, password, encrypting)
       }
     }
 
