@@ -1,18 +1,18 @@
 {
     "languagekey" : "en",
     "languagename" : "English",
-    "languagedirection" : "ltr",
+    "languageDirection" : "ltr",
 
     "encrypt_button" : "Encrypt",
     "decrypt_button" : "Decrypt",
-    "download_encrypted" : "Download encrypted file",
-    "download_decrypted" : "Download decrypted file",
+    "download_button" : "Download {encrypted, select, true {encrypted} other {decrypted}} file",
     "restart_button" : "Restart",
 
-    "encrypting" : "Encrypting {file_name}",
-    "decrypting" : "Decrypting {file_name}",
-    "success_encrypt" : "{file_name} has successfully been encrypted!",
-    "success_decrypt" : "{file_name} has successfully been decrypted!",
+    "crypting" : "{encrypting, select, true {Encrypting} other {Decrypting}} {file_name}...",
+    "pause_button" : "Pause",
+    "unpause_button" : "Continue",
+    "cancel_button" : "Cancel",
+    "success" : "{file_name} has successfully been {encrypted, select, true {encrypted} other {decrypted}}!",
 
     "dropbox_text1" : "Click to select file or drag here",
     "dropbox_text2" : "Click to select a different file or drag here",
@@ -27,19 +27,22 @@
     "infopage_title2" : "How to archive and extract files?",
     "infopage_title3" : "Supported browser versions",
 
-    "info_1" : "Developed by {PSIL}" ,
+    "info_1" : "Developed by {PSIL}." ,
     "info_2" : "DailyCrypt is a simple website for encryption. Our goal is to make encryption accessible for everyone.",
     "info_3" : "DailyCrypt is made without backend to ensure safety. Our code is open-source, making it available for everyone.",
+
     "dailycryptguide" : "How to use DailyCrypt?",
     "encrypt_title" : "Encrypting",
     "decrypt_title" : "Decrypting",
-    "howtouse_1e" : "1. You need to archive your files first. Check guide for archiving under 'How to archive files?'",
-    "howtouse_2e" : "2. In the front page, click the dropzone and select the archived folder you want to compress.",
+    
+    "howtouse_1e" : "1. If you have two or more files, you need to archive your files first. Check guide for archiving under 'How to archive files?'",
+    "howtouse_2e" : "2. In the front page, click the dropzone and select the archived folder you want to encrypt.",
     "howtouse_3e" : "3. Create a password and confirm it in the second field.",
     "howtouse_4e" : "4. Click 'Encrypt'.",
     "howtouse_5e" : "5. If you want to stop the encryption process, click 'Pause'. If you want to end the whole encryption process, click 'Cancel'.",
     "howtouse_6e" : "6. When the encryption process is ready, you can download the encrypted file by clicking 'Download encrypted file'.",
     "howtouse_7e" : "7. If you want to encrypt more files, click 'Restart'.",
+    
     "howtouse_1d" : "1. To decrypt your files, you need to choose already encrypted file. The file will have 'encrypted-' in front of the file name. Click the dropzone and choose the encrypted file you want to decrypt. Use the same password you created when encrypting the file.",
     "howtouse_2d" : "2. Click 'Decrypt'.",
     "howtouse_3d" : "3. When the decryption process is ready, click 'Download decrypted file'.",
@@ -47,7 +50,7 @@
 
     "browser_info1" : "in progress",
 
-    "zip_info_1" : "You need to archive your files before encryption. Choose the guide that you want to see and then choose your operating system.",
+    "zip_info_1" : "You need to archive your files if you have more than one file before encryption. Choose the guide that you want to see and then choose your operating system.",
 
     "archiving" : "How to archive files?",
     "ubuntu_instruction_1" : "1. Select the files you want to encrypt.",
@@ -85,20 +88,10 @@
     "mismatch_text" : "The passwords you entered don't match.",
     "wrong_password_text" : "The decrypting password you entered is not the same one that was used for encrypting.",
 
-    "time_plural": {
-        "hour": {
-            "one": "{count} hour",
-            "other": "{count} hours"
-        },
-        "minute": {
-            "one": "{count} minute",
-            "other": "{count} minutes"
-        },
-        "second": {
-            "one": "{count} second",
-            "other": "{count} seconds"
-        }
-    },
-    "time_remaining": "{hours}, {minutes} and {seconds} remaining | {minutes} and {seconds} remaining | {seconds} remaining"
-}
+    "loading_file": "Waiting for file to be loaded...",
 
+    "time_remaining_s": "{seconds, plural, one {# second} other {# seconds}} remaining",
+    "time_remaining_sm": "{minutes, plural, one {# minute} other {# minutes}} and {seconds, plural, one {# second} other {# seconds}} remaining",
+    "time_remaining_smh": "{hours, plural, one {# hour} other {# hours}}, {minutes, plural, one {# minute} other {# minutes}} and {seconds, plural, one {# second} other {# seconds}} remaining"
+    
+}
