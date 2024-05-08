@@ -71,6 +71,7 @@ onmessage = async(message) => {
     }
     else{
         const {files, password, encrypting, startId, endId, chunkSize} = message.data
+        deletedFileSize = 0
         paused = false
 
         //Generate nonce and key
