@@ -1,9 +1,31 @@
-name: Build and Test React
+name: Build and Test
 
 on: [push, pull_request]
 
 jobs:
-  build-and-test:
+  test-crypting:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Check formatting
+        run: |
+          cd rustend
+          cargo fmt -- --check
+
+      - name: Run tests
+        run: |
+          cd rustend
+          cargo test
+
+  build-react:
     runs-on: ubuntu-latest
 
     steps:
