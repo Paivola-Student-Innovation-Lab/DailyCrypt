@@ -7,17 +7,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: "14"
 
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+      - name: Add wasm target
+        run: |
+          rustup target add wasm32-unknown-unknown
+
+      - name: Install wasm-bindgen
+        run: |
+          cargo install wasm-bindgen-cli
+
+      - name: Install wasm-pack
+        run: |
+          cargo install wasm-pack
+
       - name: Build Rustend
         run: |
           cd client
           npm run build:wasm
+
       - name: Install dependencies
         run: |
           cd client
