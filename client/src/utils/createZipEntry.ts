@@ -36,26 +36,27 @@ async function createZipEntries(files: File[]) {
     let offset = 0;
     let cdSz = 0;
     for(const file of files){
-        const fh = new Uint8Array(30+file.name.length);
-        const fname = te.encode((file.webkitRelativePath!=="")? file.webkitRelativePath : file.name);
+        const filePath = (file.webkitRelativePath!=="")? file.webkitRelativePath : (file.path && file.path!=="")? file.path : file.name
+        const fh = new Uint8Array(30+filePath.length);
+        const fname = te.encode(filePath);
         const chksum = await generateCrc32(file);
 
         //create a local file header for the file
         putUint32s(fh, 0, 0x04034b50);
         putUint32s(fh, 14, chksum, file.size, file.size);
-        putUint16s(fh, 26, file.name.length);
+        putUint16s(fh, 26, filePath.length);
 
         fh.set(fname, 30);
 
         extractableFiles.push(fh);
         extractableFiles.push(file);
         //Create CD records pending flush at the end...
-        const fileCdr = new Uint8Array(46+file.name.length);
+        const fileCdr = new Uint8Array(46+filePath.length);
 
         //create a central directory file header for the file
         putUint32s(fileCdr, 0, 0x02014b50);
         putUint32s(fileCdr, 16, chksum, file.size, file.size);
-        putUint16s(fileCdr, 28, file.name.length);
+        putUint16s(fileCdr, 28, filePath.length);
         putUint32s(fileCdr, 42, offset);
 
         fileCdr.set(fname, 46);

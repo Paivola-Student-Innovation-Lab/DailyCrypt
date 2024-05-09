@@ -8,6 +8,7 @@ let deletedFileSize = 0
 let cryptData: {files: File[], encrypting: boolean, startId: number, endId: number, chunkSize: number, nonce: Uint8Array, key: Uint8Array} = {files: [], encrypting: true, startId: 0, endId: -1, chunkSize: 0, nonce: new Uint8Array, key: new Uint8Array}
 
 const createChunk = async(key:number, files: (Blob|Uint8Array)[], chunkSize: number) => {
+    let fileamount = 0
     let dataProcessed = key*chunkSize
     let byteArray: Uint8Array = new Uint8Array([])
     //loop through the files and create a chunk
@@ -19,7 +20,7 @@ const createChunk = async(key:number, files: (Blob|Uint8Array)[], chunkSize: num
         }
         //create a part of the chunk and combine it to the previous parts
         byteArray = combineUint8Arrays(byteArray, await chunkFile(Math.max(dataProcessed-deletedFileSize, 0), chunkSize-byteArray.length, file))
-        
+
         //return chunk if it is the final size
         if (byteArray.length === chunkSize){
             break
@@ -28,10 +29,10 @@ const createChunk = async(key:number, files: (Blob|Uint8Array)[], chunkSize: num
         else{
             deletedFileSize += (ArrayBuffer.isView(file)?file.length : file.size)  //value used to calculate the correct start point for a chunk
             files.shift()
-            
+            fileamount +=1
         }
     }
-    return(byteArray)
+    return([byteArray, fileamount])
 }
 const cryptFiles = async () => {
     const {files, encrypting, startId, endId, chunkSize, nonce, key} = cryptData
@@ -39,9 +40,13 @@ const cryptFiles = async () => {
         if(paused){
             //store data to continue crypting in the future
             cryptData.startId = id
+            cryptData.files = files
+            console.log(files.length)
             break
         }
-        const chunk = await createChunk(id, files, chunkSize)
+        const startTime = performance.now()
+        const [chunk, fileamount]= await createChunk(id, files, chunkSize)
+        console.log(performance.now()-startTime, fileamount)
         let cryptedChunk;
         if(encrypting){
             cryptedChunk = encrypt(chunk, nonce, key)

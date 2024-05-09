@@ -14,8 +14,8 @@
     "cancel_button" : "Cancel",
     "success" : "{file_name} has successfully been {encrypted, select, true {encrypted} other {decrypted}}!",
 
-    "dropbox_text1" : "Click to select file or drag here",
-    "dropbox_text2" : "Click to select a different file or drag here",
+    "dropbox_text1" : "Click to select a {directory, select, true {folder} other {file}} or drag here",
+    "dropbox_text2" : "Click to select a different {directory, select, true {folder} other {file}} or drag here",
     "dropbox_text3" : "Selected file: {file_name} ({file_size})",
 
     "password_field" : "Password",
@@ -82,6 +82,7 @@
     "empty_password" : "Enter password!",
     "mismatch" : "Passwords don't match!",
     "wrong_password" : "Wrong decrypt password!",
+    "no_path": "no file path found",
 
     "empty_file_encrypt" : "You need to select a file before you can encrypt it.",
     "empty_file_decrypt" : "You need to select a file before you can decrypt it.",
@@ -89,6 +90,7 @@
     "empty_password_decrypt" : "You need to enter a decryption password (the same password you used to encrypt the file) to decrypt a file.",
     "mismatch_text" : "The passwords you entered don't match.",
     "wrong_password_text" : "The decrypting password you entered is not the same one that was used for encrypting.",
+    "no_directory_structure": "File input did not give file paths, so DailyCrypt cannot recreate your folder structure. If you used drag and drop, try using the regular input",
 
     "loading_file": "Waiting for file to be loaded...",
 

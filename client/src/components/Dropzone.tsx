@@ -10,6 +10,7 @@ import { FormattedMessage } from "react-intl";
 interface Props {
   updateFiles: (files: File[]) => void;
   isFiles: File;
+  isDirectoryInput: boolean;
 }
 
 const Dropzone = (props: Props) => {
@@ -37,12 +38,13 @@ const Dropzone = (props: Props) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: handleDrop,
-    multiple: false,
+    multiple: true,
+    useFsAccessApi: false,
   } as DropzoneOptions);
 
   return (
-    <div {...getRootProps()} className={styles.dropzone}>
-      <input {...getInputProps()} />
+    <div {...getRootProps({type:"file", directory:"true", webkitdirectory:"true"})} className={styles.dropzone}>
+      <input {...getInputProps(props.isDirectoryInput?{type:"file", directory: "true", webkitdirectory: "true"} : {})} />
       {props.isFiles ? (
         <Typography color="text.secondary">
           <FormattedMessage 
@@ -55,12 +57,12 @@ const Dropzone = (props: Props) => {
             }
           />
           <br></br>
-          <FormattedMessage id="dropbox_text2" />
+          <FormattedMessage id="dropbox_text2" values={{directory: props.isDirectoryInput}}/>
         </Typography>
       ) : (
         <>
           <Typography color="text.secondary">
-          <FormattedMessage id="dropbox_text1" />
+          <FormattedMessage id="dropbox_text1" values={{directory: props.isDirectoryInput}}/>
           </Typography>
           <FileUploadRounded />
         </>

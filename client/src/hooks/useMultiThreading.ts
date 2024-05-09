@@ -129,6 +129,7 @@ const useMultithreading = () => {
             }
             //Pause workers to stop overflow
             if(writeWorkerQueRef.current.length > 10 && !workersPaused){
+                console.log("pausing")
                 workersPaused = true
                 for(const worker of workersRef.current){
                     worker.postMessage("pause")

@@ -22,17 +22,17 @@
   height: 40vh;
 }
 
-.dropbox {
+.dropzones{
   padding: 2vh 0;
   display: flex;
   flex-direction: row;
-  gap: 5px;
   justify-content: center;
+  gap: 5px; 
 }
-
 .dropzonecoloredborder {
   padding: 2;
   border: 2px dashed var(--encryptgreen);
+
 }
 
 div > .button{

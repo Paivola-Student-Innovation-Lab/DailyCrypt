@@ -14,8 +14,8 @@
     "resume_button" : "Avbryt",
     "success" : "{file_name} {encrypted, select, true {krypterades} other {dekrypterades}} framgångsrikt!",
 
-    "dropbox_text1" : "Klicka här för att välja en fil, eller dra en fil hit",
-    "dropbox_text2" : "Klicka här för att välja en annan fil, eller dra en annan fil hit",
+    "dropbox_text1" : "Klicka här för att välja en {directory, select, true {mapp} other {fil}}, eller dra en {directory, select, true {mapp} other {fil}} hit",
+    "dropbox_text2" : "Klicka här för att välja en annan {directory, select, true {mapp} other {fil}}, eller dra en annan {directory, select, true {mapp} other {fil}} hit",
     "dropbox_text3" : "Vald fil: {file_name} ({file_size})",
 
     "password_field" : "Lösenord",

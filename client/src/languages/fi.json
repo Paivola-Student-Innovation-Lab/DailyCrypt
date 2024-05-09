@@ -14,8 +14,8 @@
     "cancel_button" : "Peruuta",
     "success" : "{file_name} {encrypted, select, true {salattiin} other {purettiin}} onnistuneesti!",
 
-    "dropbox_text1" : "Klikkaa valitaksesi tiedosto, tai vedä tiedosto tähän",
-    "dropbox_text2" : "Klikkaa valitaksesi eri tiedosto, tai vedä tiedosto tähän",
+    "dropbox_text1" : "Klikkaa valitaksesi {directory, select, true {kansio} other {tiedosto}} , tai vedä {directory, select, true {kansio} other {tiedosto}} tähän",
+    "dropbox_text2" : "Klikkaa valitaksesi eri {directory, select, true {kansio} other {tiedosto}}, tai vedä {directory, select, true {kansio} other {tiedosto}} tähän",
     "dropbox_text3" : "Valittu tiedosto: {file_name} ({file_size})",
 
     "password_field" : "Salasana",

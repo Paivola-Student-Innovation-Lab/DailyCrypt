@@ -13,9 +13,11 @@ import styles from "./App.module.css";
 import {useState} from "react";
 import usefunctionalityState from "./hooks/useFunctionalityState";
 import { FormattedMessage, useIntl } from "react-intl";
+import useModal from "./hooks/useModal";
 
 
 const App = (props: any) => {
+  const makeModal = useModal((state) => state.makeModal)
 
   // Usestates
   const [files, setFiles] = useState<File[]>([]);
@@ -30,6 +32,9 @@ const App = (props: any) => {
 
   //update files on input
   const updateFiles = (newFiles: File[]) => {
+  if (newFiles.length !== 1 && newFiles[0].webkitRelativePath==="" && (!newFiles[0].path || newFiles[0].path==="")) {
+      makeModal(translate({id: "no_path"}), translate({id: "no_directory_structure"}))
+  }
     setFiles(newFiles);
   };
 
@@ -75,24 +80,17 @@ const App = (props: any) => {
         {!(!navigator.storage.getDirectory) &&
         <>
         <div className={styles.leftbox}>
-          <div className={styles.dropbox}>
-
-            <div className={dropHidden ? styles.dropzoneborder : styles.dropzonecoloredborder}>
-              {!dropHidden &&
-                <Dropzone updateFiles={updateFiles} isFiles={files[0]} />
-              }
-              {dropHidden && 
-                <ProgressArea/>
-              }
-            </div>
-            <div className={dropHidden ? styles.dropzoneborder : styles.dropzonecoloredborder}>
-              {!dropHidden &&
-                <Dropzone updateFiles={updateFiles} isFiles={files[0]} />
-              }
-              {dropHidden && 
-                <ProgressArea/>
-              }
-            </div>
+          <div className={dropHidden ? styles.dropzoneborder : styles.dropzones}>
+            {!dropHidden &&
+            <>
+            <div className={styles.dropzonecoloredborder}><Dropzone updateFiles={updateFiles} isFiles={files[0]} isDirectoryInput={false}/></div>
+            <div className={styles.dropzonecoloredborder}><Dropzone updateFiles={updateFiles} isFiles={files[0]} isDirectoryInput={true}/></div>
+              
+            </>
+            }
+            {dropHidden && 
+              <ProgressArea/>
+            }
           </div>
           
           {!dropHidden &&
