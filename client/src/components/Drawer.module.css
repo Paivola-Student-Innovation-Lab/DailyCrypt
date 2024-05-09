@@ -11,3 +11,8 @@
     padding: 6vh 5vw;
     gap: 15%;
 }
+
+div > .drawer {
+   background-color: var(--background-color);
+    color: var(--encryptgreen);  
+}

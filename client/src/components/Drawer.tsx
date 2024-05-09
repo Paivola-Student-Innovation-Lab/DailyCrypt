@@ -66,13 +66,10 @@ export default function SideMenu() {
   return (
     <div>
       <Button onClick={toggleDrawer(true)}>Menu<MenuIcon /></Button>
-      <Drawer open={open} onClose={toggleDrawer(false)} 
-        PaperProps={{
-          sx: {
-            backgroundColor: 'var(--background-color)',
-            color: 'var(--encryptgreen)',
-          }
-        }}
+      <Drawer 
+        open={open} 
+        onClose={toggleDrawer(false)} 
+        classes={{ paper: styles.drawer }}
       >
         {DrawerList}
       </Drawer>
