@@ -45,11 +45,17 @@ jobs:
     
       - name: Install wasm-bindgen
         run: |
-          cargo install wasm-bindgen-cli || echo "wasm-bindgen-cli is already installed"
+          if ! command -v wasm-bindgen &> /dev/null
+          then
+              cargo install wasm-bindgen-cli
+          fi
     
       - name: Install wasm-pack
         run: |
-          cargo install wasm-pack || echo "wasm-pack is already installed"
+          if ! command -v wasm-pack &> /dev/null
+          then
+              cargo install wasm-pack
+          fi
 
       - name: Build Rustend
         run: |
