@@ -20,13 +20,14 @@ import eventBus from "../utils/EventBus";
 import usefunctionalityState from "../hooks/useFunctionalityState";
 import downloadfile from "../utils/downloadfile";
 import useModal from "../hooks/useModal";
-import { FormattedMessage} from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 
 function ProgressArea () {
     //hook defenitions
     const{makeModal, closeModal} = useModal((state) => ({makeModal: state.makeModal, closeModal: state.closeModal}))
     const{progress, encrypting, fileName, paused, filestore, setPaused, reset} = usefunctionalityState((state) => ({progress: state.progress, encrypting: state.encrypting, fileName: state.filename, paused: state.paused,filestore: state.filestore, setPaused: state.pause,reset: state.reset}))
     const {handleTime, adjustStartTime, resetTime} = useTime(progress)
+    const translate = useIntl().formatMessage
 
     //calculate time to show user from progress
     const timeLeft = useMemo(handleTime, [progress])
@@ -50,7 +51,7 @@ function ProgressArea () {
         if(!paused){
             handlePause()
         }
-        makeModal("Are you sure you want to cancel?", "This will stop the encryption/decryption process and delete the file.", 
+        makeModal(translate({id: 'confirm_cancel'}), translate({id: 'confirm_cancel_text'}, {encrypting: encrypting}),
             [["Yes", () => {closeModal(); resetTime(); eventBus.dispatch("stop", null); setTimeout(reset, 1000)}], ["No", () => {closeModal(); handlePause()}]], true)
     }
     

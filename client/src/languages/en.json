@@ -12,6 +12,8 @@
     "pause_button" : "Pause",
     "unpause_button" : "Continue",
     "cancel_button" : "Cancel",
+    "confirm_cancel": "Are you sure you want to cancel?",
+    "confirm_cancel_text": "This will stop the {encrypting, select, true {encryption} other {decryption}} process and delete the file.",
     "success" : "{file_name} has successfully been {encrypted, select, true {encrypted} other {decrypted}}!",
 
     "dropbox_text1" : "Click to select file or drag here",
@@ -21,7 +23,7 @@
     "password_field" : "Password",
     "confirmpassword_field" : "Confirm password",
 
-    "frontpage_text1" : "If you're not familiar with DailyCrypt or encrypting, you can check some guides here:",
+    "frontpage_text1" : "If you're not familiar with DailyCrypt or encrypting, you can check out some guides here:",
 
     "infopage_title1" : "What is DailyCrypt?",
     "infopage_title2" : "How to archive and extract files?",
@@ -31,7 +33,7 @@
     "info_2" : "DailyCrypt is a simple website for encryption. Our goal is to make encryption accessible for everyone.",
     "info_3" : "DailyCrypt is made without backend to ensure safety. Our code is open-source, making it available for everyone.",
 
-    "dailycryptguide" : "How to use DailyCrypt?",
+    "DailyCryptguide" : "How to use DailyCrypt?",
     "encrypt_title" : "Encrypting",
     "decrypt_title" : "Decrypting",
     
@@ -97,8 +99,7 @@
     "wrong_filesize": "Something went wrong and the file is of wrong size",
     "decrypt_multiple_text": "Please decrypt one file at a time",
     "store_failed_text": "Check the info page for more information on file storing",
-    "another_tab_text": "Seems like you have Dailycrypt open in another tab. You can choose whether to delete all the files being processed by other tabs or to create a new file for this tab. Removing files may cause issues in other pages.",
-    
+    "another_tab_text": "Seems like you have DailyCrypt open in another tab. You can choose whether to delete all the files being processed by other tabs or to create a new file for this tab. Removing files may cause issues in other pages.",
 
     "loading_file": "Waiting for file to be loaded...",
 
