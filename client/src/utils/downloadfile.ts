@@ -4,8 +4,9 @@ const downloadfile = async(filename: string, encrypting: boolean, fileStore:stri
     if (!encrypting) {
       filename = filename.replace("encrypted-", "")
     }
-    filename = (encrypting ? "encrypted-" : "")  + filename
-
+    else{
+      filename = ("encrypted-")  + filename
+    }
     //get file from opfs and download it
     const opfsRoot = await navigator.storage.getDirectory();
     const fileHandle = await opfsRoot.getFileHandle(fileStore);

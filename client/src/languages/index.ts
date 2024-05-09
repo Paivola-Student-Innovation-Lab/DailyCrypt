@@ -8,10 +8,11 @@ interface LanguageData {
   [key : string]: string;
 }
 
-const languageContext = require.context('./', false, /\.json$/);
 
-export const dictionaryList: Record<string, LanguageData> = languageContext.keys().reduce((acc: any, key: any) => {
+const languageContext = import.meta.glob('./*.json', {eager: true});
+
+export const dictionaryList: Record<string, LanguageData> = Object.keys(languageContext).reduce((acc: any, key: any) => {
   const languageKey = key.replace('./', '').replace('.json', '');
-  acc[languageKey] = languageContext(key);
+  acc[languageKey] = languageContext[key];
   return acc;
 }, {});

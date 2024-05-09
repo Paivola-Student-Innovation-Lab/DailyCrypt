@@ -6,13 +6,11 @@
   "keywords": [],
   "author": "Sakari Marttinen <sakari.marttinen@psil.fi>",
   "scripts": {
-    "start": "react-scripts start",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build:react": "react-scripts build",
+    "build:react": "vite build",
     "build:wasm": "cd ../rustend && wasm-pack build --target web --out-dir pkg",
     "build": "npm run build:wasm && npm run build:react",
-    "dev": "npm run build && npm start"
+    "dev": "npm run build:wasm && vite",
+    "serve": "vite preview"
   },
   "license": "GPL",
   "dependencies": {
@@ -26,25 +24,25 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/js-cookie": "^3.0.5",
-    "@types/jszip": "^3.4.1",
     "@types/node": "^20.1.0",
     "@types/react-dom": "^18.0.10",
     "@types/wicg-file-system-access": "2023.10.2",
-    "archiver": "^5.3.1",
+    "@vitejs/plugin-react": "^4.2.1",
     "file-saver": "^2.0.5",
     "js-cookie": "^3.0.5",
-    "jszip": "^3.10.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-dropzone-uploader": "^2.11.0",
     "react-intl": "^6.6.2",
     "react-router-dom": "^6.15.0",
-    "react-scripts": "5.0.1",
     "rustend": "file:../rustend/pkg",
     "typescript": "^4.9.4",
+    "vite": "^5.1.5",
+    "vite-tsconfig-paths": "^4.3.1",
     "web-vitals": "^2.1.4",
-    "zustand": "4.5.0"
+    "zustand": "4.5.0",
+    "crc": "4.3.2"
     
   },
   "eslintConfig": {
