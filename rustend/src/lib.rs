@@ -49,13 +49,13 @@ pub fn get_nonce(password: &str) -> Vec<u8> {
 mod tests {
     use std::str::from_utf8;
 
-    use crate::crypt::{encrypt_chunk, decrypt_chunk};
+    use crate::{crypt::{decrypt_chunk, encrypt_chunk, generate_nonce}, get_cipher_key};
 
 
-    fn encrypt_decrypt(plaintext: &str, passwd: &str)  {
-        match encrypt_chunk(plaintext.as_bytes().to_vec(), passwd) {
+    fn encrypt_decrypt(plaintext: &str, nonce_vec: Vec<u8>, keybytes: Vec<u8>)  {
+        match encrypt_chunk(plaintext.as_bytes().to_vec(), nonce_vec.clone(), keybytes.clone()) {
             Ok(t) => {
-                match decrypt_chunk(t, passwd) {
+                match decrypt_chunk(t, nonce_vec.clone(), keybytes.clone()) {
                     Ok(m) => {
                         let newplaintext = from_utf8(&m).unwrap();
                         assert_eq!(plaintext, newplaintext);
@@ -71,27 +71,35 @@ mod tests {
     fn random_inputs() {
         let plaintext = "Rust";
         let passwd = "hallo";
-        encrypt_decrypt(plaintext, passwd);
+        let key = get_cipher_key(passwd);
+        let nonce = generate_nonce(passwd).unwrap().to_vec();
+        encrypt_decrypt(plaintext, nonce, key);
     }
 
     #[test]
     fn empty_text() {
         let plaintext = "";
         let passwd = "hallo";
-        encrypt_decrypt(plaintext, passwd);
+        let key = get_cipher_key(passwd);
+        let nonce = generate_nonce(passwd).unwrap().to_vec();
+        encrypt_decrypt(plaintext, nonce, key);
     }
 
     #[test]
     fn empty_passwd() {
         let plaintext = "Rust";
         let passwd = "";
-        encrypt_decrypt(plaintext, passwd);
+        let key = get_cipher_key(passwd);
+        let nonce = generate_nonce(passwd).unwrap().to_vec();
+        encrypt_decrypt(plaintext, nonce, key);
     }
 
     #[test]
     fn empty_inputs() {
         let plaintext = "";
         let passwd = "";
-        encrypt_decrypt(plaintext, passwd);
+        let key = get_cipher_key(passwd);
+        let nonce = generate_nonce(passwd).unwrap().to_vec();
+        encrypt_decrypt(plaintext, nonce, key);
     }
 }
