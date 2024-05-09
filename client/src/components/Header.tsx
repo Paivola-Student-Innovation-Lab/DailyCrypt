@@ -1,5 +1,5 @@
 import styles from "./Header.module.css"
-import TemporaryDrawer from "./Drawer";
+import SideMenu from "./Drawer";
 import { LanguageButton } from "./LanguageButton";
 import { Link } from "react-router-dom";
 
@@ -8,7 +8,7 @@ const Header = (props: any) => {
         <div className={styles.header}>
             <div className={styles.buttons} >
                 <div className={styles.drawer}>
-                    <TemporaryDrawer />
+                    <SideMenu />
                 </div>
                 <Link to="/"><img src="./images/BetterLogo.png" alt="" className={styles.pic} /></Link>
                 <span className={styles.text}>

@@ -13,9 +13,8 @@ import InfoIcon from '@mui/icons-material/Info';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ArrowBackIos from '@mui/icons-material/ArrowBackIos';
 import styles from './Drawer.module.css';
-import { Divider } from '@mui/material';
 
-export default function TemporaryDrawer() {
+export default function SideMenu() {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -92,13 +91,10 @@ export default function TemporaryDrawer() {
   return (
     <div>
       <Button onClick={toggleDrawer(true)}>Menu<MenuIcon /></Button>
-      <Drawer open={open} onClose={toggleDrawer(false)} 
-        PaperProps={{
-          sx: {
-            backgroundColor: 'var(--background-color)',
-            color: 'var(--encryptgreen)',
-          }
-        }}
+      <Drawer 
+        open={open} 
+        onClose={toggleDrawer(false)} 
+        classes={{ paper: styles.drawer }}
       >
         {DrawerList}
       </Drawer>

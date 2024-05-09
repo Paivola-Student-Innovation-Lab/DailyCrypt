@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Dropzone from "./components/Dropzone";
 import {Header} from "./components/Header";
 import ProgressArea from './components/ProgressArea';
+import { FrontPageAccordion } from "./components/Accordion";
 
 // Styles
 import styles from "./App.module.css";
@@ -69,32 +70,35 @@ const App = (props: any) => {
   return (
     <>
       <Header setLanguage={props.setLanguage} />
+      <div className={styles.containers}>
       <div className={styles.container}>
         {!(!navigator.storage.getDirectory) &&
         <>
-        <div className={styles.dropbox}>
+        <div className={styles.leftbox}>
+          <div className={styles.dropbox}>
 
-          <Box className={dropHidden ? styles.dropzoneborder : styles.dropzonecoloredborder}>
-            {!dropHidden &&
-              <Dropzone updateFiles={updateFiles} isFiles={files[0]} />
-            }
-            {dropHidden && 
-              <ProgressArea/>
-            }
-          </Box>
+            <Box className={dropHidden ? styles.dropzoneborder : styles.dropzonecoloredborder}>
+              {!dropHidden &&
+                <Dropzone updateFiles={updateFiles} isFiles={files[0]} />
+              }
+              {dropHidden && 
+                <ProgressArea/>
+              }
+            </Box>
+          </div>
+          {!dropHidden &&
+          <div className={styles.bottomcontainer}>
+          <div className={styles.textfields}>
+            <TextField type="password" label={translate({id: 'password_field'})} value={password} onChange={handlePasswordInput} required />
+            <TextField type="password" className={passwordMismatch ? styles["input-error"] : ""} label={translate({id: 'confirmpassword_field'})} value={confirmPassword} onChange={handleConfirmPasswordInput} required />
+          </div>
+          <div className={styles.buttons}>
+            <Button disabled={dropHidden} className={styles.button} onClick={handleEncrypt} value="encrypt"><FormattedMessage id='encrypt_button' /></Button>
+            <Button disabled={dropHidden} className={styles.button} onClick={handleDecrypt} value="decrypt"><FormattedMessage id='decrypt_button' /></Button>
+          </div> 
+          </div>
+          }
         </div>
-        {!dropHidden &&
-        <div className={styles.bottomcontainer}>
-        <div className={styles.textfields}>
-          <TextField type="password" label={translate({id: 'password_field'})} value={password} onChange={handlePasswordInput} required />
-          <TextField type="password" className={passwordMismatch ? styles["input-error"] : ""} label={translate({id: 'confirmpassword_field'})} value={confirmPassword} onChange={handleConfirmPasswordInput} required />
-        </div>
-        <div className={styles.buttons}>
-          <Button disabled={dropHidden} className={styles.button} onClick={handleEncrypt} value="encrypt"><FormattedMessage id='encrypt_button' /></Button>
-          <Button disabled={dropHidden} className={styles.button} onClick={handleDecrypt} value="decrypt"><FormattedMessage id='decrypt_button' /></Button>
-        </div> 
-        </div>
-        }
         </>}
         {!navigator.storage.getDirectory &&
         <>
@@ -109,7 +113,19 @@ const App = (props: any) => {
         </>
         }
       </div>
-      
+      <div className={styles.rightcontainer}>
+        <span className={styles.infotitle}>
+          <FormattedMessage id="infopage_title1" />
+        </span>
+        <div className={styles.divider} />
+        <div className={styles.text}>
+          <span>
+            <FormattedMessage id="frontpage_text1" />
+          </span>
+        </div>
+        <FrontPageAccordion />
+      </div>
+      </div>
     </>
   );
 };

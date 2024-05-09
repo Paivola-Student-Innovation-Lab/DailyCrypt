@@ -20,6 +20,11 @@
     gap: 15%;
 }
 
+div > .drawer {
+   background-color: var(--background-color);
+    color: var(--encryptgreen);  
+}
+
 .psilLink {
     display: flex;
     align-self: flex-start;

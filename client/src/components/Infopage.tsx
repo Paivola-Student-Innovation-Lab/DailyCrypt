@@ -39,17 +39,6 @@ export default function Info(props: any) {
                             <Link to="https://psil.fi" target="_blank" rel="noreferrer"><img src='./images/psil.svg' className={styles.psil} alt=''/></Link>
                         </CardContent>
                     </Card>
-                    <Card className={styles.card} >
-                        <CardContent>
-                            <Typography className={styles.infotitle} variant="h5">
-                                <FormattedMessage id='infopage_title3' /> <TabIcon />
-                            </Typography>
-                            <div className={styles.divider} />
-                            <Typography className={styles.bodytext} variant="body1" >
-                                <FormattedMessage id='browser_info1' />
-                            </Typography>
-                        </CardContent>
-                    </Card>
                 </Grid>
                 <Grid xs={6} md={6} item className={styles.grid}>
                     <Card className={styles.guide} >
