@@ -33,7 +33,7 @@
     "info_2" : "DailyCrypt is a simple website for encryption. Our goal is to make encryption accessible for everyone.",
     "info_3" : "DailyCrypt is made without backend to ensure safety. Our code is open-source, making it available for everyone.",
 
-    "DailyCryptguide" : "How to use DailyCrypt?",
+    "dailycryptguide" : "How to use DailyCrypt?",
     "encrypt_title" : "Encrypting",
     "decrypt_title" : "Decrypting",
     
@@ -53,6 +53,10 @@
     "browser_info1" : "in progress",
 
     "zip_info_1" : "You need to archive your files if you have more than one file before encryption. Choose the guide that you want to see and then choose your operating system.",
+
+    "ubuntu": "Ubuntu",
+    "windows": "Windows",
+    "mac": "Mac",
 
     "archiving" : "How to archive files?",
     "ubuntu_instruction_1" : "1. Select the files you want to encrypt.",

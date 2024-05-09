@@ -54,6 +54,10 @@
 
     "zip_info_1": "Pakkaa tiedostosi ennen salausta. Valitse ohje, jonka haluat lukea ja valitse sitten laitteesi käyttöjärjestelmä.",
 
+    "ubuntu": "Ubuntu",
+    "windows": "Windows",
+    "mac": "Mac",
+
     "archiving": "Miten tiedosto pakataan?",
     "ubuntu_instruction_1": "1. Valitse tiedostot jotka tahdot salata.",
     "ubuntu_instruction_2": "2. Paina hiiren oikeaa näppäintä ja valitse 'Compress'",
