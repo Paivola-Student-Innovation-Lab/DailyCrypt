@@ -36,7 +36,7 @@ function useOnPageLoad(){
     let filesinstore=false
     if (Object.keys(await navigator.storage.getDirectory()).length>0){
       //if there are files in opfs asks user how to proceed. user can call one of the functions above through this modal
-      makeModal("Another tab open", "Seems like you have Dailycrypt open in another tab. choose wether to delete all files being processed by other tabs or to create a new file for this tab. Removing files may cause errors in other pages", [["Remove", remove], ["Create", createNew]])
+      makeModal("Another tab open", "Seems like you have Dailycrypt open in another tab. choose wether to delete all files being processed by other tabs or to create a new file for this tab. Removing files may cause errors in other pages", [["Remove", remove], ["Create", createNew]], true)
       filesinstore=true
     }
     //if no files were found creates default file

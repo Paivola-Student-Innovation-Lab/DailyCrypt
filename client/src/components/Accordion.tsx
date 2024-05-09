@@ -16,10 +16,7 @@ function FrontPageAccordion() {
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1-content"
         id="panel1-header"
-        sx={{
-          color:"var(--encryptgreen)",
-          backgroundColor: "var(--accordiongreen)",
-        }}
+        className={styles.summary}
       >
         <span className={styles.title}>
           {translate({id: 'dailycryptguide'})}
@@ -34,10 +31,7 @@ function FrontPageAccordion() {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
-          sx={{
-            color: "var(--encryptgreen)",
-            backgroundColor: "var(--accordiongreen)",
-          }}
+          className={styles.summary}
         >
             <span className={styles.title}>
                 {translate({id: 'archiving'})}
@@ -52,10 +46,7 @@ function FrontPageAccordion() {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
-          sx={{
-            color: "var(--encryptgreen)",
-            backgroundColor: "var(--accordiongreen)",
-          }}
+          className={styles.summary}
         >
             <span className={styles.title}>
                 {translate({id: 'extracting'})}
@@ -78,10 +69,7 @@ return  (
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1-content"
         id="panel1-header"
-        sx={{
-          color:"var(--encryptgreen)",
-          backgroundColor: "var(--accordiongreen)",
-        }}
+        className={styles.summary}
       >
         <Typography variant='h6'>
           {translate({id: 'dailycryptguide'})}
@@ -104,10 +92,7 @@ function ArchiveExtractAccordion() {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
-          sx={{
-            color: "var(--encryptgreen)",
-            backgroundColor: "var(--accordiongreen)",
-          }}
+          className={styles.summary}
         >
             <Typography variant='h6'>
                 {translate({id: 'archiving'})}
@@ -122,10 +107,7 @@ function ArchiveExtractAccordion() {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1-content"
           id="panel1-header"
-          sx={{
-            color: "var(--encryptgreen)",
-            backgroundColor: "var(--accordiongreen)",
-          }}
+          className={styles.summary}
         >
             <Typography variant='h6'>
                 {translate({id: 'extracting'})}

@@ -18,3 +18,8 @@
 div > .details {
     padding: 0
 }
+
+div > .summary {
+    color: var(--encryptgreen);
+    background-color: var(--accordiongreen);
+}

@@ -36,7 +36,7 @@ export default function Info(props: any) {
                                     values={{ PSIL: "PSIL" }}
                                 /> 
                             </Typography>
-                            <Link to="https://psil.fi"><img src='./images/psil.svg' className={styles.psil} alt=''/></Link>
+                            <Link to="https://psil.fi" target="_blank" rel="noreferrer"><img src='./images/psil.svg' className={styles.psil} alt=''/></Link>
                         </CardContent>
                     </Card>
                 </Grid>
