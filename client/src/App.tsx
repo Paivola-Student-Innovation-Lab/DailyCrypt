@@ -75,15 +75,24 @@ const App = (props: any) => {
         <div className={styles.leftbox}>
           <div className={styles.dropbox}>
 
-            <Box className={dropHidden ? styles.dropzoneborder : styles.dropzonecoloredborder}>
+            <div className={dropHidden ? styles.dropzoneborder : styles.dropzonecoloredborder}>
               {!dropHidden &&
                 <Dropzone updateFiles={updateFiles} isFiles={files[0]} />
               }
               {dropHidden && 
                 <ProgressArea/>
               }
-            </Box>
+            </div>
+            <div className={dropHidden ? styles.dropzoneborder : styles.dropzonecoloredborder}>
+              {!dropHidden &&
+                <Dropzone updateFiles={updateFiles} isFiles={files[0]} />
+              }
+              {dropHidden && 
+                <ProgressArea/>
+              }
+            </div>
           </div>
+          
           {!dropHidden &&
           <div className={styles.bottomcontainer}>
           <div className={styles.textfields}>

@@ -24,6 +24,10 @@
 
 .dropbox {
   padding: 2vh 0;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  justify-content: center;
 }
 
 .dropzonecoloredborder {
@@ -130,7 +134,7 @@ div > .button:hover{
   .container{
     margin: 5vh 5vw;
     width: 100%;
-    height: 57.5vh;
+    height: 65vh;
   }
   .bottomcontainer{
     flex-direction: column;
