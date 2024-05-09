@@ -1,13 +1,13 @@
-
 use aes_gcm::{
     aead::{
+        consts::{B0, B1},
+        generic_array::GenericArray,
         Aead, KeyInit, Result,
-        consts::{B1, B0}, generic_array::GenericArray
     },
-    Aes256Gcm, Nonce, Key, aes::cipher::typenum::{UInt, UTerm}
+    aes::cipher::typenum::{UInt, UTerm},
+    Aes256Gcm, Key, Nonce,
 };
 use sha256;
-
 
 pub fn create_cipher(bytes: Vec<u8>) -> Result<Aes256Gcm> {
     // Creates a cipher from given key bytes
@@ -16,7 +16,9 @@ pub fn create_cipher(bytes: Vec<u8>) -> Result<Aes256Gcm> {
     Ok(cipher)
 }
 
-pub fn generate_nonce(passwd: &str) -> Result<GenericArray<u8, UInt<UInt<UInt<UInt<UTerm, B1>, B1>, B0>, B0>>> {
+pub fn generate_nonce(
+    passwd: &str,
+) -> Result<GenericArray<u8, UInt<UInt<UInt<UInt<UTerm, B1>, B1>, B0>, B0>>> {
     let sha = sha256::digest(passwd); // Digest password (turn it into 64 hex bytes)
 
     let sliced = &sha[..12]; // Nonce has to be 12 bytes
@@ -28,8 +30,7 @@ pub fn generate_nonce(passwd: &str) -> Result<GenericArray<u8, UInt<UInt<UInt<UI
     Ok(*nonce)
 }
 
-
-pub fn encrypt_chunk(bytearray: Vec<u8>, nonce_vec: Vec<u8>, keybytes: Vec<u8> ) -> Result<Vec<u8>> {
+pub fn encrypt_chunk(bytearray: Vec<u8>, nonce_vec: Vec<u8>, keybytes: Vec<u8>) -> Result<Vec<u8>> {
     let cipher = create_cipher(keybytes)?;
 
     let nonce = GenericArray::from_slice(&nonce_vec);
@@ -39,12 +40,16 @@ pub fn encrypt_chunk(bytearray: Vec<u8>, nonce_vec: Vec<u8>, keybytes: Vec<u8> )
     Ok(encryptedbytearray)
 }
 
-pub fn decrypt_chunk(encryptedbytearray: Vec<u8>, nonce_vec: Vec<u8>, keybytes: Vec<u8>) -> Result<Vec<u8>> {
+pub fn decrypt_chunk(
+    encryptedbytearray: Vec<u8>,
+    nonce_vec: Vec<u8>,
+    keybytes: Vec<u8>,
+) -> Result<Vec<u8>> {
     let cipher = create_cipher(keybytes)?;
 
     let nonce = GenericArray::from_slice(&nonce_vec);
 
     let bytearray = cipher.decrypt(&nonce, encryptedbytearray.as_ref())?;
-    
+
     Ok(bytearray)
 }

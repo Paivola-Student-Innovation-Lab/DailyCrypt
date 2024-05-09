@@ -21,6 +21,8 @@
     "password_field" : "Password",
     "confirmpassword_field" : "Confirm password",
 
+    "frontpage_text1" : "If you're not familiar with DailyCrypt or encrypting, you can check some guides here:",
+
     "infopage_title1" : "What is DailyCrypt?",
     "infopage_title2" : "How to archive and extract files?",
     "infopage_title3" : "Supported browser versions",
@@ -28,7 +30,7 @@
     "info_1" : "Developed by {PSIL}." ,
     "info_2" : "DailyCrypt is a simple website for encryption. Our goal is to make encryption accessible for everyone.",
     "info_3" : "DailyCrypt is made without backend to ensure safety. Our code is open-source, making it available for everyone.",
-    
+
     "dailycryptguide" : "How to use DailyCrypt?",
     "encrypt_title" : "Encrypting",
     "decrypt_title" : "Decrypting",
@@ -73,6 +75,8 @@
     "mac_instruction_3" : "3. The zipped file will appear in the same folder.",
     "mac_instruction_4" : "1. Double-click the file you want to extract.",
     "mac_instruction_5" : "2. Extracted file will appear in the same folder.",
+
+    "close" : "Close",
 
     "empty_file" : "No file selected!",
     "empty_password" : "Enter password!",

@@ -38,7 +38,7 @@ function useOnPageLoad(){
     let filesinstore=false
     if (Object.keys(await navigator.storage.getDirectory()).length>0){
       // If there are files in opfs, ask the user how to proceed. The user can call one of the functions above through this modal
-      makeModal(translate({id: "another_tab"}), translate({id: "another_tab_text"}), [[translate({id: "remove_tab"}), remove], [translate({id: "create_tab"}), createNew]])
+      makeModal(translate({id: "another_tab"}), translate({id: "another_tab_text"}), [[translate({id: "remove_tab"}), remove], [translate({id: "create_tab"}), createNew]], true)
       filesinstore=true
     }
     // If no files were found, create default file

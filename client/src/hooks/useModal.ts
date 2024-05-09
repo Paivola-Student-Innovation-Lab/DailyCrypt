@@ -5,8 +5,10 @@ interface modalState {
     modalTitle: string
     modalText: string
     modalButtons: [string, ()=>void][]|undefined
-    makeModal: (title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][]) => void
+    preventModalClose: boolean
+    makeModal: (title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][], preventModalClose?: boolean) => void
     closeModal: () => void
+
 }
 
 const useModal = create<modalState>()((set) => ({
@@ -14,19 +16,23 @@ const useModal = create<modalState>()((set) => ({
     modalTitle: "",
     modalText: "",
     modalButtons: undefined,
+    preventModalClose: false,
+    
     //makes a modal
-    makeModal:(title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][]) => set({
+    makeModal:(title: string, text: string, modalQuestionOptions?:[buttontext: string, buttonfunc:()=>void][], preventModalClose?: boolean) => set({
         modalOpen: true,
         modalTitle: title,
         modalText: text,
-        modalButtons: modalQuestionOptions
+        modalButtons: modalQuestionOptions,
+        preventModalClose: preventModalClose||false,
     }),
     //closes the modal
     closeModal: () => set({
         modalOpen: false,
         modalTitle: "",
         modalText: "",
-        modalButtons: undefined
+        modalButtons: undefined,
+        preventModalClose: false
     })
 }))
 export default useModal  

@@ -12,13 +12,18 @@ function useTime(progress: number){
     const pausedTimeRef = useRef<undefined|number>() 
     // Handle time data
     const handleTime = () => {
-      const currentTime = performance.now()
-      if(startTimeRef.current===undefined){
-        startTimeRef.current = currentTime
-      }
-      const totalTime = currentTime - startTimeRef.current //calculate how much time has passed since starting crypting
-      const remainingTime = (1/progress-1)*totalTime 
-      return(secondsToHms(remainingTime/1000 + 1))
+      if(progress > 0){
+        const currentTime = performance.now()
+        if(startTimeRef.current===undefined){
+          startTimeRef.current = currentTime
+        }
+        const totalTime = currentTime - startTimeRef.current //calculate how much time has passed since starting crypting
+        const remainingTime = (1/progress-1)*totalTime 
+        return(secondsToHms(remainingTime/1000 + 1))
+    }
+    else{
+      return [NaN, NaN, NaN]
+    }
     }
 
     //adjust startTime based on how long program was paused for

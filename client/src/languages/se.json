@@ -80,6 +80,8 @@
     "mismatch" : "Lösenorden stämmer inte överens!",
     "wrong_password" : "Fel krypteringslösenord!",
 
+    "close" : "Stäng", 
+
     "empty_file_encrypt" : "Du måste välja en fil för att kryptera den.",
     "empty_file_decrypt" : "Du måste välja en fil för att dekryptera den.",
     "empty_password_encrypt" : "Du måste skriva in ett lösenord för kryptering.",
