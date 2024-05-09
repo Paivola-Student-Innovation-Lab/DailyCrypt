@@ -3,7 +3,7 @@ name: Test Rustend Crypting
 on: [push, pull_request]
 
 jobs:
-  test:
+  test-crypting:
 
     runs-on: ubuntu-latest
 
