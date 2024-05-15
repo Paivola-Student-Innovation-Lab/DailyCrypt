@@ -1,9 +1,9 @@
-name: Build and Push Docker Image
+name: Build and Push ARM Docker Image
 
 on:
   push:
     branches:
-      - main
+      - arm-docker
 
 jobs:
   build-and-push:
@@ -23,5 +23,5 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ghcr.io/paivola-student-innovation-lab/dailycrypt:latest . -f x86_64.Dockerfile
-          docker push ghcr.io/paivola-student-innovation-lab/dailycrypt:latest
+          docker build -t ghcr.io/paivola-student-innovation-lab/dailycrypt:arm . -f arm.Dockerfile
+          docker push ghcr.io/paivola-student-innovation-lab/dailycrypt:arm
