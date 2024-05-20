@@ -1,23 +1,25 @@
 import usefunctionalityState from "./useFunctionalityState"
 import useModal from "./useModal"
+import { useIntl } from "react-intl"
 
 function useOnPageLoad(){
   const {makeModal, closeModal} = useModal((state) => ({makeModal: state.makeModal, closeModal: state.closeModal}))
   const setFileStore = usefunctionalityState((state) => state.setFilestore)
+  const translate = useIntl().formatMessage
   const remove = async()=>{
-    //removes all files from opfs
+    // Remove all files from opfs
     for await (const key of (await navigator.storage.getDirectory()).keys()){
       await(await navigator.storage.getDirectory()).removeEntry(key)
     }
-    //creates default file
+    // Create default file
     setFileStore("stored file")
     await(await navigator.storage.getDirectory()).getFileHandle("stored file", {create: true})
 
-    //closes question modal
+    // Close question modal
     closeModal()
   }
   const createNew = async()=>{
-    //adds an increasing number to the end of the default key until key is no longer in array of stored files
+    // Add an increasing number to the end of the default key until the key is no longer in the array of stored files
     let number=0
     let key = "stored file"
     while(Object.keys(await navigator.storage.getDirectory()).includes(key)){
@@ -32,14 +34,14 @@ function useOnPageLoad(){
 
 
   const handleLoad = async() => {
-    //checks if there are any files in opfs
+    // Check if there are any files in opfs
     let filesinstore=false
     if (Object.keys(await navigator.storage.getDirectory()).length>0){
-      //if there are files in opfs asks user how to proceed. user can call one of the functions above through this modal
-      makeModal("Another tab open", "Seems like you have Dailycrypt open in another tab. choose wether to delete all files being processed by other tabs or to create a new file for this tab. Removing files may cause errors in other pages", [["Remove", remove], ["Create", createNew]], true)
+      // If there are files in opfs, ask the user how to proceed. The user can call one of the functions above through this modal
+      makeModal(translate({id: "another_tab"}), translate({id: "another_tab_text"}), [[translate({id: "remove_tab"}), remove], [translate({id: "create_tab"}), createNew]], true)
       filesinstore=true
     }
-    //if no files were found creates default file
+    // If no files were found, create default file
     if(!filesinstore){
       setFileStore("stored file")
       await(await navigator.storage.getDirectory()).getFileHandle("stored file", {create: true})
