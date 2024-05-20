@@ -1,20 +1,20 @@
 import styles from "./Header.module.css"
-import TemporaryDrawer from "./Drawer";
 import { Box } from "@mui/material";
+import SideMenu from "./Drawer";
 import { LanguageButton } from "./LanguageButton";
 import { Link } from "react-router-dom";
 import { HeaderProgressBar } from "./ProgressArea";
 
 import usefunctionalityState from "../hooks/useFunctionalityState";
 
-const Header2 = (props: any) => {
-    const dropHidden = usefunctionalityState((state) => state.drophidden)
 
+const Header = (props: any) => {
+    const dropHidden = usefunctionalityState((state) => state.drophidden)
     return (
         <div className={styles.header}>
             <div className={styles.buttons} >
                 <div className={styles.drawer}>
-                    <TemporaryDrawer />
+                    <SideMenu />
                 </div>
                 <Link to="/"><img src="./images/BetterLogo.png" alt="" className={styles.pic} /></Link>
                 <span className={styles.text}>
@@ -36,4 +36,4 @@ const Header2 = (props: any) => {
     );
 }
 
-export { Header2 }
+export { Header }

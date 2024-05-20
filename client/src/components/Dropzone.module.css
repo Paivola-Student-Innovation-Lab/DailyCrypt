@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  width: 60vw;
+  width: 100%;
   height: 15vh;
 }
 @media only screen and (max-width:1080px){

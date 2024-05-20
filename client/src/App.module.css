@@ -1,21 +1,29 @@
+.containers {
+  display: flex;
+  flex-direction: row;
+}
+
 .container {
   position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10vh 5vw;
+  flex-direction: row;
+  align-items: top;
+  margin: 5vh 1vw 5vh 5vw;
   padding: 5vh 0;
-  border-radius: 2.5vw;
+  border-radius: 1vw;
   background-color: var(--container-color);
+  width: 65%;
+  height: 40vh;
+}
+
+.leftbox {
+  width: 100%;
+  margin: 0 2.5%;
+  height: 40vh;
 }
 
 .dropbox {
   padding: 2vh 0;
-}
-
-.dropzoneborder {
-  padding: 2;
-  border: 2px;
 }
 
 .dropzonecoloredborder {
@@ -23,30 +31,32 @@
   border: 2px dashed var(--encryptgreen);
 }
 
-
 div > .button{
   font-size: var(--buttonfont);
   text-transform: none;
   background-color: var(--encryptgreen);
   color: white;
   border: 5px solid var(--encryptgreen);
+  height: 6vh;
+  width: 100%;
+  font-size: 2.5vh;
 }
-
-
 
 div > .button:hover{
   background-color: var(--decryptgreen);
   border: 5px solid var(--decryptgreen);
 }
-.bottomcontainer{
+
+.bottomcontainer {
   position: relative;
   left: 17%;
   width: 66%;
   display: flex;
   align-self: normal;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
 }
+
 .textfields {
   display: flex;
   flex-direction: column;
@@ -57,9 +67,48 @@ div > .button:hover{
 .buttons {
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
   height: 100%;
   gap: 5px;
+  margin-top: 10px;
+}
+
+.rightcontainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: top;
+  margin: 5vh 5vw 5vh 1vw;
+  padding: 5vh 0;
+  border-radius: 0.5vw;
+  background-color: var(--container-color);
+  width: 25%;
+}
+
+.text {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 5%;
+  margin-top: 2%;
+  color: var(--background-color);
+}
+
+
+.divider {
+  width: 90%;
+  margin: 0 0vw;
+  height: 0.25vh;
+  background-color: var(--encryptgreen);
+  margin-left: 5%;
+}
+
+.infotitle {
+  color: var(--encryptgreen);
+  margin-bottom: 1%;
+  padding-bottom: 2%;
+  margin-left: 5%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
 }
 
 .input-error > *, .input-error > * > * {
@@ -76,16 +125,23 @@ div > .button:hover{
   font-weight: bold;
 }
 
+
 @media only screen and (max-width: 1080px){
   .container{
     margin: 5vh 5vw;
+    width: 100%;
+    height: 57.5vh;
   }
   .bottomcontainer{
     flex-direction: column;
     gap:10px;
   }
   .buttons{
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
+    margin-top: 0;
+  }
+  .rightcontainer {
+    display: none;
   }
 }

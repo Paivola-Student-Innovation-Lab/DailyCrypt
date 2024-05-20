@@ -1,4 +1,4 @@
-import { Header2 } from "./Header";
+import { Header } from "./Header";
 import styles from "./Infopage.module.css";
 import { Typography } from "@mui/material";
 import Card from "@mui/material/Card";
@@ -15,12 +15,12 @@ import { FormattedMessage } from "react-intl";
 export default function Info(props: any) {
     return (
         <div>
-            <Header2 setLanguage={props.setLanguage} />
+            <Header setLanguage={props.setLanguage} />
             <div className={styles.page}>
                 <Grid md={6} xs={6} item className={styles.grid}>
                     <Card className={styles.card} >
                         <CardContent>
-                            <Typography className={styles.infotitle} variant="h4">
+                            <Typography className={styles.infotitle} variant="h5">
                                 <FormattedMessage id="infopage_title1" />  <InfoIcon />
                             </Typography>
                             <div className={styles.divider} />
@@ -36,25 +36,14 @@ export default function Info(props: any) {
                                     values={{ PSIL: "PSIL" }}
                                 /> 
                             </Typography>
-                            <Link to="https://psil.fi"><img src='./images/psil.svg' className={styles.psil} alt=''/></Link>
-                        </CardContent>
-                    </Card>
-                    <Card className={styles.card} >
-                        <CardContent>
-                            <Typography className={styles.infotitle} variant="h4">
-                                <FormattedMessage id='infopage_title3' /> <TabIcon />
-                            </Typography>
-                            <div className={styles.divider} />
-                            <Typography className={styles.bodytext} variant="body1" >
-                                <FormattedMessage id='browser_info1' />
-                            </Typography>
+                            <Link to="https://psil.fi" target="_blank" rel="noreferrer"><img src='./images/psil.svg' className={styles.psil} alt=''/></Link>
                         </CardContent>
                     </Card>
                 </Grid>
                 <Grid xs={6} md={6} item className={styles.grid}>
                     <Card className={styles.guide} >
                         <CardContent>
-                            <Typography className={styles.infotitle} variant="h4">
+                            <Typography className={styles.infotitle} variant="h5">
                                 <FormattedMessage id="infopage_title2" /> <FolderZipIcon />
                             </Typography>
                             <div className={styles.divider} />

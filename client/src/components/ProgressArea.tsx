@@ -33,7 +33,11 @@ export function ProgressArea () {
     
     
     const handleDownload = () => {downloadfile(fileName, encrypting, filestore)}//download the crypted file
-    const handleRestart = () => {resetTime(); reset()}//reset the page
+    const handleRestart = () => {
+        eventBus.dispatch("stop", null); //Reset workers
+        resetTime(); 
+        reset();
+    }
 
     //pause crypting
     const handlePause = () => {
@@ -47,7 +51,7 @@ export function ProgressArea () {
             handlePause()
         }
         makeModal("Are you sure you want to cancel?", "This will stop the encryption/decryption process and delete the file.", 
-            [["Yes", () => {closeModal(); setTimeout(reset, 1000)}], ["No", () => {handlePause(); closeModal()}]])
+            [["Yes", () => {closeModal(); resetTime(); eventBus.dispatch("stop", null); setTimeout(reset, 1000)}], ["No", () => {closeModal(); handlePause()}]], true)
     }
     
     return(

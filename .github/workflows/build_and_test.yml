@@ -1,0 +1,101 @@
+name: Build and Test
+
+on: [push, pull_request]
+
+jobs:
+  test-crypting:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Check formatting
+        run: |
+          cd rustend
+          cargo fmt -- --check
+
+      - name: Run tests
+        run: |
+          cd rustend
+          cargo test
+
+  build-react:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Cache cargo registry
+        uses: actions/cache@v2
+        with:
+          path: ~/.cargo/registry
+          key: ${{ runner.os }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache cargo index
+        uses: actions/cache@v2
+        with:
+          path: ~/.cargo/git
+          key: ${{ runner.os }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache cargo build
+        uses: actions/cache@v2
+        with:
+          path: target
+          key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Cache cargo bin
+        uses: actions/cache@v2
+        with:
+          path: ~/.cargo/bin
+          key: ${{ runner.os }}-cargo-bin-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Add wasm target
+        run: |
+          rustup target add wasm32-unknown-unknown
+
+      - name: Install wasm-bindgen
+        run: |
+          if ! command -v wasm-bindgen &> /dev/null
+          then
+              cargo install wasm-bindgen-cli
+          fi
+
+      - name: Install wasm-pack
+        run: |
+          if ! command -v wasm-pack &> /dev/null
+          then
+              cargo install wasm-pack
+          fi
+
+      - name: Build Rustend
+        run: |
+          cd client
+          npm run build:wasm
+
+      - name: Install dependencies
+        run: |
+          cd client
+          npm install
+
+      - name: Build React
+        run: |
+          cd client
+          npm run build:react
