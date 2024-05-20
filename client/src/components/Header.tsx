@@ -23,7 +23,7 @@ const Header = (props: any) => {
                     </Link>
                 </span>
                 <Box className={dropHidden ? styles.dropzoneborder : styles.dropzonecoloredborder}>
-                    {dropHidden && 
+                    {dropHidden && (window.location.pathname == "/info") &&
                     <HeaderProgressBar/>
                     }
                 </Box>
