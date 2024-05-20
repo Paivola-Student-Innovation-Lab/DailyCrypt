@@ -1,12 +1,5 @@
 FROM --platform=linux/arm64 arm64v8/rust:1.77-slim-buster as rust
 
-RUN apt-get update && apt-get install -y wget
-
-RUN wget https://github.com/WebAssembly/binaryen/releases/download/version_106/binaryen-version_106-arm64-linux.tar.gz \
-    && tar -xzf binaryen-version_106-arm64-linux.tar.gz \
-    && cp binaryen-version_106/bin/wasm-opt /usr/local/bin/ \
-    && rm -rf binaryen-version_106-arm64-linux.tar.gz binaryen-version_106
-
 WORKDIR /app
 
 COPY .cargo/ .cargo/
@@ -14,6 +7,8 @@ COPY .cargo/ .cargo/
 RUN rustup target add wasm32-unknown-unknown
 RUN cargo install -f wasm-bindgen-cli
 RUN cargo install wasm-pack
+
+RUN echo "[package.metadata.wasm-pack.profile.release]\nwasm-opt = false" >> rustend/Cargo.toml
 
 COPY rustend/ rustend/
 
