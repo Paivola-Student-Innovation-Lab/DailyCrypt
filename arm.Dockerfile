@@ -1,19 +1,11 @@
 FROM --platform=linux/arm64 arm64v8/rust:1.77-slim-buster as rust
 
-RUN apt-get update && apt-get install -y \
-    git \
-    cmake \
-    ninja-build \
-    python3 \
-    clang \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y wget
 
-RUN git clone https://github.com/WebAssembly/binaryen.git /binaryen \
-    && cd /binaryen \
-    && cmake . -GNinja \
-    && ninja \
-    && cp bin/wasm-opt /usr/local/bin/
+RUN wget https://github.com/WebAssembly/binaryen/releases/download/version_106/binaryen-version_106-arm64-linux.tar.gz \
+    && tar -xzf binaryen-version_106-arm64-linux.tar.gz \
+    && cp binaryen-version_106/bin/wasm-opt /usr/local/bin/ \
+    && rm -rf binaryen-version_106-arm64-linux.tar.gz binaryen-version_106
 
 WORKDIR /app
 
