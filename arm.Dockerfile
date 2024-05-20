@@ -1,5 +1,3 @@
-FROM tonistiigi/binfmt:latest AS qemu
-
 FROM --platform=linux/arm64 arm64v8/rust:1.77-slim-buster as rust
 
 WORKDIR /app
