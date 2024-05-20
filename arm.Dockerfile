@@ -8,9 +8,9 @@ RUN rustup target add wasm32-unknown-unknown
 RUN cargo install -f wasm-bindgen-cli
 RUN cargo install wasm-pack
 
-RUN echo "[package.metadata.wasm-pack.profile.release]\nwasm-opt = false" >> rustend/Cargo.toml
-
 COPY rustend/ rustend/
+
+RUN echo "[package.metadata.wasm-pack.profile.release]\nwasm-opt = false" >> rustend/Cargo.toml
 
 RUN cd rustend && wasm-pack build --target web --out-dir pkg
 
