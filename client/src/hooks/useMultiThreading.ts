@@ -3,6 +3,7 @@ import usefunctionalityState from "./useFunctionalityState"
 import useModal from "./useModal"
 import calculateArraySize from "../utils/calculateArraySize"
 import eventBus from "../utils/EventBus"
+import { useIntl } from "react-intl"
 
 const useMultithreading = () => {
     // Ref defenition
@@ -16,6 +17,7 @@ const useMultithreading = () => {
     // Hook defenition
     const {reset, fileStore, updateProgress} = usefunctionalityState(state => ({reset: state.reset,fileStore: state.filestore, updateProgress: state.updateProgress}))
     const makeModal = useModal(state => state.makeModal)
+    const translate = useIntl().formatMessage
     
     // Pause crypting
     const handlePause = () => {
@@ -53,7 +55,7 @@ const useMultithreading = () => {
                 if (message.data[1].length === 0) { // Check for aead::Error on rustend
                     handleStop()
                     reset()
-                    makeModal("Invalid Decrypt Password!", "The decrypting password you used isn't the same one that was used for encrypting.")
+                    makeModal(translate({id: "wrong_password"}), translate({id: "wrong_password_text"}))
                 }
                 // If writeworker isn't currently writing anything send chunk to it
                 if(writeWorkerReadyRef.current && writeWorkerRef.current){
@@ -104,23 +106,15 @@ const useMultithreading = () => {
         }
 
         writeWorkerRef.current.onmessage = async(message) => {
-        // If worker sends number, get error message associated with that number and make a modal with it
         // Handle error in worker
         if(typeof message.data !== "string"){
-            const errormsg = [["could not find storage file", "can't find file for storage. this may be caused by all opfs data being deleted by another tab. to fix this reload the page."]]
-            const errors =["NotFoundError"]
-            // Associate errors with numbers and use them to make error modals
+            const errors: {[key: string]: string[]}  = {
+              "NotFoundError": [translate({id: "storage_not_found"}), translate({id: "storage_not_found_text"})]
+            }
             const error = message.data
             // Restart website
-            handleStop()
             reset()
-            if(errors.includes(error.name)){
-              const errorMessage = errormsg[errors.indexOf(error.name)]
-              makeModal(errorMessage[0], errorMessage[1])
-            }
-            else {
-              makeModal("error trying to write data to file" , error.name +": " + error.text)
-            }
+            errors[error.name] ? makeModal(errors[error.name][0], errors[error.name][1]) : makeModal(translate({id: "writing_error"}) , error.name +": " + error.text)
             return
           }
           //Do nothing if crypting is paused
@@ -158,7 +152,7 @@ const useMultithreading = () => {
                 // Checks if the file is of correct size
                 if(((await (await (await navigator.storage.getDirectory()).getFileHandle(fileStore)).getFile()).size!==fileSize + (encrypting ? totalChunks*16 : -totalChunks*16))){
                   reset()
-                  makeModal("something went wrong and file is wrong size", "")
+                  makeModal(translate({id: "wrong_filesize"}), "")
                 } else {
                   updateProgress(100)
                 }
