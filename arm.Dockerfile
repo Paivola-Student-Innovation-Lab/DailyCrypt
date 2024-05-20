@@ -1,10 +1,13 @@
 FROM --platform=linux/arm64 arm64v8/rust:1.77-slim-buster as rust
 
 RUN apt-get update && apt-get install -y \
+    git \
     cmake \
     ninja-build \
     python3 \
-    clang
+    clang \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/WebAssembly/binaryen.git /binaryen \
     && cd /binaryen \
