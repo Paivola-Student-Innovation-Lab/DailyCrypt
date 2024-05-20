@@ -1,5 +1,17 @@
 FROM --platform=linux/arm64 arm64v8/rust:1.77-slim-buster as rust
 
+RUN apt-get update && apt-get install -y \
+    cmake \
+    ninja-build \
+    python3 \
+    clang
+
+RUN git clone https://github.com/WebAssembly/binaryen.git /binaryen \
+    && cd /binaryen \
+    && cmake . -GNinja \
+    && ninja \
+    && cp bin/wasm-opt /usr/local/bin/
+
 WORKDIR /app
 
 COPY .cargo/ .cargo/
