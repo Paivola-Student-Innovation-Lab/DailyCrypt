@@ -59,13 +59,11 @@ const App = (props: any) => {
   //start encrypting
   const handleEncrypt = async () => {
     props.encryptFunc(files, password, passwordMismatch, true)
-    setFiles([])
   };
 
   //start decrypting
   const handleDecrypt = async () => {
     props.encryptFunc(files, password, passwordMismatch, false)
-    setFiles([])
   }  
   return (
     <>
