@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build and Push ARM Docker Image
 
 on:
   push:
@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -23,5 +26,5 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t ghcr.io/paivola-student-innovation-lab/dailycrypt:latest . -f x86_64.Dockerfile
-          docker push ghcr.io/paivola-student-innovation-lab/dailycrypt:latest
+          docker buildx build --platform linux/arm64 -t ghcr.io/paivola-student-innovation-lab/dailycrypt:arm . -f arm.Dockerfile
+          docker push ghcr.io/paivola-student-innovation-lab/dailycrypt:arm

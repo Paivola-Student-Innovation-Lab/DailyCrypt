@@ -56,6 +56,7 @@ const useMultithreading = () => {
                     handleStop()
                     reset()
                     makeModal(translate({id: "wrong_password"}), translate({id: "wrong_password_text"}))
+                    return
                 }
                 // If writeworker isn't currently writing anything send chunk to it
                 if(writeWorkerReadyRef.current && writeWorkerRef.current){

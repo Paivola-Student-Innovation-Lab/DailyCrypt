@@ -11,18 +11,19 @@ DailyCrypt is safe and easy to use encryption webapp. DailyCrypt doesn't have a 
 
 Make sure you have Docker installed
 
-Pull the Docker container with `docker pull ghcr.io/paivola-student-innovation-lab/dailycrypt`
+Pull the Docker container with `docker pull ghcr.io/paivola-student-innovation-lab/dailycrypt:latest`
+If you're using an arm system, use the `arm` tag
 
 ### Running the container
 
-To start the container, run `docker run -p 80:80 ghcr.io/paivola-student-innovation-lab/dailycrypt`
+To start the container, run `docker run -p <outer-port>:<inner-port> ghcr.io/paivola-student-innovation-lab/dailycrypt:<tag>` (remember to replace tag with your tag)
 
-You can use the `latest` tag to automatically install and use the latest version of the DailyCrypt container:
-`docker run -p 80:80 ghcr.io/paivola-student-innovation-lab/dailycrypt:latest`
+Example run script: `docker run --name dailycrypt -p 3000:80 ghcr.io/paivola-student-innovation-lab/dailycrypt:latest`
+
 
 ### Using the app
 
-Go to https://localhost and DailyCrypt should be running there.
+Go to https://localhost:<outer-port> and DailyCrypt should be running there.
 
 ## Installation from source
 
