@@ -1,4 +1,4 @@
-FROM rust:1.77-slim-buster
+FROM rust:1.77-slim-buster as rust
 
 WORKDIR /app
 
@@ -12,11 +12,11 @@ COPY rustend/ rustend/
 
 RUN cd rustend && wasm-pack build --target web --out-dir pkg
 
-FROM node:22-alpine3.18
+FROM node:22-alpine3.18 as node
 
 WORKDIR /app/client
 
-COPY --from=0 /app/rustend/pkg/ ../rustend/pkg/
+COPY --from=rust /app/rustend/pkg/ ../rustend/pkg/
 
 COPY client/package.json .
 COPY client/package-lock.json .
@@ -27,6 +27,6 @@ COPY client/ .
 
 RUN npm run build:react
 
-FROM nginx:latest
+FROM nginx:latest as nginx
 
-COPY --from=1 /app/client/dist/ /usr/share/nginx/html
+COPY --from=node /app/client/dist/ /usr/share/nginx/html
