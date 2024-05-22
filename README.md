@@ -16,14 +16,14 @@ If you're using an arm system, use the `arm` tag
 
 ### Running the container
 
-To start the container, run `docker run -p <outer-port>:<inner-port> ghcr.io/paivola-student-innovation-lab/dailycrypt:<tag>` (remember to replace tag with your tag)
+To start the container, run `docker run -p <outer-port>:<inner-port> ghcr.io/paivola-student-innovation-lab/dailycrypt:<tag>` (remember to replace ports with your ports and tag with your tag)
 
 Example run script: `docker run --name dailycrypt -p 3000:80 ghcr.io/paivola-student-innovation-lab/dailycrypt:latest`
 
 
 ### Using the app
 
-Go to https://localhost:<outer-port> and DailyCrypt should be running there.
+Go to `https://localhost:<outer-port>` (replace outer-port with your outer port) and DailyCrypt should be running there.
 
 ## Installation from source
 
