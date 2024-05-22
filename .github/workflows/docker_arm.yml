@@ -3,7 +3,7 @@ name: Build and Push ARM Docker Image
 on:
   push:
     branches:
-      - arm-docker
+      - main
 
 jobs:
   build-and-push:
