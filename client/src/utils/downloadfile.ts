@@ -2,10 +2,10 @@ import {saveAs} from "file-saver"
 const downloadfile = async(filename: string, encrypting: boolean, fileStore:string) =>{
   //create correct name for file
     if (!encrypting) {
-      filename = filename.replace(new RegExp('.dcrypt' + '$'), '');
+      filename = filename.replace(new RegExp('.dc' + '$'), '');
     }
     else{
-      filename = filename + '.dcrypt'
+      filename = filename + '.dc'
     }
     //get file from opfs and download it
     const opfsRoot = await navigator.storage.getDirectory();
