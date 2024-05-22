@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import SideMenu from "./Drawer";
 import { LanguageButton } from "./LanguageButton";
 import { Link } from "react-router-dom";
-import { HeaderProgressBar } from "./ProgressArea";
+import { ProgressArea } from "./ProgressArea";
 
 import usefunctionalityState from "../hooks/useFunctionalityState";
 
@@ -24,7 +24,7 @@ const Header = (props: any) => {
                 </span>
                 <Box className={dropHidden ? styles.dropzoneborder : styles.dropzonecoloredborder}>
                     {dropHidden && (window.location.pathname == "/info") &&
-                    <HeaderProgressBar/>
+                    <ProgressArea/>
                     }
                 </Box>
                 <div className={styles.language}>

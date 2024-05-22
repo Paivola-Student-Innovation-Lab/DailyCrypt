@@ -1,4 +1,22 @@
 import { useRef } from "react";
+import { create } from "zustand";
+
+interface timeState {
+  startTime: number|undefined
+  pausedTime: number|undefined
+  setStartTime: (arg0: number|undefined) => void
+  setPausedTime: (arg0: number|undefined) => void
+}
+const useTimeState = create<timeState>((set) => ({
+  startTime: undefined,
+  pausedTime: undefined,
+  setStartTime: (newTime: number|undefined) => set({
+    startTime: newTime
+  }),
+  setPausedTime: (newTime: number|undefined) => set({
+    pausedTime: newTime
+  })
+}))
 //convert time in seconds to time in hours, minutes and seconds
 function secondsToHms(d: number) {
   const h = Math.floor(d / 3600);
@@ -8,41 +26,40 @@ function secondsToHms(d: number) {
   return [h, m, s]; 
 }
 function useTime(progress: number){
-    const startTimeRef = useRef<undefined|number>()
-    const pausedTimeRef = useRef<undefined|number>() 
+    const {startTime, pausedTime, setStartTime, setPausedTime} = useTimeState((set) => ({startTime: set.startTime, pausedTime: set.pausedTime,setStartTime: set.setStartTime ,setPausedTime: set.setPausedTime}))
     // Handle time data
     const handleTime = () => {
       if(progress > 0){
         const currentTime = performance.now()
-        if(startTimeRef.current===undefined){
-          startTimeRef.current = currentTime
+        if(startTime===undefined){
+          setStartTime(currentTime)
         }
-        const totalTime = currentTime - startTimeRef.current //calculate how much time has passed since starting crypting
-        const remainingTime = (1/progress-1)*totalTime 
-        return(secondsToHms(remainingTime/1000 + 1))
+        else{
+          const totalTime = currentTime - startTime //calculate how much time has passed since starting crypting
+          const remainingTime = (1/progress-1)*totalTime 
+          return(secondsToHms(remainingTime/1000 + 1))
+        }
     }
-    else{
-      return [NaN, NaN, NaN]
-    }
+    return [NaN, NaN, NaN]
     }
 
     //adjust startTime based on how long program was paused for
     const adjustStartTime = () => {
-      if(startTimeRef.current){
-        if(pausedTimeRef.current){
-          startTimeRef.current = startTimeRef.current + performance.now() - pausedTimeRef.current
-          pausedTimeRef.current = undefined
+      if(startTime){
+        if(pausedTime){
+          setStartTime(startTime + performance.now() - pausedTime)
+          setPausedTime(undefined)
         }
         else{
-          pausedTimeRef.current = performance.now()
+          setPausedTime(performance.now())
         }
       }
     }
 
     //function for reseting time when crypting is stopped
     const resetTime = () => {
-      startTimeRef.current = undefined
-      pausedTimeRef.current = undefined
+      setStartTime(undefined)
+      setPausedTime(undefined)
     }
     return{handleTime, adjustStartTime, resetTime}
 }
