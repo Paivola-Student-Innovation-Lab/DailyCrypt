@@ -2,8 +2,8 @@
 import { Alert, Button, TextField, Typography, Box, AlertTitle} from "@mui/material";
 import { Link } from "react-router-dom";
 import Dropzone from "./components/Dropzone";
+import { ProgressArea } from './components/ProgressArea';
 import {Header} from "./components/Header";
-import ProgressArea from './components/ProgressArea';
 import { FrontPageAccordion } from "./components/Accordion";
 
 // Styles

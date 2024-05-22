@@ -1,9 +1,15 @@
 import styles from "./Header.module.css"
+import { Box } from "@mui/material";
 import SideMenu from "./Drawer";
 import { LanguageButton } from "./LanguageButton";
 import { Link } from "react-router-dom";
+import { ProgressArea } from "./ProgressArea";
+
+import usefunctionalityState from "../hooks/useFunctionalityState";
+
 
 const Header = (props: any) => {
+    const dropHidden = usefunctionalityState((state) => state.drophidden)
     return (
         <div className={styles.header}>
             <div className={styles.buttons} >
@@ -16,6 +22,11 @@ const Header = (props: any) => {
                         DailyCrypt
                     </Link>
                 </span>
+                <Box className={dropHidden ? styles.dropzoneborder : styles.dropzonecoloredborder}>
+                    {dropHidden && (window.location.pathname == "/info") &&
+                    <ProgressArea/>
+                    }
+                </Box>
                 <div className={styles.language}>
                     <LanguageButton setLanguage={props.setLanguage}/>
                 </div>

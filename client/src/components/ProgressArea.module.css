@@ -16,3 +16,22 @@ div > .downloadbutton:hover {
    background-color: var(--decryptgreen);
    border: 5px solid var(--decryptgreen);
 }
+
+.headerprogressbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  width: 40vw;
+  height: 3vh;
+  margin-right: 20%;
+  margin-top: 2%;
+}
+
+div > .headerbutton {
+  display: flex;
+  color: var(--encryptgreen);
+}
+div > .headerbutton:hover {
+ background-color: var(--decryptgreen);
+}
