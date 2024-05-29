@@ -8,27 +8,38 @@ function useOnPageLoad(){
   const translate = useIntl().formatMessage
   const remove = async()=>{
     // Remove all files from opfs
-    for await (const key of (await navigator.storage.getDirectory()).keys()){
+    let newKey = "stored file 0001"
+    for await (const key of (await navigator.storage.getDirectory()).keys()) {
+      if(newKey === "stored file 0001"){
+        const number = parseInt(key.split(" ")[2])
+        // File store name is formatted like this to make sorting work properly up to 9999
+        newKey = "stored file " + ("000" + (number + 1)).slice(-4)
+      }
       await(await navigator.storage.getDirectory()).removeEntry(key)
     }
-    // Create default file
-    setFileStore("stored file")
-    await(await navigator.storage.getDirectory()).getFileHandle("stored file", {create: true})
+    // Create a new file to opfs
+    setFileStore(newKey)
+    await(await navigator.storage.getDirectory()).getFileHandle(newKey, {create: true})
 
     // Close question modal
     closeModal()
   }
   const createNew = async()=>{
-    // Add an increasing number to the end of the default key until the key is no longer in the array of stored files
-    let number=0
-    let key = "stored file"
-    while(Object.keys(await navigator.storage.getDirectory()).includes(key)){
-      number+=1
-      key="stored file"+number
+    let newKey = "stored file 0001"
+    for await (const key of (await navigator.storage.getDirectory()).keys()){
+      console.log(key)
     }
-    //creates file from key
-    setFileStore(key)
-    await(await navigator.storage.getDirectory()).getFileHandle(key, {create: true})
+    for await(const key of (await navigator.storage.getDirectory()).keys()){
+      // Get a key that is one greater than previous greatest key
+      const number = parseInt(key.split(" ")[2])
+      // File store name is formatted like this to make sorting work properly up to 9999
+      newKey = "stored file " + ("000" + (number + 1)).slice(-4)
+      break
+    }
+    // Create file from key
+    setFileStore(newKey)
+    await(await navigator.storage.getDirectory()).getFileHandle(newKey, {create: true})
+    // Close question modal
     closeModal()
   }
 
@@ -36,15 +47,17 @@ function useOnPageLoad(){
   const handleLoad = async() => {
     // Check if there are any files in opfs
     let filesinstore=false
-    if (Object.keys(await navigator.storage.getDirectory()).length>0){
+    for await (const key of (await navigator.storage.getDirectory()).keys()){
       // If there are files in opfs, ask the user how to proceed. The user can call one of the functions above through this modal
       makeModal(translate({id: "another_tab"}), translate({id: "another_tab_text"}), [[translate({id: "remove_tab"}), remove], [translate({id: "create_tab"}), createNew]], true)
       filesinstore=true
+      break
     }
     // If no files were found, create default file
     if(!filesinstore){
-      setFileStore("stored file")
-      await(await navigator.storage.getDirectory()).getFileHandle("stored file", {create: true})
+      // File store name is formatted like this to make sorting work properly up to 9999
+      setFileStore("stored file 0001")
+      await(await navigator.storage.getDirectory()).getFileHandle("stored file 0001", {create: true})
     }
   }
   return { handleLoad }

@@ -8,7 +8,7 @@ import useMultithreading from "./useMultiThreading";
 
 function useFunctionality() {
     //hook defenitions
-    const{setUiState, reset} = usefunctionalityState((state)=>({setUiState: state.setUiState,reset: state.reset}))
+    const{setUiState, fileStore} = usefunctionalityState((state)=>({setUiState: state.setUiState,fileStore: state.filestore}))
     const {handleChecks} = useChecks()
     const {handleLoad} = useOnPageLoad()
     const cryptFiles = useMultithreading()
@@ -32,7 +32,9 @@ function useFunctionality() {
     
     //reset opfs when someone tries to unload the page
     const handleReset = async() => {
-      reset()
+      navigator.storage.getDirectory().then((directoryhandle) => {
+        directoryhandle.removeEntry(fileStore)
+      })
     }
     useEffect(() => {
       window.addEventListener('beforeunload', handleReset)
