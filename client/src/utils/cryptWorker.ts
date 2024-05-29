@@ -4,9 +4,9 @@ import { chunkFile, combineUint8Arrays } from "./Chunking";
 
 init()
 let paused = false
+let hasPaused = false
 let deletedFileSize = 0
 let cryptData: {files: File[], encrypting: boolean, startId: number, endId: number, chunkSize: number, nonce: Uint8Array, key: Uint8Array} = {files: [], encrypting: true, startId: 0, endId: -1, chunkSize: 0, nonce: new Uint8Array, key: new Uint8Array}
-
 const createChunk = async(key:number, files: (Blob|Uint8Array)[], chunkSize: number) => {
     let dataProcessed = key*chunkSize
     let byteArray: Uint8Array = new Uint8Array([])
@@ -39,7 +39,8 @@ const cryptFiles = async () => {
         if(paused){
             //store data to continue crypting in the future
             cryptData.startId = id
-            break
+            hasPaused = true
+            return
         }
         const chunk = await createChunk(id, files, chunkSize)
         let cryptedChunk;
@@ -48,9 +49,10 @@ const cryptFiles = async () => {
         }
         else{
             cryptedChunk = decrypt(chunk, nonce, key)
-            }
+        }
         postMessage([id, cryptedChunk])
     }
+    
 }
     
 onmessage = async(message) => {
@@ -60,7 +62,10 @@ onmessage = async(message) => {
         }
         else if(message.data === "unpause"){
             paused = false
-            cryptFiles()
+            if (hasPaused) {
+                hasPaused = false
+                cryptFiles()
+            }
         }
         else if(message.data === "clear"){
            //when crypting is stopped
