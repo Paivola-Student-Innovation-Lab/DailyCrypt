@@ -26,9 +26,6 @@ function useOnPageLoad(){
   }
   const createNew = async()=>{
     let newKey = "stored file 0001"
-    for await (const key of (await navigator.storage.getDirectory()).keys()){
-      console.log(key)
-    }
     for await(const key of (await navigator.storage.getDirectory()).keys()){
       // Get a key that is one greater than previous greatest key
       const number = parseInt(key.split(" ")[2])
