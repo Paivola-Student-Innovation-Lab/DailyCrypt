@@ -88,12 +88,19 @@ const useMultithreading = () => {
 
         const workerAmount = 5
 
-        if(workerAmount > workersRef.current.length){
-            // Create the needed amount of workers
-            createWorkers(workerAmount-workersRef.current.length)
-            // Wait for workers to load 
-            await new Promise( res => setTimeout(res, 1000) )
+        if (workerAmount > workersRef.current.length) {
+        // Create the needed amount of workers
+        const workersToCreate = workerAmount - workersRef.current.length;
+    
+        // Create the workers and wait for them to be created
+        await new Promise<void>(resolve => {
+            for (let i = 0; i < workersToCreate; i++) {
+                workersRef.current.push(createWorker()); // Create worker (or async logic)
+            }
+            resolve();
+        });
         }
+
         else{
             // Remove useless workers
             while(workerAmount !== workersRef.current.length){
