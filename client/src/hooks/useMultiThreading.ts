@@ -90,7 +90,7 @@ const useMultithreading = () => {
 
         if (workerAmount > workersRef.current.length) {
             // Create the needed amount of workers
-            const workersToCreate = workerAmount - workersRef.current.length;
+	    createWorkers(workerAmount-workersRef.current.length)
     	    // Wait for workers to load 
 	    await new Promise( res => setTimeout(res, 1000) )
 	    }
