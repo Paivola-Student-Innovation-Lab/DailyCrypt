@@ -29,58 +29,23 @@ Go to `https://localhost:<outer-port>` (replace outer-port with your outer port)
 
 ### First time setup
 
-Install rustup from https://rustup.rs/ or with `snap install rustup`
+Install rustup from https://rustup.rs/
 
 Restart console after installing rust
 
-```console
-rustup update stable
-rustup target add wasm32-unknown-unknown
-cargo install -f wasm-bindgen-cli
-cargo install wasm-pack
-```
-
-#### Add wasm-pack to path
-
-Run the following in your home directory (you can get there by running cd)
+After restarting run
 
 ```console
-nano .bashrc
-```
-
-Enter the following at the bottom of the .bashrc file, save and restart terminal
-
-```json
-export PATH="$PATH:$HOME/.cargo/bin"
+make setup
 ```
 
 ### Running app
 
-#### Install packages
-
-Run the following in the project directory
-
 ```console
-cd client/
-npm install
+make run
 ```
 
-#### Build
-
-Run the following in the project directory
-
-```console
-cd client/
-npm run build
-```
-
-#### Run
-
-```console
-npm preview
-```
-
-You can also optionally use the developer environment by using `npm run dev`
+You can also optionally use the developer environment by using `make run-dev`
 
 ## Contributing
 
