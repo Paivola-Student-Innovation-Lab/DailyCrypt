@@ -6,8 +6,7 @@ COPY .cargo/ .cargo/
 
 RUN rustup target add wasm32-unknown-unknown
 RUN cargo install -f wasm-bindgen-cli
-# wasm-opt HACK for aarch64
-RUN cargo install --git https://github.com/dkristia/wasm-pack-aarch64 wasm-pack
+RUN cargo install wasm-pack
 
 COPY rustend/ rustend/
 
