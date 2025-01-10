@@ -1,4 +1,4 @@
-FROM --platform=linux/aarch64 arm64v8/rust:1.84-slim-buster as rust
+FROM --platform=linux/aarch64 arm64v8/rust:1.84-slim-bullseye as rust
 
 WORKDIR /app
 
